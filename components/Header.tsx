@@ -18,7 +18,7 @@ function Header() {
 
 
     return (
-        <div className="py-4 px-2 flex justify-between items-center">
+        <div className="py-4 px-2 flex justify-between items-center bg-white">
 
             {/* Logo */}
 
