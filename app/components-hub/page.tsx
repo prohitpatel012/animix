@@ -29,14 +29,14 @@ function ComponentsHub() {
             {/* Headers Section */}
             {/* Whats you want to shows  */}
             <div>
-                <h1 className='text-xl  font-medium max-w-md md:max-w-2xl mx-auto tracking-tight py-2'>Components hub page has been build for faster devolopement.</h1>
+                <h1 className='text-xl font-medium max-w-md md:max-w-2xl mx-auto tracking-tight py-2'>Components hub page has been build for faster devolopement.</h1>
             </div>
 
             {/* sidebar */}
             {/* Main */}
 
-            <div className='grid grid-cols-8'>
-                <div className=''><Sidebar active={category}
+            <div className='grid lg:grid-cols-8 grid-cols-1'>
+                <div className='hidden lg:inline'><Sidebar active={category}
                     setActive={(v) => {
                         setCategory(v);
                         setSelectedId(null);
@@ -46,7 +46,7 @@ function ComponentsHub() {
                     <MainComponentArea components={activeList}
                         onSelect={setSelectedId} />
                 </div>
-                <div className='col-span-2'><Feed /></div>
+                <div className='col-span-2 hidden md:inline'><Feed /></div>
 
             </div>
 

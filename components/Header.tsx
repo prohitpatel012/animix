@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { BiBasket, BiSearch, BiUser } from 'react-icons/bi';
+import { BiBasket, BiMenu, BiSearch, BiUser } from 'react-icons/bi';
 import { TbWorldSearch } from "react-icons/tb";
 
 
@@ -26,12 +26,12 @@ function Header() {
                 <section>
                     <Link href="/" className='flex space-x-2 items-center '>
                         <span className='text-white bg-black px-2 py-1 rounded-md'>AA</span>
-                        <p className='text-black font-bold text-xl'>Antigravity UI Library</p>
+                        <p className='text-black font-bold text-xl hidden md:inline'>Antigravity UI Library</p>
                     </Link>
 
                 </section>
 
-                <section className="flex items-center space-x-2">
+                <section className="md:flex items-center space-x-2 hidden">
                     {menuOptions.map((option) => (
                         <Link
                             key={option.name}
@@ -72,7 +72,7 @@ function Header() {
                     </button>
                 </div>
 
-                <div>
+                <div className='hidden md:inline'>
                     <button className='border border-gray-300 rounded-md px-4 py-2 flex items-center space-x-2'
 
                     >
@@ -80,6 +80,13 @@ function Header() {
 
                         Login
                     </button>
+
+
+
+                </div>
+
+                <div className='md:hidden'>
+                    <BiMenu className='size-6' />
                 </div>
 
 

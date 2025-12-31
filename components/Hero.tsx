@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 export default function Hero() {
     return (
         <section className="relative min-h-screen overflow-hidden bg-white">
-            <div className=" grid  grid-cols-1 items-center gap-16 px-60  py-32 md:grid-cols-3">
+            <div className="lg:grid items-center gap-16 lg:px-60  lg:py-32 lg:grid-cols-3 grid py-10 px-6">
                 {/* LEFT CONTENT */}
                 <div
                     className="relative z-10 max-w-xl"
