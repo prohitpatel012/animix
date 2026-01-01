@@ -83,6 +83,22 @@ export function PrimaryButton() {
 }
 
 
+export function AnimatedButton() {
+  return (
+    
+    <motion.button
+        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.05 }}
+        className="px-4 py-2 rounded-md bg-black text-white"
+      >
+        Animated Button
+      </motion.button>
+
+  )
+}
+
+
+
 
 export function SecondaryButton() {
   return (

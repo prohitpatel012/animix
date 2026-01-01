@@ -7,6 +7,8 @@ import Feed from '../../components/Feed'
 import Sidebar from '../../components/Sidebar'
 import { buttonComponents } from '@/ShowOnUi/buttonComponents'
 import { cardsComponents } from '@/ShowOnUi/cardsComponents'
+import { motion } from 'motion/react'
+import { IoTerminalSharp } from 'react-icons/io5'
 
 
 function ComponentsHub() {
@@ -29,7 +31,14 @@ function ComponentsHub() {
             {/* Headers Section */}
             {/* Whats you want to shows  */}
             <div>
-                <h1 className='text-xl font-medium max-w-md md:max-w-2xl mx-auto tracking-tight py-2'>Components hub page has been build for faster devolopement.</h1>
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, damping: 1, ease: "easeInOut" }}
+
+                    className=' text-center px-2 py-2 text-lg lg:text-3xl font-bold text-gray-900 '>
+                    Animix UI provides the component collection for faster development.
+                </motion.h1>
             </div>
 
             {/* sidebar */}
@@ -42,6 +51,8 @@ function ComponentsHub() {
                         setSelectedId(null);
                     }} />
                 </div>
+
+
                 <div className='col-span-5 '>
                     <MainComponentArea components={activeList}
                         onSelect={setSelectedId} />

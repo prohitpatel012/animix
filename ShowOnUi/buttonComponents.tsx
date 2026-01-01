@@ -1,7 +1,7 @@
 // app/data/buttons.tsx
 
-import { PrimaryButton, SecondaryButton } from "@/components/ui-component/button";
-import { primaryButtonCode, secondaryButtonCode } from '@/code/button-code'
+import { AnimatedButton, PrimaryButton, SecondaryButton } from "@/components/ui-component/button";
+import { animatedButtonCode, primaryButtonCode, secondaryButtonCode } from '@/code/button-code'
 
 
 
@@ -11,6 +11,12 @@ export const buttonComponents = [
     name: "Primary Button",
     preview: <PrimaryButton />,
     code: primaryButtonCode
+  },
+  {
+    id: "animatedButton",
+    name: "Primary Button",
+    preview: <AnimatedButton />,
+    code: animatedButtonCode
   },
   {
     id: "secondary-button",

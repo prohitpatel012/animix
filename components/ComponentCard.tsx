@@ -40,13 +40,13 @@ export default function ComponentCard({
     return (
         <div className="">
 
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-2 mb-4 px-2 lg:px-0">
                 <div className="">
 
 
                     <button
                         onClick={(e) => { e.stopPropagation(); setView('preview'); }}
-                        className={`px-6 py-4  rounded space-x-2 text-md flex  items-center  ${view === 'preview' ? 'bg-gray-400 text-white ' : 'bg-gray-100 hover:bg-gray-200'}`}
+                        className={`lg:px-6 lg:py-4 px-2 py-2  rounded space-x-2 text-md flex  items-center  ${view === 'preview' ? 'bg-gray-400 text-white ' : 'bg-gray-100 hover:bg-gray-200'}`}
                     >
                         <MdOutlinePreview className="size-6" />
                         <p>Preview</p>
@@ -57,7 +57,7 @@ export default function ComponentCard({
 
                     <button
                         onClick={(e) => { e.stopPropagation(); setView('code'); }}
-                        className={`px-6 py-4 rounded text-md space-x-2 flex ${view === 'code' ? 'bg-gray-400 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+                        className={`lg:px-6 lg:py-4 px-2 py-2 rounded text-md space-x-2 flex ${view === 'code' ? 'bg-gray-400 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
                     >
                         <IoLogoCodepen className="size-6" />
                         <p>Code</p>
