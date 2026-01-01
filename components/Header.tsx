@@ -8,6 +8,8 @@ import { TbWorldSearch } from "react-icons/tb";
 import { motion } from 'motion/react'
 import { CgCloseR } from 'react-icons/cg';
 import { IoTerminalSharp } from 'react-icons/io5';
+import { buttonComponents } from '@/ShowOnUi/buttonComponents';
+import { cardsComponents } from '@/ShowOnUi/cardsComponents';
 
 const menuOptions = [
     { name: 'ComponentsHub', href: '/components-hub' },
@@ -20,6 +22,9 @@ function Header() {
     const [activeOption, setActiveOption] = useState('Home');
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+ 
+    
 
 
 
@@ -44,11 +49,20 @@ function Header() {
                             key={option.name}
                             href={option.href}
                             onClick={() => setActiveOption(option.name)}
-                            className={`text-md font-medium transition-colors ${activeOption === option.name ? 'text-black font-bold' : 'text-gray-500 hover:text-black'
-                                }`}
+                            className={`
+    relative text-sm font-medium transition-colors duration-200
+    ${activeOption === option.name
+                                    ? 'text-neutral-900'
+                                    : 'text-neutral-500 hover:text-neutral-900'}
+  `}
                         >
                             {option.name}
+
+                            {activeOption === option.name && (
+                                <span className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full bg-neutral-900" />
+                            )}
                         </Link>
+
                     ))}
                 </section>
             </div>
@@ -138,6 +152,16 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
+      const [category, setCategory] = useState('Buttons')
+      const [selectedId, setSelectedId] = useState<string | null>(null)
+    
+      let activeList: any[] = []
+      if (category === 'Buttons') activeList = buttonComponents
+      else if (category === 'Cards') activeList = cardsComponents
+    
+      const selectedComponent = activeList.find((c) => c.id === selectedId)
+    
+
     return (
         <AnimatePresence>
 
@@ -192,26 +216,21 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
                             <button className='flex items-center space-x-2'><span>Components</span> <IoTerminalSharp />
 
                             </button>
-
-
-
-                            {/* List Down all the components */}
-
+                          
+                       
+                       <PhoneViewComponentItems active={category}
+            setActive={(v) => {
+              setCategory(v)
+              setSelectedId(null)
+            }} />
 
                         </div>
 
 
 
 
-                        {/* Menu Items */}
+                     
 
-
-
-                        {/* --------------------------------- */}
-
-
-
-                        {/* Component Option and items */}
 
                     </motion.div>
                 )
@@ -220,5 +239,49 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
         </AnimatePresence>
 
 
+    )
+}
+
+
+
+type Props = {
+    active: string;
+    setActive: (v: string) => void;
+};
+
+ const PhoneViewComponentItems = ({ active, setActive }: Props) => {
+    
+     const items = ["Buttons", "Cards", "Tooltips"];
+    return (
+        <div>
+            {items.map((item) => (
+                    <button
+                        key={item}
+                        onClick={() => setActive(item)}
+                        className={`
+    group w-full text-left px-4 py-2.5 text-sm rounded-md
+    transition-all duration-200 ease-out
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50
+    ${active === item
+                                ? "bg-neutral-900/5 text-neutral-900 font-medium"
+                                : "text-neutral-500 hover:bg-neutral-900/5 hover:text-neutral-800"
+                            }
+  `}
+                    >
+                        <span className="relative flex items-center">
+                            {/* Active indicator */}
+                            <span
+                                className={`
+        absolute left-0 h-4 w-[2px] rounded-full bg-blue-500
+        transition-opacity duration-200
+        ${active === item ? "opacity-100" : "opacity-0 group-hover:opacity-40"}
+      `}
+                            />
+                            <span className="pl-3">{item}</span>
+                        </span>
+                    </button>
+
+                ))}
+        </div>
     )
 }

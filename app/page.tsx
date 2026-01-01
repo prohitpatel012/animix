@@ -1,10 +1,12 @@
-import Hero from '@/components/Hero'
+// import Hero from '@/components/Hero'
+import LandingPage from '@/components/Hero'
 import React from 'react'
 
 function Home() {
   return (
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      <LandingPage />
     </div>
   )
 }

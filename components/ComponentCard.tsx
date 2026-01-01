@@ -41,29 +41,53 @@ export default function ComponentCard({
         <div className="">
 
             <div className="flex gap-2 mb-4 px-2 lg:px-0">
-                <div className="">
-
-
+                <div>
                     <button
-                        onClick={(e) => { e.stopPropagation(); setView('preview'); }}
-                        className={`lg:px-6 lg:py-4 px-2 py-2  rounded space-x-2 text-md flex  items-center  ${view === 'preview' ? 'bg-gray-400 text-white ' : 'bg-gray-100 hover:bg-gray-200'}`}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setView('preview')
+                        }}
+                        className={`
+        flex items-center gap-2
+        px-3 py-2 lg:px-6 lg:py-3
+        rounded-md
+        text-sm font-medium
+        transition-all duration-200
+        ${view === 'preview'
+                                ? 'bg-neutral-900 text-white shadow-sm'
+                                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                            }
+      `}
                     >
-                        <MdOutlinePreview className="size-6" />
-                        <p>Preview</p>
+                        <MdOutlinePreview className="size-5" />
+                        <span>Preview</span>
                     </button>
                 </div>
+
                 <div>
-
-
                     <button
-                        onClick={(e) => { e.stopPropagation(); setView('code'); }}
-                        className={`lg:px-6 lg:py-4 px-2 py-2 rounded text-md space-x-2 flex ${view === 'code' ? 'bg-gray-400 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setView('code')
+                        }}
+                        className={`
+        flex items-center gap-2
+        px-3 py-2 lg:px-6 lg:py-3
+        rounded-md
+        text-sm font-medium
+        transition-all duration-200
+        ${view === 'code'
+                                ? 'bg-neutral-900 text-white shadow-sm'
+                                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                            }
+      `}
                     >
-                        <IoLogoCodepen className="size-6" />
-                        <p>Code</p>
+                        <IoLogoCodepen className="size-5" />
+                        <span>Code</span>
                     </button>
                 </div>
             </div>
+
 
             <div className="border border-gray-200 shadow rounded-md p-4 flex flex-col items-center mb-10">
 
