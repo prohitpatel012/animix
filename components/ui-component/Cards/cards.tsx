@@ -1,4 +1,3 @@
-export const pricingCardCode = `
 'use client'
 import { motion } from 'motion/react'
 import { SiYoutubemusic } from 'react-icons/si';
@@ -104,7 +103,7 @@ export default function PricingCard() {
                   },
                 }}
 
-                key={subscriptionPlan.name} className={\`relative bg-white text-black border border-gray-300 shadow-lg px-6 py-6 min-h-[60vh] rounded-sm \${subscriptionPlan.isPopular ? 'border-2 border-red-500' : ''}\`} >
+                key={subscriptionPlan.name} className={`relative bg-white text-black border border-gray-300 shadow-lg px-6 py-6 min-h-[60vh] rounded-sm ${subscriptionPlan.isPopular ? 'border-2 border-red-500' : ''}`} >
                 <div className='absolute -top-2 right-10'>
                   {subscriptionPlan.isPopular && (
                     <span className='bg-red-500 text-white px-2 py-1 rounded-sm'>Popular</span>
@@ -170,5 +169,3 @@ const YesSymbol = () => {
     </div>
   </div>
 }
-  
-`

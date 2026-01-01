@@ -36,7 +36,7 @@ function ComponentsHub() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, damping: 1, ease: "easeInOut" }}
 
-                    className=' text-center px-2 py-2 text-lg lg:text-3xl font-bold text-gray-900 '>
+                    className=' text-center px-2 py-2  lg:py-8 text-lg lg:text-3xl font-bold text-gray-900 '>
                     Animix UI provides the component collection for faster development.
                 </motion.h1>
             </div>

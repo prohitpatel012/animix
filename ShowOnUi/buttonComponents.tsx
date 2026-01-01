@@ -1,6 +1,6 @@
 // app/data/buttons.tsx
 
-import { AnimatedButton, PrimaryButton, SecondaryButton } from "@/components/ui-component/button";
+import { AnimatedButton, PrimaryButton, SecondaryButton } from "@/components/ui-component/Button/button";
 import { animatedButtonCode, primaryButtonCode, secondaryButtonCode } from '@/code/button-code'
 
 

@@ -1,27 +1,41 @@
 export function highlightCode(code: string) {
-    return code
-        // escape HTML
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
+  if (typeof code !== "string") return "";
 
-        // comments
-        .replace(/(\/\/.*$)/gm, `<span class="token comment">$1</span>`)
+  let html = code
+    // escape HTML FIRST
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
-        // strings
-        .replace(/(["'`].*?["'`])/g, `<span class="token string">$1</span>`)
+  // comments
+  html = html.replace(
+    /(\/\/.*$)/gm,
+    `<span class="token comment">$1</span>`
+  );
 
-        // keywords
-        .replace(
-            /\b(import|export|from|return|const|let|function|if|else)\b/g,
-            `<span class="token keyword">$1</span>`
-        )
+  // strings
+  html = html.replace(
+    /(['"`])(?:\\.|(?!\1).)*\1/g,
+    `<span class="token string">$&</span>`
+  );
 
-        // JSX attributes
-        .replace(/(\w+)=/g, `<span class="token attr">$1</span>=`)
+  // keywords
+  html = html.replace(
+    /\b(import|export|from|return|const|let|function|if|else|map|default)\b/g,
+    `<span class="token keyword">$1</span>`
+  );
 
-        // JSX tags
-        .replace(/(&lt;\/?\w+)/g, `<span class="token tag">$1</span>`)
+  // JSX tags
+  html = html.replace(
+    /(&lt;\/?\w+)/g,
+    `<span class="token tag">$1</span>`
+  );
 
-        // function names
-        .replace(/(\w+)(?=\()/g, `<span class="token function">$1</span>`);
+  // function names
+  html = html.replace(
+    /(\w+)(?=\()/g,
+    `<span class="token function">$1</span>`
+  );
+
+  return html;
 }
