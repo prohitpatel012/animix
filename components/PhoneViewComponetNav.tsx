@@ -5,8 +5,8 @@ type Props = {
     setActive: (v: string) => void;
 };
 
-export default function Sidebar({ active, setActive }: Props) {
-    const items = ["Buttons", "Cards", "Modal"];
+export default function PhoneViewComponentNav({ active, setActive }: Props) {
+    const items = ["Buttons", "Cards", "Tooltips"];
 
     return (
         <div className="w-60">

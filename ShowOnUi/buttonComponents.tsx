@@ -12,16 +12,6 @@ export const buttonComponents = [
     preview: <PrimaryButton />,
     code: primaryButtonCode
   },
-  {
-    id: "animatedButton",
-    name: "Primary Button",
-    preview: <AnimatedButton />,
-    code: animatedButtonCode
-  },
-  {
-    id: "secondary-button",
-    name: "Secondary Button",
-    preview: <SecondaryButton />,
-    code: secondaryButtonCode
-  }
+ 
+
 ]
