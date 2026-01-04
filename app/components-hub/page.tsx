@@ -18,7 +18,7 @@ function ComponentsHub() {
   let activeList: any[] = []
   if (category === 'Buttons') activeList = buttonComponents
   else if (category === 'Cards') activeList = cardsComponents
-  else if(category === 'Modal') activeList = modalComponent
+  else if (category === 'Modal') activeList = modalComponent
 
   return (
     <div className="min-h-screen bg-neutral-50">

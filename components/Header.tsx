@@ -10,11 +10,12 @@ import { CgCloseR } from 'react-icons/cg';
 import { IoTerminalSharp } from 'react-icons/io5';
 import { buttonComponents } from '@/ShowOnUi/buttonComponents';
 import { cardsComponents } from '@/ShowOnUi/cardsComponents';
+import SearchModal from './SearchModal';
 
 const menuOptions = [
     { name: 'ComponentsHub', href: '/components-hub' },
     { name: 'Templates', href: '/templates' },
-    {name: 'Blog', href:'/blog'}
+    { name: 'Blog', href: '/blog' }
 ];
 
 
@@ -24,8 +25,8 @@ function Header() {
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
- 
-    
+
+
 
 
 
@@ -71,16 +72,6 @@ function Header() {
 
             <section className="flex items-center space-x-2">
 
-
-                <div onClick={() => setIsSearchModalOpen(true)}>
-                    <button className='border border-gray-300 rounded-md p-2 flex items-center space-x-2'>
-                        <BiSearch className='size-6' />
-                        <input type="text" placeholder='Search' className='outline-none w-full h-full' />
-                        <TbWorldSearch className='size-6' />
-                    </button>
-
-
-                </div>
                 {isSearchModalOpen && (
                     <SearchModal
                         isOpen={isSearchModalOpen}
@@ -88,24 +79,17 @@ function Header() {
                     />
                 )}
 
-                {/* <div>
+                <div onClick={() => setIsSearchModalOpen(true)}>
                     <button className='border border-gray-300 rounded-md p-2 flex items-center space-x-2'>
-                        <BiBasket className='size-6' />
+                        <BiSearch className='size-6' />
+                        <input type="text" placeholder='Search' className='outline-none w-full h-full' />
+                        <TbWorldSearch className='size-6' />
                     </button>
-                </div> */}
-
-                {/* <div className='hidden md:inline'>
-                    <button className='border border-gray-300 rounded-md px-4 py-2 flex items-center space-x-2'
-
-                    >
-                        <BiUser className='size-6' />
-
-                        Login
-                    </button>
+                </div>
 
 
 
-                </div> */}
+
 
                 <div className='md:hidden'>
                     <button
@@ -133,16 +117,6 @@ export default Header
 
 
 
-const SearchModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
-            <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg relative" onClick={(e) => e.stopPropagation()}>
-                <h1 className="text-2xl font-bold">Search Modal</h1>
-                <button onClick={onClose}>Close</button>
-            </div>
-        </div>
-    )
-}
 
 
 
@@ -153,15 +127,15 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
-      const [category, setCategory] = useState('Buttons')
-      const [selectedId, setSelectedId] = useState<string | null>(null)
-    
-      let activeList: any[] = []
-      if (category === 'Buttons') activeList = buttonComponents
-      else if (category === 'Cards') activeList = cardsComponents
-    
-      const selectedComponent = activeList.find((c) => c.id === selectedId)
-    
+    const [category, setCategory] = useState('Buttons')
+    const [selectedId, setSelectedId] = useState<string | null>(null)
+
+    let activeList: any[] = []
+    if (category === 'Buttons') activeList = buttonComponents
+    else if (category === 'Cards') activeList = cardsComponents
+
+    const selectedComponent = activeList.find((c) => c.id === selectedId)
+
 
     return (
         <AnimatePresence>
@@ -217,16 +191,16 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
                             <button className='flex items-center space-x-2'><span>Components</span> <IoTerminalSharp />
 
                             </button>
-                          
-                       
-               
+
+
+
 
                         </div>
 
 
 
 
-                     
+
 
 
                     </motion.div>
