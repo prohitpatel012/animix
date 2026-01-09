@@ -6,11 +6,11 @@ type Props = {
 };
 
 export default function Sidebar({ active, setActive }: Props) {
-    const items = ["Buttons", "Cards", "Modal"];
+    const items = ["Buttons", "Cards", "Modal", "Sidebar"];
 
     return (
         <div className="w-60">
-            <h1 className="text-left font-bold text-shadow-md text-neutral-500">Components</h1>
+            <h1 className="text-center font-bold py-2">Components</h1>
             <aside className="p-4 space-y-1 h-screen overflow-y-auto">
                 {items.map((item) => (
                     <button

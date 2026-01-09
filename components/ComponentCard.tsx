@@ -50,11 +50,11 @@ export default function ComponentCard({
                         className={`
         flex items-center gap-2
         px-3 py-2 lg:px-6 lg:py-3
-        rounded-md
+        rounded-md  
         text-sm font-medium
         transition-all duration-200
         ${view === 'preview'
-                                ? 'bg-neutral-900 text-white shadow-sm'
+                                ? 'bg-yellow-300 text-black font-bold shadow-sm'
                                 : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                             }
       `}
