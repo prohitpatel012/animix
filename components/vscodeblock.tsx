@@ -1,32 +1,28 @@
 "use client";
 
-import { highlightCode } from "./highlightCode";
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 
 type Props = {
     code: string;
 };
 
 export default function CodeEditor({ code }: Props) {
-    const html = highlightCode(code);
-
     return (
-        <div className="w-full rounded-xl  overflow-hidden">
-
-            {/* Editor */}
-            <div className="code-editor flex max-h-[500px] overflow-auto text-sm">
-                {/* Line numbers */}
-                {/* <div className="select-none px-4 py-4 text-right text-slate-500">
-                    {code.split("\n").map((_, i) => (
-                        <div key={i} >{i + 1}</div>
-                    ))}
-                </div> */}
-
-                {/* Code */}
-                <pre
-                    className="py-4 pr-6 whitespace-pre"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                />
-            </div>
+        <div className="w-full text-sm rounded-md overflow-hidden bg-black">
+            <CodeMirror
+                value={code}
+                height="auto"
+                theme="dark"
+                extensions={[javascript({ jsx: true })]}
+                editable={false}
+                basicSetup={{
+                    lineNumbers: false,
+                    foldGutter: false,
+                    highlightActiveLine: false,
+                    highlightActiveLineGutter: false
+                }}
+            />
         </div>
     );
 }

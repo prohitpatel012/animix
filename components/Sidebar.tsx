@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "motion/react";
+
 type Props = {
     active: string;
     setActive: (v: string) => void;
@@ -9,38 +11,29 @@ export default function Sidebar({ active, setActive }: Props) {
     const items = ["Buttons", "Cards", "Modal", "Sidebar"];
 
     return (
-        <div className="w-60">
-            <h1 className="text-center font-bold py-2">Components</h1>
-            <aside className="p-4 space-y-1 h-screen overflow-y-auto">
-                {items.map((item) => (
-                    <button
-                        key={item}
-                        onClick={() => setActive(item)}
-                        className={`
-    group w-full text-left px-4 py-2.5 text-sm rounded-md
-    transition-all duration-200 ease-out
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50
-    ${active === item
-                                ? "bg-neutral-900/5 text-neutral-900 font-medium"
-                                : "text-neutral-500 hover:bg-neutral-900/5 hover:text-neutral-800"
-                            }
-  `}
-                    >
-                        <span className="relative flex items-center">
-                            {/* Active indicator */}
-                            <span
-                                className={`
-        absolute left-0 h-4 w-[2px] rounded-full bg-blue-500
-        transition-opacity duration-200
-        ${active === item ? "opacity-100" : "opacity-0 group-hover:opacity-40"}
-      `}
-                            />
-                            <span className="pl-3">{item}</span>
-                        </span>
-                    </button>
-
-                ))}
-            </aside>
+        <div className="w-full lg:w-64 h-full  lg:border-r border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black">
+            <div className="p-4 lg:p-6">
+                <h2 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-4 px-3">
+                    Components
+                </h2>
+                <nav className="space-y-1">
+                    {items.map((item) => (
+                        <button
+                            key={item}
+                            onClick={() => setActive(item)}
+                            className={`
+                                group relative w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                                ${active === item
+                                    ? "text-neutral-900 dark:text-white bg-neutral-100 dark:bg-neutral-800"
+                                    : "text-neutral-500 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-50 dark:hover:bg-neutral-900"
+                                }
+                            `}
+                        >
+                            {item}
+                        </button>
+                    ))}
+                </nav>
+            </div>
         </div>
     );
 }

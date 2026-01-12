@@ -10,7 +10,7 @@ export default function BlogPage() {
 
       <ul className="mt-6 space-y-6">
         {posts.map((post) => (
-          <li key={post.slug}>
+          <li key={post.slug} className="flex flex-col space-y-2">
             <Link
               href={`/blog/${post.slug}`}
               className="text-lg font-medium hover:underline"
@@ -19,8 +19,14 @@ export default function BlogPage() {
             </Link>
 
             {post.description && (
-              <p className="text-sm text-neutral-500 mt-1">
+              <p className="text-sm text-neutral-500">
                 {post.description}
+              </p>
+            )}
+
+            {post.date && (
+              <p className="text-xs text-neutral-400">
+                {new Date(post.date).toLocaleDateString()}
               </p>
             )}
           </li>

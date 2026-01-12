@@ -1,0 +1,44 @@
+---
+title: "Understanding React Server Components"
+description: "Deep dive into RSC, how they work, and why they change the game."
+date: "2024-03-25"
+---
+
+# React Server Components (RSC)
+
+React Server Components allow you to write UI that can be rendered and optionally cached on the server. In Next.js, the rendering work is further split by route segments to enable streaming and partial rendering.
+
+## Why RSC?
+
+1.  **Data Fetching**: Move data fetching to the server, closer to your database.
+2.  **Bundle Size**: Large dependencies used on the server don't impact the client bundle.
+3.  **Loading States**: leverage `Suspense` for granular loading UI.
+
+## Example
+
+Here is a simple server component fetching data:
+
+```tsx
+async function getData() {
+  const res = await fetch('https://api.example.com/data')
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  return res.json()
+}
+
+export default async function Page() {
+  const data = await getData()
+ 
+  return <main>{data.title}</main>
+}
+```
+
+## Mixing Client and Server
+
+You can interleave Client and Server components.
+
+- Server Components can import Client Components.
+- Client Components **cannot** import Server Components.
+
+<Button>Learn More</Button>

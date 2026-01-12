@@ -1,119 +1,63 @@
-import Link from "next/link"
+import Link from 'next/link'
+import { getAllTemplates } from '@/lib/templates'
 
-type TemplateType = "free" | "paid"
+export default async function TemplatesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>
+}) {
+  const { category } = await searchParams
+  const allTemplates = getAllTemplates()
 
-interface Template {
-  id: number
-  slug: string
-  title: string
-  description: string
-  image: string
-  type: TemplateType
-  liveDemoUrl?: string
-}
+  const filteredTemplates = category
+    ? allTemplates.filter(t => t.category === category)
+    : allTemplates
 
-const templates: Template[] = [
-  {
-    id: 1,
-    slug: "ecommerce-store",
-    title: "Ecommerce Store",
-    description:
-      "A modern ecommerce experience with cart, checkout, and responsive design.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
-    type: "free",
-    liveDemoUrl: "https://ecommerce-demo.vercel.app",
-  },
-  {
-    id: 2,
-    slug: "admin-dashboard",
-    title: "Admin Dashboard",
-    description:
-      "Enterprise-grade analytics dashboard with charts and real-time insights.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-    type: "paid",
-    liveDemoUrl: "https://admin-demo.vercel.app",
-  },
-]
-
-export default function TemplatesPage() {
   return (
-    <main className="min-h-screen bg-[#f5f7fa] px-6 py-16">
-      <section className="mx-auto max-w-7xl">
-        {/* Header */}
-        <header className="mb-14 max-w-2xl">
-          <h1 className="text-4xl font-semibold tracking-tight text-gray-900">
-            Templates
-          </h1>
-          <p className="mt-3 text-base text-gray-600">
-            Production-ready templates designed with performance, scalability,
-            and clean UI in mind.
-          </p>
-        </header>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {category ? `${category} Templates` : 'All Templates'}
+        </h1>
+        <p className="mt-2 text-neutral-500">
+          Browse our collection of production-ready templates.
+        </p>
+      </div>
 
-        {/* Grid */}
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {templates.map((template) => (
-            <article
-              key={template.id}
-              className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              {/* Image */}
-              <div className="relative h-52 w-full overflow-hidden">
-                <img
-                  src={template.image}
-                  alt={template.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredTemplates.map((template) => (
+          <Link
+            key={template.slug}
+            href={`/templates/${template.slug}`}
+            className="group block rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+          >
+            <div className="aspect-video w-full rounded-lg bg-neutral-100 dark:bg-neutral-900 mb-4 flex items-center justify-center text-neutral-400">
+              {/* Placeholder for preview image */}
+              <span className="text-sm">Preview</span>
+            </div>
 
-                {/* Badge */}
-                <span
-                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-medium backdrop-blur ${
-                    template.type === "free"
-                      ? "bg-green-100/90 text-green-800"
-                      : "bg-red-100/90 text-red-800"
-                  }`}
-                >
-                  {template.type === "free" ? "Free" : "Paid"}
-                </span>
-              </div>
+            <h3 className="text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {template.title}
+            </h3>
 
-              {/* Content */}
-              <div className="flex h-full flex-col p-6">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                  {template.title}
-                </h3>
+            <p className="mt-2 text-sm text-neutral-500 line-clamp-2">
+              {template.description}
+            </p>
 
-                <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-600">
-                  {template.description}
-                </p>
+            <div className="mt-4 flex items-center gap-2">
+              <span className="inline-flex items-center rounded-full bg-neutral-100 dark:bg-neutral-800 px-2.5 py-0.5 text-xs font-medium text-neutral-800 dark:text-neutral-300">
+                {template.category}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
 
-                {/* Actions */}
-                <div className="flex gap-3">
-                  <Link
-                    href={`/templates/${template.slug}`}
-                    className="flex-1 rounded-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-800 transition hover:bg-gray-100"
-                  >
-                    View details
-                  </Link>
-
-                  {template.liveDemoUrl && (
-                    <a
-                      href={template.liveDemoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 rounded-md bg-[#2563eb] px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-[#1e4fd8]"
-                    >
-                      Live demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
+      {filteredTemplates.length === 0 && (
+        <div className="text-center py-20 text-neutral-500">
+          No templates found in this category.
         </div>
-      </section>
-    </main>
+      )}
+    </div>
   )
 }

@@ -1,0 +1,29 @@
+---
+title: "Modern Landing Page"
+description: "A high-conversion landing page with hero, features, and testimonials."
+category: "Landing Pages"
+date: "2024-03-20"
+---
+
+# Modern Landing Page implementation
+
+This template uses a clean aesthetic with a focus on typography and whitespace.
+
+## Step 1: Layout Structure
+Define the main layout wrapper.
+
+```tsx
+export default function Layout({ children }) {
+  return <div className="min-h-screen bg-white text-black">{children}</div>
+}
+```
+
+## Step 2: Hero Section
+The hero section captures attention.
+
+```tsx
+<section className="py-20 text-center">
+  <h1 className="text-6xl font-bold">Build Faster</h1>
+  <p className="mt-4 text-xl">The ultimate development kit.</p>
+</section>
+```

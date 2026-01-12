@@ -10,7 +10,7 @@ export default function MainComponentArea({
     onSelect: (id: string) => void;
 }) {
     return (
-        <div className="py-20">
+        <div className="space-y-4">
             {components.map((comp) => (
                 <ComponentCard
                     key={comp.id}
@@ -18,7 +18,6 @@ export default function MainComponentArea({
                     preview={comp.preview}
                     code={comp.code}
                     onClick={() => onSelect(comp.id)}
-
                 />
             ))}
         </div>
