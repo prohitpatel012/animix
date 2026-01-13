@@ -85,7 +85,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
                 <div className="max-h-[60vh] overflow-y-auto space-y-1">
                     {filteredItems.length === 0 && query !== '' && (
                         <p className="text-sm text-neutral-500 text-center py-8">
-                            No results found for "{query}"
+                            No results found for &quot;{query}&quot;
                         </p>
                     )}
 

@@ -12,10 +12,10 @@ import { responsiveSidebarComponents } from '@/ShowOnUi/responsiveSidebarCompone
 
 function ComponentsHub() {
   const [category, setCategory] = useState('Buttons')
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
-  let activeList: any[] = []
+  let activeList: { id: string; name: string; preview: React.ReactNode; code: string }[] = []
   if (category === 'Buttons') activeList = buttonComponents
   else if (category === 'Cards') activeList = cardsComponents
   else if (category === 'Modal') activeList = modalComponent
@@ -55,7 +55,7 @@ function ComponentsHub() {
 
             <MainComponentArea
               components={activeList}
-              onSelect={setSelectedId}
+              onSelect={() => { }}
             />
           </div>
         </main>
@@ -89,7 +89,6 @@ function ComponentsHub() {
                 active={category}
                 setActive={(v) => {
                   setCategory(v)
-                  setSelectedId(null)
                   setIsDrawerOpen(false)
                 }}
               />
