@@ -11,6 +11,21 @@ export type ComponentDoc = {
     content: string
 }
 
+export function getAllComponents(): ComponentDoc[] {
+    if (!fs.existsSync(COMPONENTS_DIR)) return []
+
+    const files = fs.readdirSync(COMPONENTS_DIR)
+    const docs = files
+        .filter((file) => file.endsWith('.mdx'))
+        .map((file) => {
+            const slug = file.replace(/\.mdx$/, '')
+            return getComponentDoc(slug)
+        })
+        .filter((doc): doc is ComponentDoc => doc !== null)
+
+    return docs
+}
+
 export function getComponentDoc(slug: string): ComponentDoc | null {
     try {
         const filePath = path.join(COMPONENTS_DIR, `${slug}.mdx`)
