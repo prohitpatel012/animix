@@ -1,0 +1,34 @@
+---
+title: Modal
+description: An animated modal dialog.
+---
+
+## Usage
+
+Modals are used for focused tasks or important alerts.
+
+```tsx
+import AnimatedItemsModal from '@/components/ui-component/modal/AnimatedItemsModal'
+
+export default function Page() {
+  return (
+    <div className="p-4">
+        <AnimatedItemsModal />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| isOpen | boolean | - | Whether the modal is open |
+| onClose | () => void | - | Callback when closing |
+
+## Source Code
+
+```tsx
+import { motion, AnimatePresence } from "framer-motion";
+// ...implementation
+```
