@@ -1,0 +1,55 @@
+---
+title: Image
+description: Display images with consistent styling options.
+---
+
+## Usage
+
+Use Image for consistently styled visual content.
+
+```tsx
+import { Image } from '@/components/ui-component/Foundational/Image/Image'
+
+export default function Page() {
+  return (
+    <div className="grid grid-cols-2 gap-4 max-w-md">
+      <Image 
+        src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba" 
+        alt="Landscape" 
+        aspectRatio="video" 
+      />
+      <Image 
+        src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538" 
+        alt="Square" 
+        aspectRatio="square" 
+        radius="full"
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| src | string | - | Image source URL |
+| alt | string | - | Alt text for accessibility |
+| aspectRatio | 'auto' \| 'square' \| 'video' \| 'portrait' | 'auto' | Aspect ratio of the image container |
+| fit | 'cover' \| 'contain' \| 'fill' | 'cover' | Object fit behavior |
+| radius | 'none' \| 'sm' \| 'md' \| 'lg' \| 'full' | 'md' | Border radius |
+
+## Source Code
+
+```tsx
+export const Image = ({ 
+    src, 
+    alt, 
+    aspectRatio = 'auto', 
+    fit = 'cover', 
+    radius = 'md',
+    className = '' 
+}: ImageProps) => {
+    // ...
+};
+```

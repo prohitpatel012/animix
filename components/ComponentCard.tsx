@@ -13,11 +13,13 @@ import CodeEditor from "./vscodeblock";
 export default function ComponentCard({
     name,
     code,
+    docs,
     preview,
     onClick,
 }: {
     name: string;
-    code: string;
+    code?: string;
+    docs?: React.ReactNode;
     preview: React.ReactNode;
     onClick: () => void;
 }) {
@@ -28,7 +30,7 @@ export default function ComponentCard({
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(code);
+        await navigator.clipboard.writeText(code || '');
         setCopied(true);
 
         // reset after 2 seconds
@@ -74,7 +76,7 @@ export default function ComponentCard({
                         `}
                     >
                         <IoLogoCodepen className="size-4" />
-                        <span>Code</span>
+                        <span>{docs ? 'Docs' : 'Code'}</span>
                     </button>
                 </div>
             </div>
@@ -85,19 +87,23 @@ export default function ComponentCard({
                         {preview}
                     </div>
                 ) : (
-                    <div>
-                        <div className="flex justify-end p-2 border-b border-neutral-800 bg-neutral-950">
-                            <button
-                                onClick={handleCopy}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
-                            >
-                                {copied ? <BiCheck className="size-4" /> : <BiCopy className="size-4" />}
-                                <span>{copied ? "Copied" : "Copy Code"}</span>
-                            </button>
-                        </div>
-                        <div className="overflow-x-auto">
-                            <CodeEditor code={code} />
-                        </div>
+                    <div className="bg-white dark:bg-black p-6 prose dark:prose-invert max-w-none">
+                        {docs ? docs : (
+                            <div>
+                                <div className="flex justify-end p-2 border-b border-neutral-800 bg-neutral-950 rounded-t-lg">
+                                    <button
+                                        onClick={handleCopy}
+                                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
+                                    >
+                                        {copied ? <BiCheck className="size-4" /> : <BiCopy className="size-4" />}
+                                        <span>{copied ? "Copied" : "Copy Code"}</span>
+                                    </button>
+                                </div>
+                                <div className="overflow-x-auto">
+                                    <CodeEditor code={code || ''} />
+                                </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

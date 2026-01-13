@@ -1,0 +1,31 @@
+---
+title: Primary Button
+description: The main button component used for primary actions.
+---
+
+## Usage
+
+Use the primary button for the main action on a page.
+
+```tsx
+import { PrimaryButton } from '@/components/ui-component/Button/button'
+
+export default function Page() {
+  return <PrimaryButton />
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| onClick | () => void | Callback function |
+| disabled | boolean | Disables the button |
+
+## Source Code
+
+```tsx
+<button className="px-4 py-2 rounded-md bg-black text-white hover:bg-neutral-800 transition">
+  Primary Button
+</button>
+```

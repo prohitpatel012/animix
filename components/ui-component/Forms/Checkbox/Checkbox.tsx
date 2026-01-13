@@ -1,0 +1,46 @@
+import React, { InputHTMLAttributes } from 'react';
+import { BiCheck } from "react-icons/bi";
+
+export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+    label?: string;
+    description?: string;
+    error?: string;
+}
+
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+    ({ className = '', label, description, error, ...props }, ref) => {
+        return (
+            <div className={`flex gap-3 items-start ${className}`}>
+                <div className="flex h-6 items-center">
+                    <input
+                        type="checkbox"
+                        ref={ref}
+                        className="peer h-4 w-4 rounded border-neutral-300 text-blue-600 focus:ring-blue-600 dark:border-neutral-700 dark:bg-neutral-900 dark:ring-offset-neutral-900"
+                        {...props}
+                    />
+                </div>
+                {(label || description) && (
+                    <div className="flex flex-col">
+                        {label && (
+                            <label className="text-sm font-medium text-neutral-900 dark:text-neutral-100 peer-disabled:opacity-50">
+                                {label}
+                            </label>
+                        )}
+                        {description && (
+                            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                                {description}
+                            </p>
+                        )}
+                        {error && (
+                            <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+                                {error}
+                            </p>
+                        )}
+                    </div>
+                )}
+            </div>
+        );
+    }
+);
+
+Checkbox.displayName = 'Checkbox';

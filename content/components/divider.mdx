@@ -1,0 +1,45 @@
+---
+title: Divider
+description: A visual separator between content.
+---
+
+## Usage
+
+Use Divider to separate sections of content.
+
+```tsx
+import { Divider } from '@/components/ui-component/Foundational/Divider/Divider'
+
+export default function Page() {
+  return (
+    <div className="space-y-4">
+      <p>Section 1</p>
+      <Divider />
+      <p>Section 2</p>
+      
+      <div className="flex h-10 items-center gap-4">
+         <span>Item A</span>
+         <Divider orientation="vertical" />
+         <span>Item B</span>
+      </div>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| orientation | 'horizontal' \| 'vertical' | 'horizontal' | The direction of the divider |
+
+## Source Code
+
+```tsx
+export const Divider = ({ orientation = 'horizontal', className = '' }: DividerProps) => {
+    if (orientation === 'vertical') {
+        return <div className={\`w-[1px] h-full bg-neutral-200 dark:bg-neutral-800 \${className}\`} />;
+    }
+    return <div className={\`w-full h-[1px] bg-neutral-200 dark:bg-neutral-800 \${className}\`} />;
+};
+```

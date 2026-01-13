@@ -1,0 +1,43 @@
+---
+title: Textarea
+description: A multi-line text input component.
+---
+
+## Usage
+
+Use Textarea for longer user inputs like comments or messages.
+
+```tsx
+import { Textarea } from '@/components/ui-component/Forms/Textarea/Textarea'
+
+export default function Page() {
+  return (
+    <div className="max-w-md">
+      <Textarea 
+        label="Description" 
+        placeholder="Tell us about yourself..." 
+        helperText="Max 500 characters"
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | string | Label text |
+| error | string | Error message |
+| rows | number | Number of visible text lines (default: 4) |
+| ...props | TextareaHTMLAttributes | Standard textarea attributes |
+
+## Source Code
+
+```tsx
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+    ({ className = '', label, error, helperText, rows = 4, ...props }, ref) => {
+        // ...
+    }
+);
+```

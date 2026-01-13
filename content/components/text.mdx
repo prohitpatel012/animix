@@ -1,0 +1,43 @@
+---
+title: Text
+description: Typography component for consistent text styling.
+---
+
+## Usage
+
+Use the Text component to render paragraphs or spans with consistent typography.
+
+```tsx
+import { Text } from '@/components/ui-component/Foundational/Text/Text'
+
+export default function Page() {
+  return (
+    <div className="space-y-2">
+      <Text size="xl" weight="bold">Large Bold Text</Text>
+      <Text variant="muted">Muted secondary text description.</Text>
+      <Text align="center" variant="accent">Centered accent text</Text>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| size | 'xs' \| 'sm' \| 'base' \| 'lg' \| 'xl' \| '2xl' | 'base' | Font size of text |
+| weight | 'normal' \| 'medium' \| 'semibold' \| 'bold' | 'normal' | Font weight |
+| variant | 'primary' \| 'secondary' \| 'muted' \| 'accent' | 'primary' | Color style of the text |
+| align | 'left' \| 'center' \| 'right' | 'left' | Text alignment |
+
+## Source Code
+
+```tsx
+export const Text = ({ children, size = 'base', weight = 'normal', variant = 'primary', align = 'left', className = '' }: TextProps) => {
+    return (
+        <p className={`${sizes[size]} ${weights[weight]} ${variants[variant]} ${aligns[align]} ${className}`}>
+            {children}
+        </p>
+    );
+};
+```

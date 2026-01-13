@@ -1,0 +1,38 @@
+---
+title: Logo
+description: Brand identity component.
+---
+
+## Usage
+
+Use Logo to display branding consistently.
+
+```tsx
+import { Logo } from '@/components/ui-component/Foundational/Logo/Logo'
+
+export default function Page() {
+  return (
+    <div className="space-y-4">
+      <Logo size="lg" />
+      <Logo variant="icon-only" />
+      <Logo text="MyBrand" variant="text-only" />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| text | string | "Animix" | Brand name text |
+| variant | 'text-only' \| 'icon-only' \| 'full' | 'full' | Display mode |
+| size | 'sm' \| 'md' \| 'lg' | 'md' | Overall scale |
+
+## Source Code
+
+```tsx
+export const Logo = ({ ... }) => {
+    // ...
+};
+```

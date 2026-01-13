@@ -17,6 +17,7 @@ export default function MainComponentArea({
                     name={comp.name}
                     preview={comp.preview}
                     code={comp.code}
+                    docs={comp.docs}
                     onClick={() => onSelect(comp.id)}
                 />
             ))}

@@ -1,0 +1,41 @@
+---
+title: Input
+description: A fundamental component for capturing user text input.
+---
+
+## Usage
+
+Use Input for text fields, emails, passwords, and more.
+
+```tsx
+import { Input } from '@/components/ui-component/Forms/Input/Input'
+
+export default function Page() {
+  return (
+    <div className="space-y-4 max-w-sm">
+      <Input label="Email" placeholder="you@example.com" />
+      <Input label="Password" type="password" error="Incorrect password" />
+      <Input label="Disabled" disabled />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | string | Label text displayed above the input |
+| error | string | Error message displayed below the input |
+| helperText | string | Helper text displayed below the input |
+| ...props | InputHTMLAttributes | All standard HTML input attributes |
+
+## Source Code
+
+```tsx
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    ({ className = '', label, error, helperText, ...props }, ref) => {
+        // ...
+    }
+);
+```

@@ -1,0 +1,43 @@
+---
+title: Switch
+description: A toggle control for instant on/off settings.
+---
+
+## Usage
+
+Use Switch for single configuration options that take immediate effect.
+
+```tsx
+import { Switch } from '@/components/ui-component/Forms/Switch/Switch'
+
+export default function Page() {
+  return (
+    <div className="max-w-xs space-y-4">
+      <Switch label="Airplane Mode" />
+      <Switch 
+        label="Dark Mode" 
+        description="Toggle dark theme"
+        defaultChecked 
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | string | Label text |
+| description | string | Helper text |
+| ...props | InputHTMLAttributes | Standard checkbox attributes |
+
+## Source Code
+
+```tsx
+export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+    ({ className = '', label, description, ...props }, ref) => {
+        // ...
+    }
+);
+```

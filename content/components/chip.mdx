@@ -1,0 +1,38 @@
+---
+title: Chip
+description: Compact elements that represent an input, attribute, or action.
+---
+
+## Usage
+
+Chips are used for items like tags, contacts, or categories.
+
+```tsx
+import { Chip } from '@/components/ui-component/Foundational/Chip/Chip'
+
+export default function Page() {
+  return (
+    <div className="flex gap-2">
+      <Chip label="React" variant="brand" />
+      <Chip label="TypeScript" variant="neutral" />
+      <Chip label="Removable" onRemove={() => console.log('remove')} />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| label | string | - | The text to display |
+| variant | 'neutral' \| 'brand' | 'neutral' | Visual style |
+| onRemove | () => void | - | If provided, shows a remove icon |
+
+## Source Code
+
+```tsx
+export const Chip = ({ label, onRemove, variant = 'neutral', className = '' }: ChipProps) => {
+    // ...implementation
+};
+```

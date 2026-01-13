@@ -1,0 +1,35 @@
+---
+title: Sidebar
+description: A responsive navigation sidebar.
+---
+
+## Usage
+
+Use the sidebar for main application navigation.
+
+```tsx
+import Sidebar from '@/components/ui-component/ResponsiveSidebar/ResponsiveSidebar'
+
+export default function Layout() {
+  return (
+    <div className="flex">
+        <Sidebar />
+        <main>Content</main>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| className | string | - | Optional classes |
+
+## Source Code
+
+```tsx
+import { motion } from "framer-motion";
+import React, { useState } from "react";
+// ...implementation
+```

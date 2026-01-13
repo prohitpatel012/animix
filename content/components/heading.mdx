@@ -1,0 +1,42 @@
+---
+title: Heading
+description: Headings are used for titles and subtitles.
+---
+
+## Usage
+
+Use Headings to structure the page content hierarchy.
+
+```tsx
+import { Heading } from '@/components/ui-component/Foundational/Heading/Heading'
+
+export default function Page() {
+  return (
+    <div className="space-y-4">
+      <Heading level={1}>Page Title (H1)</Heading>
+      <Heading level={2}>Section Title (H2)</Heading>
+      <Heading level={3} align="center">Centered Subtitle (H3)</Heading>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| level | 1 \| 2 \| 3 \| 4 \| 5 \| 6 | 2 | The heading level (h1-h6) |
+| align | 'left' \| 'center' \| 'right' | 'left' | Text alignment |
+
+## Source Code
+
+```tsx
+export const Heading = ({ children, level = 2, align = 'left', className = '' }: HeadingProps) => {
+    const Tag = \`h\${level}\` as keyof JSX.IntrinsicElements;
+    return (
+        <Tag className={\`text-neutral-900 dark:text-white \${styles[level]} \${aligns[align]} \${className}\`}>
+            {children}
+        </Tag>
+    );
+};
+```

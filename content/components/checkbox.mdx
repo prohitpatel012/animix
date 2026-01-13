@@ -1,0 +1,44 @@
+---
+title: Checkbox
+description: A control that allows users to select one or multiple items.
+---
+
+## Usage
+
+Use Checkbox for boolean selections or lists of options.
+
+```tsx
+import { Checkbox } from '@/components/ui-component/Forms/Checkbox/Checkbox'
+
+export default function Page() {
+  return (
+    <div className="space-y-4">
+      <Checkbox label="Accept terms and conditions" />
+      <Checkbox 
+        label="Notification settings" 
+        description="Receive emails about new features." 
+        defaultChecked
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| label | string | Label text displayed next to the checkbox |
+| description | string | Helper text displayed below the label |
+| error | string | Error message |
+| ...props | InputHTMLAttributes | All standard HTML checkbox attributes |
+
+## Source Code
+
+```tsx
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+    ({ className = '', label, description, error, ...props }, ref) => {
+        // ...
+    }
+);
+```
