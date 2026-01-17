@@ -1,0 +1,1383 @@
+---
+title: "Hero Sections Collection"
+description: "A collection of 20+ fully responsive, high-converting hero sections."
+category: "Hero Sections"
+date: "2024-03-24"
+---
+
+import { 
+    HeroSimple, HeroSplit, HeroBackground, HeroForm, HeroGradient,
+    HeroVideo, HeroApp, HeroSaaS, HeroAbstract, HeroDark,
+    HeroGrid, HeroReview, HeroSearch, HeroCardOverlay, HeroTypography,
+    HeroIllustration, HeroVideoBackground, HeroNewsletter, HeroSkewed, HeroSimpleCentered
+} from "@/components/ui-component/heroes";
+
+## Overview
+
+A robust set of hero sections ranging from simple centered typography to complex 3D and video backgrounds. Designed to be the impactful first impression of your website.
+
+---
+
+### 1. Simple Centered Hero
+Clean and effective. Perfect for making a clear value proposition.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroSimple />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+
+export default function HeroSimple() {
+  return (
+    <section className="relative overflow-hidden bg-white dark:bg-neutral-950 py-24 sm:py-32">
+        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+        </div>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mx-auto max-w-2xl text-center"
+            >
+                <div className="mb-8 flex justify-center">
+                    <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-neutral-600 ring-1 ring-neutral-900/10 hover:ring-neutral-900/20 dark:text-neutral-400 dark:ring-neutral-100/10 dark:hover:ring-neutral-100/20">
+                        Announcing our next round of funding. <a href="#" className="font-semibold text-indigo-600 dark:text-indigo-400"><span className="absolute inset-0" aria-hidden="true" />Read more <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Data to enrich your online business
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Get started
+                    </Link>
+                    <Link href="#" className="flex items-center text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                        Learn more <BiRightArrowAlt className="ml-1 text-lg" />
+                    </Link>
+                </div>
+            </motion.div>
+        </div>
+        
+        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+             <div className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" />
+        </div>
+    </section>
+  );
+}
+```
+
+---
+
+### 2. Split Screen with Image
+Classic SaaS layout with text on the left and a product shot on the right.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroSplit />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiPlayCircle } from "react-icons/bi";
+
+export default function HeroSplit() {
+    return (
+        <div className="bg-white dark:bg-neutral-950">
+            <div className="relative isolate overflow-hidden">
+                <svg
+                    className="absolute inset-0 -z-10 h-full w-full stroke-neutral-200 dark:stroke-neutral-800 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+                    aria-hidden="true"
+                >
+                    <defs>
+                        <pattern
+                            id="0787a7c5-978c-4f66-83c7-11c213f99cb7"
+                            width={200}
+                            height={200}
+                            x="50%"
+                            y={-1}
+                            patternUnits="userSpaceOnUse"
+                        >
+                            <path d="M.5 200V.5H200" fill="none" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" strokeWidth={0} fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)" />
+                </svg>
+
+                <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:pt-8 lg:shrink-0"
+                    >
+                        <div className="mt-24 sm:mt-32 lg:mt-16">
+                            <a href="#" className="inline-flex space-x-6">
+                                <span className="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10 dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-indigo-400/20">
+                                    Latest updates
+                                </span>
+                                <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-neutral-600 dark:text-neutral-400">
+                                    <span>Just shipped v1.0</span>
+                                </span>
+                            </a>
+                        </div>
+                        <h1 className="mt-10 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                            Deploy to the cloud with confidence
+                        </h1>
+                        <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                        </p>
+                        <div className="mt-10 flex items-center gap-x-6">
+                            <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                Get started
+                            </Link>
+                            <Link href="#" className="flex items-center gap-2 text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                                <BiPlayCircle className="text-xl" /> Watch demo
+                            </Link>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32"
+                    >
+                        <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                            <img
+                                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&h=600&q=80"
+                                alt="App screenshot"
+                                width={2432}
+                                height={1442}
+                                className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
+                            />
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+---
+
+### 3. Background Image
+Immersive background image with overlay text and statistics.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-neutral-900">
+    <HeroBackground />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+
+export default function HeroBackground() {
+  return (
+    <div className="relative isolate overflow-hidden bg-neutral-900 py-24 sm:py-32">
+        <img
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+            alt=""
+            className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
+        />
+        <div
+            className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block transform-gpu blur-3xl"
+            aria-hidden="true"
+        >
+            <div
+                className="aspect-[1097/845] w-[68.5625rem] bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                style={{
+                  clipPath:
+                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                }}
+            />
+        </div>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.7 }}
+                 className="mx-auto max-w-2xl lg:mx-0"
+            >
+                <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                    Work with us
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-neutral-300">
+                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                </p>
+            </motion.div>
+            
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"
+            >
+                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                    <Link href="#">Open roles <span aria-hidden="true">&rarr;</span></Link>
+                    <Link href="#">Internship program <span aria-hidden="true">&rarr;</span></Link>
+                    <Link href="#">Our values <span aria-hidden="true">&rarr;</span></Link>
+                    <Link href="#">Meet our leadership <span aria-hidden="true">&rarr;</span></Link>
+                 </div>
+                 <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="flex flex-col-reverse">
+                         <dt className="text-base leading-7 text-neutral-300">Offices worldwide</dt>
+                         <dd className="text-2xl font-bold leading-9 tracking-tight text-white">12</dd>
+                    </div>
+                    <div className="flex flex-col-reverse">
+                         <dt className="text-base leading-7 text-neutral-300">Full-time colleagues</dt>
+                         <dd className="text-2xl font-bold leading-9 tracking-tight text-white">300+</dd>
+                    </div>
+                    <div className="flex flex-col-reverse">
+                         <dt className="text-base leading-7 text-neutral-300">Hours per week</dt>
+                         <dd className="text-2xl font-bold leading-9 tracking-tight text-white">40</dd>
+                    </div>
+                    <div className="flex flex-col-reverse">
+                         <dt className="text-base leading-7 text-neutral-300">Paid time off</dt>
+                         <dd className="text-2xl font-bold leading-9 tracking-tight text-white">Unlimited</dd>
+                    </div>
+                 </dl>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 4. Newsletter / Form Hero
+Centered hero focused on capturing emails or leads.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroForm />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiEnvelope } from "react-icons/bi";
+
+export default function HeroForm() {
+  return (
+    <div className="relative overflow-hidden bg-white dark:bg-neutral-950 isolate">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+            <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.5 }}
+               className="mx-auto max-w-2xl text-center"
+            >
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Get notified when we launch.
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Reprehenderit ad esse et non officia in nulla. Id proident tempor incididunt nostrud nulla et culpa.
+                </p>
+                <div className="mt-10 flex max-w-md mx-auto items-center gap-x-4">
+                    <label htmlFor="email-address" className="sr-only">Email address</label>
+                    <div className="relative flex-auto">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <BiEnvelope className="h-5 w-5 text-neutral-400" aria-hidden="true" />
+                        </div>
+                        <input
+                            id="email-address"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            required
+                            className="min-w-0 flex-auto w-full rounded-md border-0 bg-white/5 px-3.5 py-2 pl-10 text-neutral-900 dark:text-white shadow-sm ring-1 ring-inset ring-neutral-300 dark:ring-neutral-700 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            placeholder="Enter your email"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="flex-none rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Notify me
+                    </button>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-neutral-500">
+                    We care about your data. Read our <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">privacy&nbsp;policy</a>.
+                </p>
+            </motion.div>
+        </div>
+         <svg
+            className="absolute top-0 left-1/2 -z-10 h-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+            aria-hidden="true"
+        >
+            <circle cx={512} cy={512} r={512} fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fillOpacity="0.7" />
+            <defs>
+                <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                    <stop stopColor="#7775D6" />
+                    <stop offset={1} stopColor="#E935C1" />
+                </radialGradient>
+            </defs>
+        </svg>
+    </div>
+  );
+}
+```
+
+---
+
+### 5. Gradient Typography
+Bold text with a gradient background clip.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroGradient />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+
+export default function HeroGradient() {
+  return (
+    <div className="bg-white dark:bg-neutral-950">
+      <div className="relative isolate px-6 pt-14 lg:px-8">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <motion.div 
+             initial={{ opacity: 0, scale: 0.95 }}
+             animate={{ opacity: 1, scale: 1 }}
+             transition={{ duration: 0.6 }}
+             className="text-center"
+          >
+            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+              We make the web <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600">faster.</span>
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="#"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </Link>
+              <Link href="#" className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                Learn more <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 6. Video Background (Interactive)
+Hero with a background video and play/pause toggle functionality.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroVideo />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiPlay, BiPause } from "react-icons/bi";
+import { useState, useRef } from "react";
+
+export default function HeroVideo() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+        if (isPlaying) {
+            videoRef.current.pause();
+        } else {
+            videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    }
+  };
+
+  return (
+    <div className="relative bg-neutral-900 py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 -z-10 h-full w-full object-cover">
+             <video
+                ref={videoRef}
+                className="h-full w-full object-cover opacity-50"
+                poster="https://images.unsplash.com/photo-1492619856393-8b20244c402a?auto=format&fit=crop&w=1336&q=80"
+                loop
+                muted
+                playsInline
+            >
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-neutral-900/60 mix-blend-multiply" />
+        </div>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+            >
+                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                    Experience the future of media
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-300 max-w-2xl mx-auto">
+                    Immersive storytelling like never before. Watch our showreel to see what's possible with our new platform.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <button
+                        onClick={togglePlay}
+                        className="rounded-full bg-white/10 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-white/20 backdrop-blur-sm transition flex items-center gap-2 border border-white/20"
+                    >
+                        {isPlaying ? <BiPause className="text-2xl" /> : <BiPlay className="text-2xl" />}
+                        {isPlaying ? "Pause Reel" : "Watch Reel"}
+                    </button>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 7. Mobile App Showcase
+Dedicated layout for mobile application promotion with store buttons.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroApp />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiLogoApple, BiLogoPlayStore } from "react-icons/bi";
+
+export default function HeroApp() {
+  return (
+    <div className="bg-white dark:bg-neutral-950">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+            <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto"
+            >
+                <div className="flex">
+                    <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-neutral-600 ring-1 ring-neutral-900/10 hover:ring-neutral-900/20 dark:text-neutral-400 dark:ring-neutral-100/10">
+                        <span className="font-semibold text-indigo-600 dark:text-indigo-400">v2.0 is live</span>
+                        <span className="h-4 w-px bg-neutral-900/10 dark:bg-neutral-100/10" aria-hidden="true" />
+                        <a href="#" className="flex items-center gap-x-1">
+                            <span className="absolute inset-0" aria-hidden="true" />
+                            See what's new <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+                <h1 className="mt-10 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Your entire workflow, in your pocket.
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Manage tasks, collaborate with your team, and track progress from anywhere. Available on iOS and Android.
+                </p>
+                <div className="mt-10 flex items-center gap-x-6">
+                    <a href="#" className="flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                        <BiLogoApple className="text-xl" /> App Store
+                    </a>
+                    <a href="#" className="flex items-center gap-2 rounded-lg border border-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-900 hover:bg-neutral-50 dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-900">
+                        <BiLogoPlayStore className="text-xl" /> Google Play
+                    </a>
+                </div>
+            </motion.div>
+            
+            <motion.div 
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.7, delay: 0.2 }}
+                 className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow"
+            >
+                <div className="relative mx-auto w-[300px] rounded-3xl shadow-2xl bg-neutral-900 border-[8px] border-neutral-900 overflow-hidden">
+                     <img
+                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1470&q=80"
+                        alt="Mobile app screenshot"
+                        className="w-full rounded-2xl"
+                    />
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 8. SaaS Dashboard
+Centered layout highlighting a large dashboard or platform screenshot.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroSaaS />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+
+export default function HeroSaaS() {
+  return (
+    <div className="bg-neutral-50 dark:bg-neutral-900">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center max-w-3xl mx-auto mb-16"
+            >
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    All-in-one platform for your team
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Streamline your operations with our integrated dashboard. Real-time analytics, team management, and secure data storage all in one place.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                        Start 14-day free trial
+                    </Link>
+                    <Link href="#" className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                        Live demo <span aria-hidden="true">→</span>
+                    </Link>
+                </div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }} 
+                className="relative rounded-xl bg-neutral-900/5 p-2 ring-1 ring-inset ring-neutral-900/10 lg:-m-4 lg:rounded-2xl lg:p-4 dark:bg-white/5 dark:ring-white/10"
+            >
+                <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2426&q=80"
+                    alt="App screenshot"
+                    width={2432}
+                    height={1442}
+                    className="rounded-md shadow-2xl ring-1 ring-neutral-900/10 dark:ring-white/10"
+                />
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 9. Abstract 3D
+Modern, high-tech vibe with abstract shapes and bold typography.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroAbstract />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function HeroAbstract() {
+  return (
+    <div className="bg-white dark:bg-black overflow-hidden relative isolate">
+        <div className="absolute top-0 right-0 -z-10 w-[50%] h-full bg-linear-to-bl from-indigo-100 via-white to-white dark:from-indigo-950 dark:via-black dark:to-black opacity-50 blur-3xl" />
+        
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:flex lg:items-center lg:gap-x-10">
+            <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto"
+            >
+                <div className="flex items-center gap-x-6">
+                    <div className="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10 dark:text-indigo-400 dark:ring-indigo-400/30">
+                        Beta Access
+                    </div>
+                </div>
+                <h1 className="mt-10 text-6xl font-black tracking-tighter text-neutral-900 dark:text-white sm:text-8xl">
+                    BUILD<br />
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-500 to-purple-600">FUTURE.</span>
+                </h1>
+                <p className="mt-8 text-xl leading-8 text-neutral-600 dark:text-neutral-400">
+                    The next generation of web development tools is here. Ship faster, scale better, and deploy anywhere.
+                </p>
+                <div className="mt-14 flex items-center gap-x-6">
+                    <button className="rounded-full bg-black px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                        Join Waitlist
+                    </button>
+                </div>
+            </motion.div>
+            
+            <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, type: "spring" }}
+                className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow relative"
+            >
+                 <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1364&q=80"
+                    alt="Abstract 3D Shape"
+                    className="w-[40rem] max-w-full drop-shadow-2xl rounded-3xl rotate-3 hover:rotate-0 transition-transform duration-500"
+                />
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 10. Developer / Dark Mode
+Dark-themed hero aimed at developers, featuring code snippets/terminal vibes.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroDark />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiCommand } from "react-icons/bi";
+
+export default function HeroDark() {
+  return (
+    <div className="bg-neutral-950 isolate overflow-hidden relative">
+         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#0ea5e9] to-[#8b5cf6] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 text-center">
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-sm font-medium text-white ring-1 ring-inset ring-white/10 mb-8 backdrop-blur-sm"
+            >
+                <span className="flex h-2 w-2 rounded-full bg-sky-400 mr-2 animate-pulse"></span>
+                v4.0 is available now
+            </motion.div>
+            
+            <motion.h1 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="text-5xl font-bold tracking-tight text-white sm:text-7xl bg-clip-text text-transparent bg-linear-to-b from-white to-white/60"
+            >
+                Develop with <br className="hidden sm:block" /> Superpowers
+            </motion.h1>
+            
+            <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-6 text-lg leading-8 text-neutral-400 max-w-2xl mx-auto"
+            >
+                The complete toolkit for modern developers. Shippable code, instant deployments, and global edge network.
+            </p>
+            
+            <motion.div 
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.6, delay: 0.3 }}
+                 className="mt-10 flex items-center justify-center gap-x-6"
+            >
+                <div className="relative group">
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <button className="relative flex items-center gap-2 rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white leading-none">
+                        <BiCommand /> Clone Repo
+                    </button>
+                </div>
+                <Link href="#" className="text-sm font-semibold leading-6 text-white hover:text-neutral-300 transition-colors">
+                    Read Documentation <span aria-hidden="true">→</span>
+                </Link>
+            </motion.div>
+            
+             <div className="mt-16 flow-root sm:mt-24">
+                <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                     <div className="rounded-md bg-neutral-900/50 shadow-2xl ring-1 ring-white/10 h-[300px] flex items-center justify-center text-neutral-500 font-mono text-sm border border-neutral-800">
+                        // Code Editor Placeholder
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  );
+}
+```
+
+
+---
+
+### 11. Grid / Serverless
+Linear-style grid background for technical products.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroGrid />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function HeroGrid() {
+  return (
+    <div className="relative isolate overflow-hidden bg-white dark:bg-neutral-950 py-24 sm:py-32">
+        <svg
+            className="absolute inset-0 -z-10 h-full w-full stroke-neutral-200 dark:stroke-neutral-800 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+            aria-hidden="true"
+        >
+            <defs>
+                <pattern
+                    id="grid-pattern"
+                    width={40}
+                    height={40}
+                    x="50%"
+                    y={-1}
+                    patternUnits="userSpaceOnUse"
+                >
+                    <path d="M.5 40V.5H40" fill="none" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" strokeWidth={0} fill="url(#grid-pattern)" />
+        </svg>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mx-auto max-w-2xl text-center"
+            >
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl font-mono">
+                    System.initialize()
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400 font-mono">
+                    &gt; Deploy instant serverless functions with zero configuration.<br/>
+                    &gt; Global edge network included.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <button className="rounded-none border border-neutral-900 bg-neutral-900 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-neutral-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                        Start Deploying
+                    </button>
+                    <button className="rounded-none border border-neutral-200 px-8 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-50 dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-900">
+                        Read Docs
+                    </button>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 12. Social Proof / Review
+Highlighting trusted reviews and customer success stories.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroReview />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiSolidStar } from "react-icons/bi";
+
+export default function HeroReview() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mx-auto max-w-2xl text-center"
+            >
+                <div>
+                     {/* Stars omitted for brevity, add stars icons here */}
+                </div>
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    "The best tool we've used in years."
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400 italic">
+                    — Sarah Johnson, CTO at TechCorp
+                </p>
+                 {/* ... Buttons and lower image ... */}
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 13. Search Focused
+Documentation or Help Center style hero.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-neutral-900">
+    <HeroSearch />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiSearch } from "react-icons/bi";
+
+export default function HeroSearch() {
+  return (
+    <div className="relative bg-neutral-900 px-6 py-24 sm:py-32 lg:px-8 min-h-[500px] flex items-center justify-center">
+        <div className="absolute inset-0 -z-10 bg-black">
+            <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-neutral-900" />
+        </div>
+        
+        <div className="mx-auto max-w-2xl text-center">
+            <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl font-bold tracking-tight text-white sm:text-6xl"
+            >
+                How can we help?
+            </motion.h2>
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-6 text-lg leading-8 text-neutral-300"
+            >
+                Search our documentation, tutorials, and API reference.
+            </motion.p>
+            
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="mt-10 relative max-w-xl mx-auto"
+            >
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                    <BiSearch className="h-6 w-6 text-neutral-400" aria-hidden="true" />
+                </div>
+                <input
+                    type="text"
+                    className="block w-full rounded-full border-0 bg-white/10 py-4 pl-12 pr-4 text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-lg sm:leading-6 backdrop-blur-md transition-all hover:bg-white/20"
+                    placeholder="Search for articles, guides, or components..."
+                />
+            </motion.div>
+            
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="mt-6 flex justify-center gap-4 text-sm text-neutral-400"
+            >
+                <span>Popular:</span>
+                <a href="#" className="hover:text-white underline decoration-neutral-600 underline-offset-4">Installation</a>
+                <a href="#" className="hover:text-white underline decoration-neutral-600 underline-offset-4">API Keys</a>
+                <a href="#" className="hover:text-white underline decoration-neutral-600 underline-offset-4">Billing</a>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 14. Floating Card Overlay
+Elegant text overlaid on a floating card above a background image.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroCardOverlay />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+
+export default function HeroCardOverlay() {
+  return (
+    <div className="relative bg-neutral-900">
+        <div className="absolute inset-0">
+            <img
+                className="h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=1600&q=80"
+                alt="Office background"
+            />
+            <div className="absolute inset-0 bg-neutral-900/60 mix-blend-multiply" aria-hidden="true" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="max-w-2xl bg-white p-10 rounded-2xl shadow-xl dark:bg-neutral-950"
+            >
+                <div className="hidden sm:mb-8 sm:flex">
+                    <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-neutral-500 ring-1 ring-neutral-900/10 hover:ring-neutral-900/20 dark:text-neutral-400 dark:ring-white/20 dark:hover:ring-white/30">
+                        We are hiring! <a href="#" className="font-semibold text-indigo-600"><span className="absolute inset-0" aria-hidden="true" />See roles <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Transform your digital presence
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Leverage our cutting-edge tools to build faster, scale better, and reach more customers.
+                </p>
+                <div className="mt-10 flex items-center gap-x-6">
+                    <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Get started
+                    </Link>
+                    <Link href="#" className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                        Live demo <span aria-hidden="true">→</span>
+                    </Link>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 15. Maximalist Typography
+Huge typography for bold statements.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroTypography />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function HeroTypography() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-32 lg:py-56">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+                 className="mx-auto max-w-4xl text-center"
+            >
+                <h1 className="text-6xl font-black tracking-tight text-neutral-900 dark:text-white sm:text-8xl ">
+                    SIMPLY. <br />
+                    <span className="text-neutral-400 dark:text-neutral-600">BETTER.</span> <br />
+                    DESIGN.
+                </h1>
+                <div className="mt-12 flex items-center justify-center gap-x-6">
+                    <button className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white border-b-2 border-black dark:border-white pb-1 hover:border-transparent transition-colors">
+                        Discover the Collection
+                    </button>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 16. Illustration
+Clean layout with vector or flat-lay illustration.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroIllustration />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+
+export default function HeroIllustration() {
+  return (
+    <div className="bg-white dark:bg-neutral-950">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+            <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto"
+            >
+                <h1 className="mt-10 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Data analytics for <span className="text-indigo-600">everyone.</span>
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Powerful, self-serve product analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.
+                </p>
+                <div className="mt-10 flex items-center gap-x-6">
+                    <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                        Start Free Trial
+                    </Link>
+                    <Link href="#" className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white flex items-center">
+                        View Demo <BiRightArrowAlt className="ml-1" />
+                    </Link>
+                </div>
+            </motion.div>
+            
+            <motion.div 
+                 initial={{ opacity: 0, x: 20 }}
+                 animate={{ opacity: 1, x: 0 }}
+                 transition={{ duration: 0.5, delay: 0.2 }}
+                 className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow"
+            >
+                <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
+                    alt="Analytics Illustration"
+                    className="mx-auto w-[40rem] max-w-full drop-shadow-xl rounded-xl"
+                />
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 17. Cinematic Video Background
+Full screen video/image background with centered text.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-neutral-900">
+    <HeroVideoBackground />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiPlayCircle } from "react-icons/bi";
+
+export default function HeroVideoBackground() {
+  return (
+    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 lg:py-40">
+        <div className="absolute inset-0 -z-10 h-full w-full object-cover">
+            <img
+                src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=1600&q=80"
+                alt="City timelapse"
+                className="h-full w-full object-cover scale-110 motion-safe:animate-pulse-slow"
+            />
+            <div className="absolute inset-0 bg-gray-900/70" />
+        </div>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="mx-auto max-w-2xl text-center"
+            >
+                <h2 className="text-4xl font-bold tracking-tight text-white sm:text-7xl font-sans">
+                    Limitless Potential
+                </h2>
+                <div className="mt-8 flex justify-center">
+                     <button className="rounded-full bg-white/20 backdrop-blur-md border border-white/30 px-6 py-2 text-white flex items-center gap-2 hover:bg-white/30 transition">
+                        <BiPlayCircle /> Watch the film
+                     </button>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 18. Newsletter with Gradient
+Focused newsletter signup with a beautiful gradient background.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroNewsletter />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function HeroNewsletter() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-neutral-900 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl"
+          >
+            Get the latest updates delivered.
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-neutral-300"
+          >
+            Join over 50,000 developers shipping faster every week.
+          </motion.p>
+          
+          <motion.form 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mx-auto mt-10 flex max-w-md gap-x-4"
+          >
+            <label htmlFor="email-address" className="sr-only">Email address</label>
+            <input
+              id="email-address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6"
+              placeholder="Enter your email"
+            />
+            <button
+              type="submit"
+              className="flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Subscribe
+            </button>
+          </motion.form>
+          
+           <div className="mt-8 flex justify-center -space-x-2 overflow-hidden">
+                <img
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-neutral-900"
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+                <img
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-neutral-900"
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+                <img
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-neutral-900"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+                <img
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-neutral-900"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+            </div>
+            
+          <svg
+            viewBox="0 0 1024 1024"
+            className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+            aria-hidden="true"
+          >
+            <circle cx={512} cy={512} r={512} fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fillOpacity="0.7" />
+            <defs>
+              <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                <stop stopColor="#7775D6" />
+                <stop offset={1} stopColor="#E935C1" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 19. Skewed Split
+A split layout with a unique skewed image separator.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroSkewed />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+
+export default function HeroSkewed() {
+  return (
+    <div className="relative bg-white dark:bg-neutral-950 overflow-hidden">
+      <div className="mx-auto max-w-7xl">
+        <div className="relative z-10 lg:w-full lg:max-w-2xl">
+          <svg
+            className="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white dark:fill-neutral-950 lg:block"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <polygon points="0,0 90,0 50,100 0,100" />
+          </svg>
+
+          <div className="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
+            <motion.div 
+               initial={{ opacity: 0, x: -20 }}
+               animate={{ opacity: 1, x: 0 }}
+               transition={{ duration: 0.5 }}
+               className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl"
+            >
+              <div className="hidden sm:mb-10 sm:flex">
+                <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-neutral-500 ring-1 ring-neutral-900/10 hover:ring-neutral-900/20 dark:text-neutral-400 dark:ring-white/10">
+                  Start your free 14-day trial today
+                </div>
+              </div>
+              <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                Deploy to the edge in seconds.
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+              </p>
+              <div className="mt-10 flex items-center gap-x-6">
+                <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                  Get started
+                </Link>
+                <Link href="#" className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white flex items-center">
+                  Learn more <BiRightArrowAlt className="ml-1" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-neutral-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+        <img
+          className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+          src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80"
+          alt=""
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 20. Minimal Centered
+Classic centered hero with no background distractions.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-white dark:bg-neutral-950">
+    <HeroSimpleCentered />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+
+export default function HeroSimpleCentered() {
+  return (
+    <section className="relative overflow-hidden bg-white dark:bg-neutral-950 py-24 sm:py-32">
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mx-auto max-w-2xl text-center"
+            >
+                
+                <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+                    Data to enrich your online business
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <Link href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Get started
+                    </Link>
+                    <Link href="#" className="flex items-center text-sm font-semibold leading-6 text-neutral-900 dark:text-white">
+                        Learn more <BiRightArrowAlt className="ml-1 text-lg" />
+                    </Link>
+                </div>
+            </motion.div>
+        </div>
+        
+    </section>
+  );
+}
+```

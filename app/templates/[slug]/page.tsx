@@ -8,6 +8,8 @@ import DashboardTemplate, { DashboardSidebar, DashboardHeader, DashboardStats, D
 import * as Headers from '@/components/ui-component/headers'
 import * as Sidebars from '@/components/ui-component/sidebars'
 
+import * as Heroes from '@/components/ui-component/heroes'
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const template = getTemplate(slug)
@@ -59,7 +61,8 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           ModernLandingPage, Navbar, Hero, Features, CTA, Footer,
           DashboardTemplate, DashboardSidebar, DashboardHeader, DashboardStats, DashboardActivity, DashboardChart,
           ...Headers,
-          ...Sidebars
+          ...Sidebars,
+          ...Heroes
         }} />
       </div>
     </article>
