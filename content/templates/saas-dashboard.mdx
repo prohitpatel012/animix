@@ -1,19 +1,250 @@
 ---
 title: "SaaS Dashboard"
-description: "A responsive dashboard layout with sidebar and top navbar."
+description: "A comprehensive dashboard template with stats, charts, and activity feeds."
 category: "Dashboards"
-date: "2024-03-21"
+date: "2024-03-22"
 ---
 
-# SaaS Dashboard
 
-A complete layout for SaaS applications.
+## Preview
 
-## Step 1: Sidebar Component
-Fixed sidebar for navigation.
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-xl my-8">
+  <div className="h-[800px] overflow-y-auto relative translate-x-0">
+    <DashboardTemplate />
+  </div>
+</div>
+
+
+## Installation
+
+First, install the necessary dependencies:
+
+```bash
+npm install framer-motion clsx tailwind-merge
+```
+
+## Modular Components
+
+### 1. Sidebar
+
+A responsive sidebar with navigation links and user profile. Handles mobile toggle automatically.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-neutral-50 dark:bg-neutral-950">
+  <div className="relative h-[600px] translate-x-0">
+    <DashboardSidebar isOpen={true} />
+  </div>
+</div>
 
 ```tsx
-<aside className="w-64 border-r h-screen fixed">
-  <nav>...</nav>
-</aside>
+"use client";
+import { useState } from "react";
+
+// Icons... (Use lucide-react or your preferred library)
+
+export const DashboardSidebar = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (v: boolean) => void }) => {
+  const links = [
+    { name: 'Dashboard', icon: <HomeIcon className="w-5 h-5" />, href: '#', active: true },
+    { name: 'Users', icon: <UsersIcon className="w-5 h-5" />, href: '#' },
+    { name: 'Analytics', icon: <ChartBarIcon className="w-5 h-5" />, href: '#' },
+    { name: 'Settings', icon: <SettingsIcon className="w-5 h-5" />, href: '#' },
+  ];
+
+  return (
+    <>
+        {/* Mobile Overlay */}
+        {isOpen && (
+            <div 
+                className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                onClick={() => setIsOpen(false)}
+            />
+        )}
+
+        {/* Sidebar */}
+        <aside className={`
+            fixed top-0 left-0 bottom-0 z-50 w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 transform transition-transform duration-200 ease-in-out
+            ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static
+        `}>
+            {/* Logo */}
+            <div className="h-16 flex items-center px-6 border-b border-neutral-200 dark:border-neutral-800">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-3">A</div>
+                <span className="font-bold text-xl text-neutral-900 dark:text-white">Animix</span>
+            </div>
+
+            {/* Nav */}
+            <nav className="p-4 space-y-1">
+                {links.map((link) => (
+                    <a
+                        key={link.name}
+                        href={link.href}
+                        className={`
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors
+                            ${link.active 
+                                ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' 
+                                : 'text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800'
+                            }
+                        `}
+                    >
+                        {link.icon}
+                        {link.name}
+                    </a>
+                ))}
+            </nav>
+
+            {/* User Profile Snippet */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-neutral-200 dark:border-neutral-800">
+                <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-neutral-200 dark:bg-neutral-700 flex-shrink-0" />
+                    <div className="min-w-0">
+                        <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">Jane Doe</p>
+                        <p className="text-xs text-neutral-500 truncate">jane@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </>
+  );
+};
+```
+
+### 2. Stats Grid
+
+Key metrics displayed in a responsive grid.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 p-6 bg-neutral-50 dark:bg-neutral-950">
+    <DashboardStats />
+</div>
+
+```tsx
+export const DashboardStats = () => {
+  const stats = [
+    { name: 'Total Revenue', value: '$45,231.89', change: '+20.1%', trend: 'up' },
+    { name: 'Subscriptions', value: '+2350', change: '+180.1%', trend: 'up' },
+    { name: 'Active Now', value: '+573', change: '+19.5%', trend: 'up' },
+    { name: 'Bounce Rate', value: '12.5%', change: '-4.1%', trend: 'down' },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {stats.map((stat) => (
+        <div key={stat.name} className="bg-white dark:bg-neutral-900 p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-sm">
+          <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{stat.name}</p>
+          <div className="mt-2 flex items-baseline justify-between">
+            <p className="text-2xl font-semibold text-neutral-900 dark:text-white">{stat.value}</p>
+            <span className={`
+                flex items-center text-xs font-medium px-2 py-0.5 rounded-full
+                ${stat.trend === 'up' 
+                    ? 'text-green-700 bg-green-50 dark:text-green-400 dark:bg-green-900/30' 
+                    : 'text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-900/30'
+                }
+            `}>
+                {stat.trend === 'up' ? <ArrowUpIcon className="w-3 h-3 mr-1" /> : <ArrowDownIcon className="w-3 h-3 mr-1" />}
+                {stat.change}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+```
+
+### 3. Activity Feed
+
+A clean data table for recent transactions or logs.
+
+<div className="border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden shadow-sm my-6 bg-neutral-50 dark:bg-neutral-950 p-6">
+  <DashboardActivity />
+</div>
+
+```tsx
+export const DashboardActivity = () => {
+    const activity = [
+        { user: 'Olivia Martin', email: 'olivia.martin@email.com', amount: '+$1,999.00', status: 'Success' },
+        { user: 'Jackson Lee', email: 'jackson.lee@email.com', amount: '+$39.00', status: 'Processing' },
+        { user: 'Isabella Nguyen', email: 'isabella.nguyen@email.com', amount: '+$299.00', status: 'Success' },
+        { user: 'William Kim', email: 'will@email.com', amount: '+$99.00', status: 'Success' },
+        { user: 'Sofia Davis', email: 'sofia.davis@email.com', amount: '+$299.00', status: 'Failed' },
+    ];
+
+    return (
+        <div className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden">
+            <div className="p-6 border-b border-neutral-200 dark:border-neutral-800">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">Recent Transactions</h3>
+                <p className="text-sm text-neutral-500">You made 265 sales this month.</p>
+            </div>
+            <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left">
+                    <thead className="text-xs text-neutral-500 uppercase bg-neutral-50 dark:bg-neutral-900/50">
+                        <tr>
+                            <th className="px-6 py-4 font-medium">Customer</th>
+                            <th className="px-6 py-4 font-medium">Status</th>
+                            <th className="px-6 py-4 font-medium text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
+                        {activity.map((item, idx) => (
+                            <tr key={idx} className="bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+                                <td className="px-6 py-4">
+                                    <div className="font-medium text-neutral-900 dark:text-white">{item.user}</div>
+                                    <div className="text-neutral-500 text-xs">{item.email}</div>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <span className={`
+                                        inline-flex px-2 py-1 text-xs font-medium rounded-full
+                                        ${item.status === 'Success' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : ''}
+                                        ${item.status === 'Processing' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400' : ''}
+                                        ${item.status === 'Failed' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : ''}
+                                    `}>
+                                        {item.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 text-right font-medium text-neutral-900 dark:text-white">
+                                    {item.amount}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+```
+
+## Assembly
+
+Bring it all together in your main page file.
+
+```tsx
+// app/dashboard/page.tsx
+import { DashboardSidebar } from "@/components/DashboardSidebar";
+import { DashboardHeader } from "@/components/DashboardHeader";
+import { DashboardStats } from "@/components/DashboardStats";
+import { DashboardActivity } from "@/components/DashboardActivity";
+import { DashboardChart } from "@/components/DashboardChart";
+
+export default function DashboardPage() {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    return (
+        <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 flex font-sans text-neutral-900 dark:text-neutral-100">
+            <DashboardSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+            
+            <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+                <DashboardHeader onMenuClick={() => setSidebarOpen(true)} />
+
+                <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+                    <div className="max-w-7xl mx-auto">
+                        <DashboardStats />
+                        
+                        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+                            <DashboardChart />
+                            <DashboardActivity />
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
+}
 ```

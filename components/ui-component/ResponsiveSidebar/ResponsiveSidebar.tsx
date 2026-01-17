@@ -2,9 +2,7 @@
 
 import Link from "next/link"
 import React, { useState } from "react"
-import { BiSearch, BiChevronDown } from "react-icons/bi"
 import { usePathname } from "next/navigation"
-import { HiMenu, HiX } from "react-icons/hi"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
@@ -74,7 +72,11 @@ function ResponsiveHeader() {
                   }`}
               >
                 {item.name}
-                {item.sublinks && <BiChevronDown />}
+                {item.sublinks && (
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                )}
               </Link>
 
 
@@ -109,7 +111,9 @@ function ResponsiveHeader() {
         {/* Desktop Right */}
         <div className="hidden md:flex items-center space-x-3">
           <div className="flex items-center space-x-2 border rounded px-2 py-1">
-            <BiSearch />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
             <input placeholder="Search" className="outline-none text-sm" />
           </div>
           <Link href="/login" className="text-black font-medium border rounded px-2 py-1 bg-yellow-300  ">
@@ -119,7 +123,15 @@ function ResponsiveHeader() {
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+          {isOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          )}
         </button>
       </div>
 
@@ -146,7 +158,11 @@ function ResponsiveHeader() {
                     "
                   >
                     {item.name}
-                    {item.sublinks && <BiChevronDown />}
+                    {item.sublinks && (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    )}
                   </button>
 
                   {/* Mobile Sublinks */}

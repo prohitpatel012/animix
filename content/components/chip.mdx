@@ -32,7 +32,39 @@ export default function Page() {
 ## Source Code
 
 ```tsx
+import React from 'react';
+
+type ChipProps = {
+    label: string;
+    onRemove?: () => void;
+    variant?: 'neutral' | 'brand';
+    className?: string;
+};
+
 export const Chip = ({ label, onRemove, variant = 'neutral', className = '' }: ChipProps) => {
-    // ...implementation
+    const baseStyle = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium transition-colors border";
+    const variants = {
+        neutral: "bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300",
+        brand: "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300",
+    };
+
+    return (
+        <span className={`${baseStyle} ${variants[variant]} ${className}`}>
+            {label}
+            {onRemove && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onRemove();
+                    }}
+                    className="hover:bg-black/5 dark:hover:bg-white/10 rounded-full p-0.5 transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="size-3.5">
+                        <path d="M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z"/>
+                    </svg>
+                </button>
+            )}
+        </span>
+    );
 };
 ```

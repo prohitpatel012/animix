@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiCommand } from "react-icons/bi";
+
 
 type LogoProps = {
     icon?: React.ReactNode;
@@ -10,7 +10,12 @@ type LogoProps = {
 };
 
 export const Logo = ({
-    icon = <BiCommand className="w-full h-full" />,
+    icon = (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fillOpacity="0" />
+            <path d="M7.5 15C6.12 15 5 16.12 5 17.5S6.12 20 7.5 20H9V17h3v3h1.5A2.5 2.5 0 0 0 16 17.5 2.5 2.5 0 0 0 13.5 15H12v-1.5h1.5A2.5 2.5 0 0 0 16 11a2.5 2.5 0 0 0-2.5-2.5H12V5h-3v3.5H7.5A2.5 2.5 0 0 0 5 11a2.5 2.5 0 0 0 2.5 2.5H9v1.5H7.5zm0-2.5h1.5V11H7.5a1 1 0 1 1 0 1.5zM10.5 11h1.5V9.5a1 1 0 1 1-1.5 0V11zm0 3V12.5H12a1 1 0 1 1 0 1.5h-1.5zm-1.5 0v1.5H7.5a1 1 0 1 1 0-1.5H9z" />
+        </svg>
+    ),
     text = "Animix",
     variant = 'full',
     size = 'md',

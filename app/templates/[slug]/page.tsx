@@ -3,6 +3,10 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { mdxComponents } from '@/components/mdx/MDXComponents'
 import Link from 'next/link'
+import ModernLandingPage, { Navbar, Hero, Features, CTA, Footer } from '@/components/templates/ModernLandingPage'
+import DashboardTemplate, { DashboardSidebar, DashboardHeader, DashboardStats, DashboardActivity, DashboardChart } from '@/components/templates/DashboardTemplate'
+import * as Headers from '@/components/ui-component/headers'
+import * as Sidebars from '@/components/ui-component/sidebars'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -35,7 +39,6 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
         >
           ← Back to templates
         </Link>
-
         <div className="flex items-center gap-3 mb-4">
           <span className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/30 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:text-blue-300">
             {template.category}
@@ -44,21 +47,20 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
             {new Date(template.date || '').toLocaleDateString()}
           </span>
         </div>
-
         <h1 className="text-4xl font-bold mb-4">{template.title}</h1>
         <p className="text-xl text-neutral-600 dark:text-neutral-400">
           {template.description}
         </p>
       </div>
 
-      {/* Preview Section could go here */}
-      <div className="w-full aspect-video bg-neutral-100 dark:bg-neutral-900 rounded-xl mb-12 flex items-center justify-center border border-neutral-200 dark:border-neutral-800">
-        <p className="text-neutral-400">Live Preview Component</p>
-      </div>
-
       <div className="prose dark:prose-invert max-w-none">
-        <h2 className="text-2xl font-bold mb-6">Implementation Guide</h2>
-        <MDXRemote source={template.content} components={mdxComponents} />
+        <MDXRemote source={template.content} components={{
+          ...mdxComponents,
+          ModernLandingPage, Navbar, Hero, Features, CTA, Footer,
+          DashboardTemplate, DashboardSidebar, DashboardHeader, DashboardStats, DashboardActivity, DashboardChart,
+          ...Headers,
+          ...Sidebars
+        }} />
       </div>
     </article>
   )

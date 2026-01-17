@@ -1,0 +1,10 @@
+export { default as HeaderSimple } from "./HeaderSimple";
+export { default as HeaderCentered } from "./HeaderCentered";
+export { default as HeaderWithSearch } from "./HeaderWithSearch";
+export { default as HeaderMegaMenu } from "./HeaderMegaMenu";
+export { default as HeaderDark } from "./HeaderDark";
+export { default as HeaderTransparent } from "./HeaderTransparent";
+export { default as HeaderStacked } from "./HeaderStacked";
+export { default as HeaderEcommerce } from "./HeaderEcommerce";
+export { default as HeaderGradient } from "./HeaderGradient";
+export { default as HeaderFloating } from "./HeaderFloating";
