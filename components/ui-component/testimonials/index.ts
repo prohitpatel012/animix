@@ -1,0 +1,10 @@
+export { default as TestimonialSimple } from './TestimonialSimple';
+export { default as TestimonialGrid } from './TestimonialGrid';
+export { default as TestimonialSideBySide } from './TestimonialSideBySide';
+export { default as TestimonialDark } from './TestimonialDark';
+export { default as TestimonialAvatars } from './TestimonialAvatars';
+export { default as TestimonialSlider } from './TestimonialSlider';
+export { default as TestimonialVideo } from './TestimonialVideo';
+export { default as TestimonialRating } from './TestimonialRating';
+export { default as TestimonialMinimal } from './TestimonialMinimal';
+export { default as TestimonialCompany } from './TestimonialCompany';

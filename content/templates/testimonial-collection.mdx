@@ -1,0 +1,722 @@
+---
+title: Testimonials Collection
+description: Social proof components to build trust.
+---
+
+import { TestimonialSimple, TestimonialGrid, TestimonialSideBySide, TestimonialDark, TestimonialAvatars, TestimonialSlider, TestimonialVideo, TestimonialRating, TestimonialMinimal, TestimonialCompany } from '@/components/ui-component/testimonials';
+
+# Testimonial Components
+
+A collection of responsive testimonial components to showcase social proof.
+
+## Simple Centered
+A simple centralized quote with author details.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialSimple />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function TestimonialSimple() {
+  return (
+    <section className="bg-white dark:bg-neutral-950 px-6 py-24 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-2xl text-center">
+        <p className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Testimonials</p>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
+          What our users say
+        </h2>
+      </div>
+      <motion.figure 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-10 mx-auto max-w-2xl text-center"
+      >
+        <p className="text-xl font-semibold leading-8 text-neutral-900 dark:text-white sm:text-2xl sm:leading-9">
+          “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”
+        </p>
+        <figcaption className="mt-10">
+          <img
+            className="mx-auto h-20 w-20 rounded-full bg-neutral-100 object-cover"
+            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80"
+            alt=""
+          />
+          <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+            <div className="font-semibold text-neutral-900 dark:text-white">Judith Black</div>
+            <svg viewBox="0 0 2 2" width={3} height={3} aria-hidden="true" className="fill-neutral-900 dark:fill-white">
+              <circle cx={1} cy={1} r={1} />
+            </svg>
+            <div className="text-neutral-600 dark:text-neutral-400">CEO of Workcation</div>
+          </div>
+        </figcaption>
+      </motion.figure>
+    </section>
+  );
+}
+```
+
+---
+
+## Grid Layout
+A masonry-style grid for displaying multiple testimonials.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialGrid />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+const testimonials = [
+  {
+    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    author: {
+      name: 'Leslie Alexander',
+      handle: 'lesliealexander',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Aut reprehenderit voluptatem sequi quae aut adipisci. Cupiditate sapiente officiis ut.',
+    author: {
+      name: 'Michael Foster',
+      handle: 'michaelfoster',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Voluptas quos itaque ipsam in voluptatem est. Iste eos blanditiis repudiandae. Quod cupiditate seu.',
+    author: {
+      name: 'Dries Vincent',
+      handle: 'driesvincent',
+      imageUrl:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.',
+    author: {
+      name: 'Lindsay Walton',
+      handle: 'lindsaywalton',
+      imageUrl:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Alias veniam fugiat. Rerum et et. Sit alias veritatis autem impedit. Eos et possimus in sed ut blanditiis.',
+    author: {
+      name: 'Courtney Henry',
+      handle: 'courtneyhenry',
+      imageUrl:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    body: 'Delectus ut odio sunt. Id non aut voluptatem sunt. In ut commodi cumque.',
+    author: {
+      name: 'Tom Cook',
+      handle: 'tomcook',
+      imageUrl:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+];
+
+export default function TestimonialGrid() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-xl text-center">
+          <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600 dark:text-indigo-400">Testimonials</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+            We have worked with thousands of amazing people
+          </p>
+        </div>
+        <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+          <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
+            {testimonials.map((testimonial, index) => (
+              <motion.div 
+                key={testimonial.author.handle} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="pt-8 sm:inline-block sm:w-full sm:px-4"
+              >
+                <figure className="rounded-2xl bg-neutral-50 dark:bg-neutral-900 p-8 text-sm leading-6">
+                  <blockquote className="text-neutral-900 dark:text-neutral-100">
+                    <p>{`“${testimonial.body}”`}</p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-x-4">
+                    <img className="h-10 w-10 rounded-full bg-neutral-50" src={testimonial.author.imageUrl} alt="" />
+                    <div>
+                      <div className="font-semibold text-neutral-900 dark:text-white">{testimonial.author.name}</div>
+                      <div className="text-neutral-600 dark:text-neutral-400">{`@${testimonial.author.handle}`}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Side by Side with Image
+A split layout featuring an image and a prominent testimonial.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialSideBySide />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiSolidStar } from "react-icons/bi";
+
+export default function TestimonialSideBySide() {
+  return (
+    <section className="bg-white dark:bg-neutral-950 isolate overflow-hidden px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl pt-20 pb-20 sm:pt-32 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-0 lg:pt-0 lg:pb-0">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none lg:pt-28 lg:pb-24 xl:pb-32 lg:pr-8">
+            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl mb-10">
+                Transforming the way businesses work.
+            </h1>
+            <motion.figure 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+            >
+                <div className="flex gap-x-1 text-indigo-600 mb-4">
+                    <BiSolidStar className="h-5 w-5" />
+                    <BiSolidStar className="h-5 w-5" />
+                    <BiSolidStar className="h-5 w-5" />
+                    <BiSolidStar className="h-5 w-5" />
+                    <BiSolidStar className="h-5 w-5" />
+                </div>
+                <blockquote className="text-xl font-semibold leading-8 text-neutral-900 dark:text-white sm:text-2xl sm:leading-9">
+                    <p>
+                        “This app has completely changed how I manage my projects. The intuitive interface and powerful features make it a joy to use every day.”
+                    </p>
+                </blockquote>
+                <figcaption className="mt-8 flex items-center gap-x-4">
+                    <img
+                        className="h-10 w-10 rounded-full bg-neutral-50 object-cover"
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt=""
+                    />
+                    <div className="text-sm leading-6">
+                        <div className="font-semibold text-neutral-900 dark:text-white">Joseph Rodriguez</div>
+                        <div className="text-neutral-600 dark:text-neutral-400">Product Manager at TechCorp</div>
+                    </div>
+                </figcaption>
+            </motion.figure>
+        </div>
+        <div className="mt-10 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:h-full lg:flex lg:items-center">
+             <motion.img 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80" 
+                alt="Office working" 
+                className="w-full rounded-2xl shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10 lg:h-[32rem] object-cover" 
+             />
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+## Dark Mode Dual
+A dark-themed section perfect for B2B or developer tools.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialDark />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiSolidQuoteAltLeft } from "react-icons/bi";
+
+export default function TestimonialDark() {
+  return (
+    <section className="bg-neutral-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="flex flex-col pb-10 sm:pb-16 lg:pb-0 lg:pr-8 xl:pr-20">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Trusted by developers
+            </h2>
+            <figure className="mt-10 flex flex-auto flex-col justify-between">
+              <blockquote className="text-lg leading-8 text-white">
+                <p>
+                  “The implementation was seamless. We were able to migrate our entire legacy system to the new platform in under a week. The documentation is fantastic and the support team is incredibly responsive.”
+                </p>
+              </blockquote>
+              <figcaption className="mt-10 flex items-center gap-x-6">
+                <img
+                  className="h-14 w-14 rounded-full bg-neutral-800 object-cover"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+                <div className="text-base">
+                  <div className="font-semibold text-white">Judith Black</div>
+                  <div className="mt-1 text-neutral-400">CEO of Tuple</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div className="flex flex-col border-t border-white/10 pt-10 sm:pt-16 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-20">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Loved by designers
+            </h2>
+             <figure className="mt-10 flex flex-auto flex-col justify-between">
+              <blockquote className="text-lg leading-8 text-white">
+                <p>
+                  “Finally, a tool that respects the design process. The ability to sync our Figma tokens directly into the codebase has saved us countless hours of manual handoff work.”
+                </p>
+              </blockquote>
+              <figcaption className="mt-10 flex items-center gap-x-6">
+                <img
+                  className="h-14 w-14 rounded-full bg-neutral-800 object-cover"
+                  src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+                <div className="text-base">
+                  <div className="font-semibold text-white">Joseph Rodriguez</div>
+                  <div className="mt-1 text-neutral-400">Product Designer at Savvy</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+## Avatar Grid
+Focus on the community with a grid of user avatars and roles.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialAvatars />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+const people = [
+    {
+        name: 'Leslie Alexander',
+        role: 'Co-Founder / CEO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Michael Foster',
+        role: 'Co-Founder / CTO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Dries Vincent',
+        role: 'Business Relations',
+        imageUrl:
+            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Lindsay Walton',
+        role: 'Front-end Developer',
+        imageUrl:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+        name: 'Courtney Henry',
+        role: 'Designer',
+        imageUrl:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+     {
+        name: 'Tom Cook',
+        role: 'Director of Product',
+        imageUrl:
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+]
+
+export default function TestimonialAvatars() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Meet our community</h2>
+            <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                A growing family of thousands of creators and makers.
+            </p>
+        </div>
+        <ul role="list" className="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-6 lg:mx-0 lg:max-w-none">
+            {people.map((person, index) => (
+                <motion.li 
+                    key={person.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                >
+                    <img className="mx-auto h-24 w-24 rounded-full" src={person.imageUrl} alt="" />
+                    <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-neutral-900 dark:text-white">{person.name}</h3>
+                    <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">{person.role}</p>
+                </motion.li>
+            ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Animated Slider
+A simple carousel to cycle through testimonials.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialSlider />
+</div>
+
+```tsx
+"use client";
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+
+const testimonials = [
+  {
+    content: "The level of customization is unmatched. I was able to build exactly what I imagined without fighting the framework.",
+    author: "Sarah Jenkins",
+    role: "Frontend Architect"
+  },
+  {
+    content: "Performance is critical for our e-commerce site. This library helped us achieve a perfect 100 on Lighthouse scores.",
+    author: "David Chen",
+    role: "CTO at ShopFlow"
+  },
+  {
+    content: "The accessibility features are built-in, not an afterthought. This saved us weeks of audit time.",
+    author: "Emily Watson",
+    role: "Accessibility Advocate"
+  }
+];
+
+export default function TestimonialSlider() {
+    const [index, setIndex] = useState(0);
+
+    const next = () => {
+        setIndex((prev) => (prev + 1) % testimonials.length);
+    };
+
+    const prev = () => {
+        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    };
+
+    return (
+        <section className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-3xl text-center">
+                    <AnimatePresence mode="wait">
+                        <motion.figure
+                            key={index}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <blockquote className="text-2xl font-semibold leading-9 text-neutral-900 dark:text-white sm:text-3xl sm:leading-10">
+                                <p>“{testimonials[index].content}”</p>
+                            </blockquote>
+                            <figcaption className="mt-10">
+                                <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                                    <div className="font-semibold text-neutral-900 dark:text-white">{testimonials[index].author}</div>
+                                    <svg viewBox="0 0 2 2" width={3} height={3} aria-hidden="true" className="fill-neutral-900 dark:fill-white">
+                                        <circle cx={1} cy={1} r={1} />
+                                    </svg>
+                                    <div className="text-neutral-600 dark:text-neutral-400">{testimonials[index].role}</div>
+                                </div>
+                            </figcaption>
+                        </motion.figure>
+                    </AnimatePresence>
+
+                    <div className="mt-10 flex justify-center gap-4">
+                        <button 
+                            onClick={prev}
+                            className="p-2 rounded-full bg-white dark:bg-neutral-800 shadow-sm hover:bg-neutral-50 dark:hover:bg-neutral-700 transition"
+                            aria-label="Previous testimonial"
+                        >
+                            <BiChevronLeft className="h-6 w-6 text-neutral-600 dark:text-neutral-300" />
+                        </button>
+                        <button 
+                            onClick={next}
+                            className="p-2 rounded-full bg-white dark:bg-neutral-800 shadow-sm hover:bg-neutral-50 dark:hover:bg-neutral-700 transition"
+                            aria-label="Next testimonial"
+                        >
+                            <BiChevronRight className="h-6 w-6 text-neutral-600 dark:text-neutral-300" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+```
+
+---
+
+## Video Testimonial
+Highlights a customer story with a video thumbnail.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialVideo />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiPlayCircle } from "react-icons/bi";
+
+export default function TestimonialVideo() {
+  return (
+    <section className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center">
+            <div className="lg:pr-8 lg:pt-4">
+                 <div className="lg:max-w-lg">
+                    <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Customer Stories</h2>
+                    <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                        See how Acme Inc. scaled their operations
+                    </p>
+                    <figure className="mt-10 border-l border-neutral-200 dark:border-neutral-800 pl-9">
+                        <blockquote className="font-semibold text-neutral-900 dark:text-white">
+                            <p>
+                            “We were struggling with managing our data flow. This platform not only solved that but gave us insights we didn't know we were missing. It's been a game changer.”
+                            </p>
+                        </blockquote>
+                        <figcaption className="mt-6 flex gap-x-4 text-sm leading-6">
+                            <img
+                             className="h-6 w-6 flex-none rounded-full bg-neutral-50"
+                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                             alt=""
+                            />
+                            <div><span className="font-semibold text-neutral-900 dark:text-white">Tom Cook</span> – Director of Operations</div>
+                        </figcaption>
+                    </figure>
+                 </div>
+            </div>
+            <div className="lg:col-start-2 lg:row-start-1">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="relative rounded-2xl bg-neutral-900 shadow-xl overflow-hidden aspect-video group cursor-pointer"
+                >
+                    <img 
+                        src="https://images.unsplash.com/photo-1559136555-930b7e476567?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" 
+                        alt="Video thumbnail"
+                        className="absolute inset-0 h-full w-full object-cover opacity-70 group-hover:opacity-60 transition-opacity"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <BiPlayCircle className="h-20 w-20 text-white opacity-90 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                </motion.div>
+            </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+## Star Ratings
+Emphasizes the star rating for each review.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialRating />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { BiSolidStar } from "react-icons/bi";
+
+export default function TestimonialRating() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+                <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Loved by users worldwide</h2>
+            </div>
+            <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                     {[1, 2, 3].map((item, idx) => (
+                         <motion.div 
+                            key={idx}
+                            whileHover={{ y: -5 }}
+                            className="flex flex-col justify-between bg-neutral-50 dark:bg-neutral-900 p-8 rounded-2xl"
+                         >
+                            <div>
+                                <div className="flex gap-1 text-yellow-400 mb-4">
+                                    {[...Array(5)].map((_, i) => (
+                                        <BiSolidStar key={i} className="h-5 w-5" />
+                                    ))}
+                                </div>
+                                <p className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">"Absolutely fantastic!"</p>
+                                <p className="text-neutral-600 dark:text-neutral-400 leading-7">
+                                    "I've tried many similar tools but this one stands out. The attention to detail and user experience is second to none."
+                                </p>
+                            </div>
+                            <div className="mt-8 flex items-center gap-x-4">
+                                <div className="h-10 w-10 rounded-full bg-neutral-200 dark:bg-neutral-700" />
+                                <div>
+                                    <div className="font-semibold text-neutral-900 dark:text-white">Alex Johnson</div>
+                                    <div className="text-sm text-neutral-500">Creative Director</div>
+                                </div>
+                            </div>
+                         </motion.div>
+                     ))}
+                 </div>
+            </div>
+        </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Minimal Serifs
+A clean, typography-focused layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialMinimal />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function TestimonialMinimal() {
+  return (
+    <section className="bg-white dark:bg-neutral-950 px-6 py-24 sm:py-32 lg:px-8">
+        <motion.figure 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="mx-auto max-w-4xl"
+        >
+            <blockquote className="text-center font-serif text-3xl italic leading-10 text-neutral-900 dark:text-white sm:text-5xl sm:leading-[1.2]">
+                <p>
+                    “Design is not just what it looks like and feels like. Design is how it works. This library understands that perfectly.”
+                </p>
+            </blockquote>
+            <figcaption className="mt-10 flex items-center justify-center gap-x-6">
+                 <div className="text-sm font-semibold leading-6 text-neutral-900 dark:text-white tracking-widest uppercase">
+                    Steve Jobs (Inspired)
+                 </div>
+            </figcaption>
+        </motion.figure>
+    </section>
+  );
+}
+```
+
+---
+
+## Brand Focused
+Features company logos and branding.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <TestimonialCompany />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function TestimonialCompany() {
+  return (
+    <section className="bg-indigo-700 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2">
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="mx-auto w-full max-w-xl lg:mx-0"
+                >
+                    <img 
+                        src="https://tailwindui.com/img/logos/workcation-logo-white.svg" 
+                        alt="Workcation" 
+                        className="h-12 w-auto mb-10"
+                    />
+                    <figure>
+                        <blockquote className="text-2xl font-bold tracking-tight text-white sm:text-3xl sm:leading-10">
+                            <p>
+                                “We used to spend weeks building internal tools. Now we do it in an afternoon. It's not just faster, it's better code.”
+                            </p>
+                        </blockquote>
+                        <figcaption className="mt-8 flex gap-x-4 items-center">
+                            <img
+                                className="h-10 w-10 rounded-full bg-indigo-800"
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                alt=""
+                            />
+                            <div className="text-base text-indigo-100">
+                                <div className="font-semibold text-white">Judith Black</div>
+                                <div className="mt-1">CEO of Workcation</div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </motion.div>
+                <div className="mx-auto w-full max-w-xl lg:mx-0">
+                     <div className="flex flex-wrap gap-x-8 gap-y-10 justify-start lg:justify-end opacity-70">
+                        {/* Placeholder logos */}
+                        <div className="text-white font-bold text-xl">ACME</div>
+                        <div className="text-white font-bold text-xl">Tuple</div>
+                        <div className="text-white font-bold text-xl">SavvyCat</div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  );
+}
+```

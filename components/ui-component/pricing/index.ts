@@ -1,0 +1,10 @@
+export { default as PricingSimple } from './PricingSimple';
+export { default as PricingSaaS } from './PricingSaaS';
+export { default as PricingEnterprise } from './PricingEnterprise';
+export { default as PricingDark } from './PricingDark';
+export { default as PricingSplit } from './PricingSplit';
+export { default as PricingMinimal } from './PricingMinimal';
+export { default as PricingFeatureRich } from './PricingFeatureRich';
+export { default as PricingEcommerce } from './PricingEcommerce';
+export { default as PricingStartup } from './PricingStartup';
+export { default as PricingFreelancer } from './PricingFreelancer';

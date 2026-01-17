@@ -9,6 +9,10 @@ import * as Headers from '@/components/ui-component/headers'
 import * as Sidebars from '@/components/ui-component/sidebars'
 
 import * as Heroes from '@/components/ui-component/heroes'
+import * as Pricing from '@/components/ui-component/pricing'
+import * as Testimonials from '@/components/ui-component/testimonials'
+import * as About from '@/components/ui-component/about'
+import * as Contact from '@/components/ui-component/contact'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -62,7 +66,11 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           DashboardTemplate, DashboardSidebar, DashboardHeader, DashboardStats, DashboardActivity, DashboardChart,
           ...Headers,
           ...Sidebars,
-          ...Heroes
+          ...Heroes,
+          ...Pricing,
+          ...Testimonials,
+          ...About,
+          ...Contact
         }} />
       </div>
     </article>
