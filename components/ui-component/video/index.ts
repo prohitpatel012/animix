@@ -1,0 +1,10 @@
+export { default as VideoSimple } from './VideoSimple';
+export { default as VideoBackground } from './VideoBackground';
+export { default as VideoModal } from './VideoModal';
+export { default as VideoFloating } from './VideoFloating';
+export { default as VideoPlaylist } from './VideoPlaylist';
+export { default as VideoSplit } from './VideoSplit';
+export { default as VideoHero } from './VideoHero';
+export { default as VideoRounded } from './VideoRounded';
+export { default as VideoDevice } from './VideoDevice';
+export { default as VideoChapters } from './VideoChapters';

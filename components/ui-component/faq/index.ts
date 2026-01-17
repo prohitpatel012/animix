@@ -1,0 +1,10 @@
+export { default as FaqSimple } from './FaqSimple';
+export { default as FaqSided } from './FaqSided';
+export { default as FaqCards } from './FaqCards';
+export { default as FaqColumns } from './FaqColumns';
+export { default as FaqOpened } from './FaqOpened';
+export { default as FaqWithSummary } from './FaqWithSummary';
+export { default as FaqDark } from './FaqDark';
+export { default as FaqAccent } from './FaqAccent';
+export { default as FaqBordered } from './FaqBordered';
+export { default as FaqOffset } from './FaqOffset';

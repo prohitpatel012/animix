@@ -1,0 +1,161 @@
+---
+title: Image Galleries
+description: Layouts for displaying collections of images.
+category: Marketing
+---
+
+import { GallerySimple, GalleryMasonry, GalleryCarousel, GalleryLightbox, GalleryFeatured, GalleryHorizontal, GalleryHover, GalleryFilters, GalleryPolaroid, GallerySocial } from '@/components/ui-component/gallery';
+
+# Image Galleries
+
+Showcase portfolios, event photos, or product collections.
+
+## Simple Grid
+Basic responsive grid layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GallerySimple />
+</div>
+
+```tsx
+import { GallerySimple } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GallerySimple />;
+}
+```
+
+## Masonry
+Pinterest-style staggered layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryMasonry />
+</div>
+
+```tsx
+import { GalleryMasonry } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryMasonry />;
+}
+```
+
+## Carousel Slider
+Horizontal slideshow with navigation controls.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryCarousel />
+</div>
+
+```tsx
+import { GalleryCarousel } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryCarousel />;
+}
+```
+
+## Lightbox Grid
+Click images to expand them in a modal overlay.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryLightbox />
+</div>
+
+```tsx
+import { GalleryLightbox } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryLightbox />;
+}
+```
+
+## Featured Bento
+Layout highlighting specific images in larger cells.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryFeatured />
+</div>
+
+```tsx
+import { GalleryFeatured } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryFeatured />;
+}
+```
+
+## Horizontal Scroll
+Swipeable list of images, perfect for mobile.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryHorizontal />
+</div>
+
+```tsx
+import { GalleryHorizontal } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryHorizontal />;
+}
+```
+
+## Expand on Hover
+Accordion-like expansion effect on mouseover.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryHover />
+</div>
+
+```tsx
+import { GalleryHover } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryHover />;
+}
+```
+
+## Filterable
+Categorize items with filter tabs.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryFilters />
+</div>
+
+```tsx
+import { GalleryFilters } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryFilters />;
+}
+```
+
+## Polaroid Spread
+Playful, scattered photo style.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GalleryPolaroid />
+</div>
+
+```tsx
+import { GalleryPolaroid } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GalleryPolaroid />;
+}
+```
+
+## Social Feed
+Grid mimicking Instagram or social media layouts with hover stats.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <GallerySocial />
+</div>
+
+```tsx
+import { GallerySocial } from '@/components/ui-component/gallery';
+
+export default function Example() {
+  return <GallerySocial />;
+}
+```

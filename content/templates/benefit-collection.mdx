@@ -1,0 +1,603 @@
+---
+title: Benefit Sections
+description: Focus on the value and outcomes with these benefit-driven layouts.
+category: Marketing
+---
+
+import { BenefitSimple, BenefitCards, BenefitImageSide, BenefitGrid, BenefitStats, BenefitList, BenefitSplit, BenefitDark, BenefitIconTop, BenefitTimeline } from '@/components/ui-component/benefits';
+
+# Benefit Sections
+
+Highlight the "Why" behind your product. Use these sections to demonstrate value, results, and positive outcomes for your users.
+
+## Simple 3-Column
+Classic value proposition layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitSimple />
+</div>
+
+```tsx
+"use client";
+
+import { BiTrendingUp, BiTimeFive, BiHappyBeaming } from "react-icons/bi";
+
+const benefits = [
+  {
+    title: "Increase Revenue",
+    description: "Optimize your sales funnel and convert more visitors into paying customers with our proven tools.",
+    icon: BiTrendingUp,
+  },
+  {
+    title: "Save Time",
+    description: "Automate repetitive tasks and focus on what truly matters - growing your business.",
+    icon: BiTimeFive,
+  },
+  {
+    title: "Happy Customers",
+    description: "Provide top-notch support and experiences that keep your users coming back for more.",
+    icon: BiHappyBeaming,
+  },
+];
+
+export default function BenefitSimple() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+            Why choose us?
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+            We deliver real results. Here is how we help you succeed.
+          </p>
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="flex flex-col items-center text-center">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400">
+                  <benefit.icon className="h-8 w-8" aria-hidden="true" />
+                </div>
+                <dt className="text-xl font-bold leading-7 text-neutral-900 dark:text-white">
+                  {benefit.title}
+                </dt>
+                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-neutral-600 dark:text-neutral-400">
+                  <p className="flex-auto">{benefit.description}</p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Cards with Shadow
+Highlighted benefits in self-contained cards.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitCards />
+</div>
+
+```tsx
+"use client";
+
+import { BiShield, BiRocket, BiSupport } from "react-icons/bi";
+
+const benefits = [
+  {
+    title: "Secure by Default",
+    description: "Enterprise-grade security baked into every layer of the platform.",
+    icon: BiShield,
+  },
+  {
+    title: "Blazing Fast",
+    description: "Optimized performance ensures your users never have to wait.",
+    icon: BiRocket,
+  },
+  {
+    title: "24/7 Support",
+    description: "Our dedicated team is always here to help you resolve any issues.",
+    icon: BiSupport,
+  },
+];
+
+export default function BenefitCards() {
+  return (
+    <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:text-center">
+          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Values</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+            Everything you need to scale
+          </p>
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="flex flex-col bg-white dark:bg-neutral-950 p-8 rounded-2xl shadow-sm ring-1 ring-neutral-200 dark:ring-neutral-800 transition-shadow hover:shadow-md">
+                <div className="mb-6">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-600 text-white">
+                        <benefit.icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                </div>
+                <h3 className="text-lg font-semibold leading-8 text-neutral-900 dark:text-white mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-base leading-7 text-neutral-600 dark:text-neutral-400">
+                  {benefit.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Large Image Split
+Visual focus on left, text on right.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitImageSide />
+</div>
+
+```tsx
+"use client";
+
+import { BiCheckCircle } from "react-icons/bi";
+
+const features = [
+  "Reduced operational costs by up to 30%",
+  "Seamless integration with existing tools",
+  "Automated compliance and reporting",
+  "Real-time data insights",
+];
+
+export default function BenefitImageSide() {
+  return (
+    <div className="overflow-hidden bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center">
+          <div className="lg:pr-8 lg:pt-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Transform your workflow</h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                A better way to work
+              </p>
+              <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                Stop wasting time on manual processes. Our platform streamlines your operations, allowing you to focus on strategic growth.
+              </p>
+              <ul className="mt-10 space-y-4 text-base leading-7 text-neutral-600 dark:text-neutral-400">
+                {features.map((feature) => (
+                  <li key={feature} className="flex gap-x-3">
+                    <BiCheckCircle className="h-7 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10 flex items-center gap-x-6">
+                <a href="#" className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Get started
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+             <div className="aspect-[4/3] overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-800 shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10">
+                 {/* Placeholder for a relevant benefit image */}
+                 <div className="w-full h-full bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center text-neutral-400">
+                    Product Interface Image
+                 </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Dark Mode Grid
+High-tech, sleek dark design.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitGrid />
+</div>
+
+```tsx
+"use client";
+
+import { BiCube, BiLayer, BiCommand, BiCodeAlt, BiCloud, BiData } from "react-icons/bi";
+
+const benefits = [
+  { name: 'Modular Design', description: 'Build exactly what you need with snap-in components.', icon: BiCube },
+  { name: 'Full Stack', description: 'Frontend, backend, and database all in one place.', icon: BiLayer },
+  { name: 'Command Center', description: 'Control your entire infrastructure from a single dashboard.', icon: BiCommand },
+  { name: 'Developer First', description: 'Built by developers, for developers. Robust API support.', icon: BiCodeAlt },
+  { name: 'Cloud Native', description: 'Deploy instantly to the edge with zero configuration.', icon: BiCloud },
+  { name: 'Secure Storage', description: 'Encryption at rest and in transit for all your data.', icon: BiData },
+];
+
+export default function BenefitGrid() {
+  return (
+    <div className="bg-neutral-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:text-center mb-16">
+           <h2 className="text-base font-semibold leading-7 text-indigo-400">Architecture</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Built for modern applications
+          </p>
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.name} className="flex flex-col relative pl-16">
+                <dt className="text-base font-semibold leading-7 text-white">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500">
+                    <benefit.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                  </div>
+                  {benefit.name}
+                </dt>
+                <dd className="mt-2 text-base leading-7 text-neutral-400">{benefit.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Statistics Highlight
+Numbers that foster trust.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitStats />
+</div>
+
+```tsx
+"use client";
+
+const stats = [
+  { id: 1, name: 'Creators on the platform', value: '8,000+' },
+  { id: 2, name: 'Flat platform fee', value: '3%' },
+  { id: 3, name: 'Uptime guarantee', value: '99.9%' },
+  { id: 4, name: 'Paid out to creators', value: '$70M' },
+];
+
+export default function BenefitStats() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+            {/* Split layout: Text on left, stats on right for larger screens */}
+            <div className="lg:col-span-1 lg:text-left flex flex-col justify-center">
+                 <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                    Trusted by creators worldwide
+                </h2>
+                <p className="mt-4 text-base leading-7 text-neutral-600 dark:text-neutral-400">
+                    We empower creators to build sustainable businesses. Our numbers speak for themselves. Join the movement today.
+                </p>
+            </div>
+            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:col-span-2 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+            {stats.map((stat) => (
+                <div key={stat.id} className="flex flex-col gap-y-3 bg-neutral-50 dark:bg-neutral-900 px-6 py-8 rounded-2xl">
+                    <dt className="text-base leading-7 text-neutral-600 dark:text-neutral-400">{stat.name}</dt>
+                    <dd className="order-first text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+                        {stat.value}
+                    </dd>
+                </div>
+            ))}
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Comparison List
+Clear distinction between plans.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitList />
+</div>
+
+```tsx
+"use client";
+
+import { BiCheck } from "react-icons/bi";
+
+const tiers = [
+    {
+        name: "Standard",
+        benefits: [
+            "Basic Analytics",
+            "5 Projects",
+            "2 Team Members",
+            "Community Support"
+        ]
+    },
+    {
+        name: "Premium",
+        benefits: [
+            "Advanced Analytics",
+            "Unlimited Projects",
+            "10 Team Members",
+            "Priority Support",
+            "Custom Domain"
+        ]
+    }
+]
+
+export default function BenefitList() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                     <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Plan Comparison</h2>
+                     <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">Choose the right set of features for your team.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    {tiers.map((tier) => (
+                        <div key={tier.name} className="flex flex-col justify-center p-8 bg-white dark:bg-neutral-950 rounded-3xl shadow-sm ring-1 ring-neutral-900/10 dark:ring-white/10">
+                            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-6">{tier.name} Benefits</h3>
+                            <ul role="list" className="space-y-4">
+                                {tier.benefits.map((benefit) => (
+                                    <li key={benefit} className="flex gap-x-3 items-center">
+                                        <BiCheck className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                                        <span className="text-sm leading-6 text-neutral-600 dark:text-neutral-400">{benefit}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Zig-Zag Split
+Alternating layout for storytelling.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitSplit />
+</div>
+
+```tsx
+"use client";
+
+const benefits = [
+    {
+        title: "Global Reach",
+        description: "Expand your market beyond borders with our multi-currency and multi-language support. Reach customers anywhere in the world.",
+        img: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=2000"
+    },
+    {
+        title: "Smart Automation",
+        description: "Let AI handle the busywork. From scheduling to follow-ups, optimize your efficiency with intelligent workflows.",
+        img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000"
+    },
+    {
+        title: "Deep Insights",
+        description: "Make data-driven decisions. Our dashboard provides real-time analytics on user behavior and sales performance.",
+        img: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2000"
+    }
+];
+
+export default function BenefitSplit() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-24">
+                {benefits.map((benefit, index) => (
+                    <div key={benefit.title} className={`flex flex-col gap-16 lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center`}>
+                        <div className="flex-1 lg:max-w-xl">
+                            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-6">
+                                {benefit.title}
+                            </h2>
+                            <p className="text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                                {benefit.description}
+                            </p>
+                            <div className="mt-8">
+                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Learn more &rarr;</a>
+                            </div>
+                        </div>
+                         <div className="flex-1 w-full">
+                            <img 
+                                src={benefit.img} 
+                                alt={benefit.title} 
+                                className="w-full rounded-2xl shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10"
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+```
+
+## Dark & Compact
+Dense information in a minimal dark layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitDark />
+</div>
+
+```tsx
+"use client";
+
+import { BiLockAlt, BiServer, BiGlobe } from "react-icons/bi";
+
+const benefits = [
+  {
+    name: 'Enterprise Security',
+    description: 'Bank-grade encryption and SOC2 compliance keep your data safe.',
+    icon: BiLockAlt,
+  },
+  {
+    name: 'Reliable Infrastructure',
+    description: '99.99% uptime SLA ensures your business never stops running.',
+    icon: BiServer,
+  },
+  {
+    name: 'Global CDN',
+    description: 'Low latency access for users anywhere on the planet.',
+    icon: BiGlobe,
+  },
+]
+
+export default function BenefitDark() {
+  return (
+    <div className="bg-neutral-900 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Stay ahead of the competition</h2>
+          <p className="mt-6 text-lg leading-8 text-neutral-300">
+            Leverage cutting-edge technology to outperform your rivals. Speed, security, and scalability are built-in features, not paid add-ons.
+          </p>
+        </div>
+        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.name} className="flex flex-col">
+                <dt className="text-base font-semibold leading-7 text-white flex items-center gap-2">
+                  <benefit.icon className="h-5 w-5 flex-none text-indigo-400" aria-hidden="true" />
+                  {benefit.name}
+                </dt>
+                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-neutral-400">
+                  <p className="flex-auto">{benefit.description}</p>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Icon Top
+Centered attention on large icons.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitIconTop />
+</div>
+
+```tsx
+"use client";
+
+import { BiPalette, BiMobile, BiLayout } from "react-icons/bi";
+
+const benefits = [
+  {
+    title: "Beautiful Design",
+    description: "Crafted with attention to detail. Every pixel matters.",
+    icon: BiPalette,
+  },
+  {
+    title: "Mobile First",
+    description: "Responsive layouts that work perfectly on any device.",
+    icon: BiMobile,
+  },
+  {
+    title: "Flexible Layouts",
+    description: "Easily customizable structures to fit your unique content.",
+    icon: BiLayout,
+  },
+];
+
+export default function BenefitIconTop() {
+  return (
+    <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Design Excellence</h2>
+          <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">We prioritize user experience above all else.</p>
+        </div>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {benefits.map((benefit) => (
+            <div key={benefit.title} className="text-center p-6">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-indigo-50 dark:bg-neutral-900 mb-6 group-hover:bg-indigo-100 transition-colors">
+                <benefit.icon className="h-10 w-10 text-indigo-600" aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{benefit.title}</h3>
+              <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm">
+                {benefit.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Success Timeline
+Chronological value delivery.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <BenefitTimeline />
+</div>
+
+```tsx
+"use client";
+
+const steps = [
+    {
+        title: "Onboarding",
+        description: "We guide you through the setup process personally.",
+        date: "Day 1"
+    },
+    {
+        title: "Integration",
+        description: "Seamlessly connect your existing data and tools.",
+        date: "Day 2-3"
+    },
+    {
+        title: "Launch",
+        description: "Go live with confidence and start seeing results.",
+        date: "Day 7"
+    }
+];
+
+export default function BenefitTimeline() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Success Roadmap</h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">Our proven path to value.</p>
+                </div>
+                 <div className="mx-auto max-w-3xl">
+                     <div className="relative border-l border-neutral-200 dark:border-neutral-800 ml-3 md:ml-6 space-y-12">
+                         {steps.map((step) => (
+                             <div key={step.title} className="relative pl-8 md:pl-12">
+                                <span className="absolute -left-[5px] top-1 h-3 w-3 rounded-full bg-indigo-600 ring-4 ring-white dark:ring-neutral-900" />
+                                <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
+                                    <h3 className="text-lg font-bold text-neutral-900 dark:text-white">{step.title}</h3>
+                                    <span className="text-sm font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">{step.date}</span>
+                                </div>
+                                <p className="mt-2 text-base text-neutral-600 dark:text-neutral-400 max-w-lg">
+                                    {step.description}
+                                </p>
+                             </div>
+                         ))}
+                     </div>
+                 </div>
+            </div>
+        </div>
+    );
+}
+```

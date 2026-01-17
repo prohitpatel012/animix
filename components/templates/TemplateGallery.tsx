@@ -14,6 +14,11 @@ const TEMPLATE_IMAGES: Record<string, string> = {
     'testimonial-collection': 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80',
     'about-collection': 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
     'contact-collection': 'https://images.unsplash.com/photo-1423666639041-f1408816f3ce?auto=format&fit=crop&w=800&q=80',
+    'faq-collection': 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80',
+    'header-collection': 'https://images.unsplash.com/photo-1481487484168-9b97b91219f5?auto=format&fit=crop&w=800&q=80',
+    'hero-collection': 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+    'sidebar-collection': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    'announcement-collection': 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=800&q=80',
 };
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80';
@@ -138,7 +143,7 @@ export default function TemplateGallery({ templates }: { templates: Template[] }
                     </div>
                     <h3 className="text-lg font-medium text-neutral-900 dark:text-white">No templates found</h3>
                     <p className="mt-2 text-neutral-500 max-w-sm mx-auto">
-                        We couldn't find any templates matching "{searchQuery}". Try adjusting your search or browse our categories.
+                        We couldn&apos;t find any templates matching &quot;{searchQuery}&quot;. Try adjusting your search or browse our categories.
                     </p>
                     <button
                         onClick={() => setSearchQuery('')}

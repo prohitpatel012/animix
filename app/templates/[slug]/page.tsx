@@ -8,6 +8,25 @@ import DashboardTemplate, { DashboardSidebar, DashboardHeader, DashboardStats, D
 import * as Headers from '@/components/ui-component/headers'
 import * as Sidebars from '@/components/ui-component/sidebars'
 
+import * as Faqs from '@/components/ui-component/faq'
+import * as Announcements from '@/components/ui-component/announcement'
+import * as FeatureComponents from '@/components/ui-component/feature'
+import * as FeatureListComponents from '@/components/ui-component/feature-list'
+import * as BenefitComponents from '@/components/ui-component/benefits'
+import * as LogoComponents from '@/components/ui-component/logos'
+import * as PricingComponents from '@/components/ui-component/pricing-calculator'
+import * as StatsComponents from '@/components/ui-component/stats'
+import * as CaseStudyComponents from '@/components/ui-component/case-study'
+import * as VideoComponents from '@/components/ui-component/video'
+import * as GalleryComponents from '@/components/ui-component/gallery'
+import * as AccordionComponents from '@/components/ui-component/accordion'
+import * as TabsComponents from '@/components/ui-component/tabs'
+import * as ContentSplitComponents from '@/components/ui-component/content-split'
+import * as NavigationComponents from '@/components/ui-component/navigation'
+import * as BreadcrumbComponents from '@/components/ui-component/breadcrumbs'
+import * as FooterComponents from '@/components/ui-component/footer'
+import * as ColorComponents from '@/components/ui-component/colors'
+
 import * as Heroes from '@/components/ui-component/heroes'
 import * as Pricing from '@/components/ui-component/pricing'
 import * as Testimonials from '@/components/ui-component/testimonials'
@@ -70,6 +89,24 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           ...Pricing,
           ...Testimonials,
           ...About,
+          ...Faqs,
+          ...Announcements,
+          ...FeatureComponents,
+          ...FeatureListComponents,
+          ...BenefitComponents,
+          ...LogoComponents,
+          ...PricingComponents,
+          ...StatsComponents,
+          ...CaseStudyComponents,
+          ...VideoComponents,
+          ...GalleryComponents,
+          ...AccordionComponents,
+          ...TabsComponents,
+          ...ContentSplitComponents,
+          ...NavigationComponents,
+          ...BreadcrumbComponents,
+          ...FooterComponents,
+          ...ColorComponents,
           ...Contact
         }} />
       </div>

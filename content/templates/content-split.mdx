@@ -1,0 +1,161 @@
+---
+title: Content Splits
+description: Alternating image and text layouts for features.
+category: Marketing
+---
+
+import { SplitStandard, SplitReversed, SplitDiagonal, SplitOverlapping, SplitCardSide, SplitFullHeight, SplitTextOverlay, SplitZigZag, SplitWithIcons, SplitMedia } from '@/components/ui-component/content-split';
+
+# Content Splits
+
+The bread and butter of marketing pages. Use these versatile layouts to pair copy with visuals.
+
+## Standard
+Image Left, Text Right.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitStandard />
+</div>
+
+```tsx
+import { SplitStandard } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitStandard />;
+}
+```
+
+## Reversed
+Text Left, Image Right.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitReversed />
+</div>
+
+```tsx
+import { SplitReversed } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitReversed />;
+}
+```
+
+## Diagonal Cut
+Angled background separator.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitDiagonal />
+</div>
+
+```tsx
+import { SplitDiagonal } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitDiagonal />;
+}
+```
+
+## Overlapping Card
+Content card floating over a large background image.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitOverlapping />
+</div>
+
+```tsx
+import { SplitOverlapping } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitOverlapping />;
+}
+```
+
+## Code / Card
+Split section specialized for showing technical content or code.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitCardSide />
+</div>
+
+```tsx
+import { SplitCardSide } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitCardSide />;
+}
+```
+
+## Full Height
+Split screen layout taking up the full viewport height.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitFullHeight />
+</div>
+
+```tsx
+import { SplitFullHeight } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitFullHeight />;
+}
+```
+
+## Text Overlay
+Text placed directly on top of the image with a gradient.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitTextOverlay />
+</div>
+
+```tsx
+import { SplitTextOverlay } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitTextOverlay />;
+}
+```
+
+## Zig Zag Repeating
+Multiple alternating sections.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitZigZag />
+</div>
+
+```tsx
+import { SplitZigZag } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitZigZag />;
+}
+```
+
+## With Icons
+Feature list with icons alongside the visual.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitWithIcons />
+</div>
+
+```tsx
+import { SplitWithIcons } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitWithIcons />;
+}
+```
+
+## Media / Video
+Video player integration in the split layout.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <SplitMedia />
+</div>
+
+```tsx
+import { SplitMedia } from '@/components/ui-component/content-split';
+
+export default function Example() {
+  return <SplitMedia />;
+}
+```

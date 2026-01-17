@@ -1,0 +1,10 @@
+export { default as TabsUnderline } from './TabsUnderline';
+export { default as TabsPills } from './TabsPills';
+export { default as TabsVertical } from './TabsVertical';
+export { default as TabsGlass } from './TabsGlass';
+export { default as TabsAnimated } from './TabsAnimated';
+export { default as TabsFolder } from './TabsFolder';
+export { default as TabsCards } from './TabsCards';
+export { default as TabsMinimal } from './TabsMinimal';
+export { default as TabsSegmented } from './TabsSegmented';
+export { default as TabsIconOnly } from './TabsIconOnly';

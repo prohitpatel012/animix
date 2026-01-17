@@ -1,0 +1,161 @@
+---
+title: Pricing Tables
+description: Conversion-focused pricing layouts and calculators.
+category: Marketing
+---
+
+import { PricingToggle, PricingSlider, PricingThreeTier, PricingMinimal, PricingDark, PricingTable, PricingSplit, PricingUsage, PricingFAQ, PricingHighlight } from '@/components/ui-component/pricing-calculator';
+
+# Pricing Tables
+
+Clear, effective pricing pages are critical for conversion. Use these components to present your plans, compare features, and highlight your best offers.
+
+## Monthly / Yearly Toggle
+The standard SaaS pricing model with a frequency switch.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingToggle />
+</div>
+
+```tsx
+import { PricingToggle } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingToggle />;
+}
+```
+
+## User Slider
+Interactive pricing based on seat count.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingSlider />
+</div>
+
+```tsx
+import { PricingSlider } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingSlider />;
+}
+```
+
+## Three Tier
+Classic 3-column layout highlighting a popular plan.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingThreeTier />
+</div>
+
+```tsx
+import { PricingThreeTier } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingThreeTier />;
+}
+```
+
+## Minimal Receipt
+Transparent cost breakdown.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingMinimal />
+</div>
+
+```tsx
+import { PricingMinimal } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingMinimal />;
+}
+```
+
+## Dark & Bold
+High impact pricing for premium products.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingDark />
+</div>
+
+```tsx
+import { PricingDark } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingDark />;
+}
+```
+
+## Feature Matrix
+Detailed comparison table for feature-rich products.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingTable />
+</div>
+
+```tsx
+import { PricingTable } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingTable />;
+}
+```
+
+## Split View
+Enterprise focus vs Standard plan side-by-side.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingSplit />
+</div>
+
+```tsx
+import { PricingSplit } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingSplit />;
+}
+```
+
+## Usage Based
+Pay-as-you-go visualizer.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingUsage />
+</div>
+
+```tsx
+import { PricingUsage } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingUsage />;
+}
+```
+
+## With FAQs
+Pricing section incorporating common questions to reduce friction.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingFAQ />
+</div>
+
+```tsx
+import { PricingFAQ } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingFAQ />;
+}
+```
+
+## Sale Highlight
+Promotional pricing offering a discount.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <PricingHighlight />
+</div>
+
+```tsx
+import { PricingHighlight } from '@/components/ui-component/pricing-calculator';
+
+export default function Example() {
+  return <PricingHighlight />;
+}
+```

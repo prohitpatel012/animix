@@ -1,0 +1,10 @@
+export { default as FooterSimple } from './FooterSimple';
+export { default as FooterLarge } from './FooterLarge';
+export { default as FooterDark } from './FooterDark';
+export { default as FooterCentered } from './FooterCentered';
+export { default as FooterSocial } from './FooterSocial';
+export { default as FooterNewsletter } from './FooterNewsletter';
+export { default as FooterSitemap } from './FooterSitemap';
+export { default as FooterMinimal } from './FooterMinimal';
+export { default as FooterApp } from './FooterApp';
+export { default as FooterLegal } from './FooterLegal';

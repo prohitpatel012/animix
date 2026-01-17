@@ -1,0 +1,161 @@
+---
+title: Navigation
+description: Headers, sidebars, and menus for site navigation.
+category: Application
+---
+
+import { NavSimple, NavCentered, NavSearch, NavMega, NavSidebar, NavMobile, NavTransparent, NavDouble, NavBottom, NavFloating } from '@/components/ui-component/navigation';
+
+# Navigation
+
+The primary way users find their way around your app or site.
+
+## Simple Top Bar
+Standard logo left, links right.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavSimple />
+</div>
+
+```tsx
+import { NavSimple } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavSimple />;
+}
+```
+
+## Centered Logo
+Logo in middle, links on sides. Common in e-commerce.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavCentered />
+</div>
+
+```tsx
+import { NavCentered } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavCentered />;
+}
+```
+
+## With Search
+Header focused on search functionality.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavSearch />
+</div>
+
+```tsx
+import { NavSearch } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavSearch />;
+}
+```
+
+## Mega Menu
+Expandable dropdown for complex hierarchies.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavMega />
+</div>
+
+```tsx
+import { NavMega } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavMega />;
+}
+```
+
+## Sidebar
+Vertical navigation for dashboards.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavSidebar />
+</div>
+
+```tsx
+import { NavSidebar } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavSidebar />;
+}
+```
+
+## Mobile Drawer
+Hamburger menu implementation.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavMobile />
+</div>
+
+```tsx
+import { NavMobile } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavMobile />;
+}
+```
+
+## Transparent
+Navigation that overlays a hero image.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavTransparent />
+</div>
+
+```tsx
+import { NavTransparent } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavTransparent />;
+}
+```
+
+## Double Utility
+Top bar for secondary info + main nav.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavDouble />
+</div>
+
+```tsx
+import { NavDouble } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavDouble />;
+}
+```
+
+## App Bottom Bar
+Mobile-first bottom navigation.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavBottom />
+</div>
+
+```tsx
+import { NavBottom } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavBottom />;
+}
+```
+
+## Floating Pill
+Modern, floating navigation island.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <NavFloating />
+</div>
+
+```tsx
+import { NavFloating } from '@/components/ui-component/navigation';
+
+export default function Example() {
+  return <NavFloating />;
+}
+```

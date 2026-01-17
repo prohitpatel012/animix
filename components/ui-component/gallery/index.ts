@@ -1,0 +1,10 @@
+export { default as GallerySimple } from './GallerySimple';
+export { default as GalleryMasonry } from './GalleryMasonry';
+export { default as GalleryCarousel } from './GalleryCarousel';
+export { default as GalleryLightbox } from './GalleryLightbox';
+export { default as GalleryFeatured } from './GalleryFeatured';
+export { default as GalleryHorizontal } from './GalleryHorizontal';
+export { default as GalleryHover } from './GalleryHover';
+export { default as GalleryFilters } from './GalleryFilters';
+export { default as GalleryPolaroid } from './GalleryPolaroid';
+export { default as GallerySocial } from './GallerySocial';

@@ -1,0 +1,185 @@
+---
+title: Announcement Bars
+description: Eye-catching announcement bars to highlight important news.
+category: Marketing
+---
+
+import { AnnouncementSimple, AnnouncementWithBadge, AnnouncementDismissible, AnnouncementGradient } from '@/components/ui-component/announcement';
+
+# Announcement Bars
+
+Use these components to display important messages, updates, or offers at the top of your page.
+
+## Simple
+A basic colored banner.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <AnnouncementSimple />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function AnnouncementSimple() {
+    return (
+        <div className="bg-indigo-600 px-4 py-3 text-white">
+            <p className="text-center text-sm font-medium">
+                Love our tool? <a href="#" className="underline">Check out our new premium features &rarr;</a>
+            </p>
+        </div>
+    );
+}
+```
+
+## With Badge & Action
+Includes a badge for context and a clear call to action.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <AnnouncementWithBadge />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function AnnouncementWithBadge() {
+  return (
+    <div className="bg-neutral-900 px-4 py-3 text-white dark:bg-white dark:text-neutral-900">
+      <div className="flex items-center justify-center gap-x-6">
+        <div className="flex items-center gap-x-3 text-sm font-medium">
+          <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-400 ring-1 ring-inset ring-indigo-500/20 dark:bg-indigo-600/10 dark:text-indigo-600 dark:ring-indigo-600/20">
+            New
+          </span>
+          <span>
+            Just shipped v1.0! See what's new inside.
+          </span>
+        </div>
+        <a
+            href="#"
+            className="flex-none rounded-full bg-neutral-800 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
+        >
+            Read changelog <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+```
+
+## Dismissible
+Can be closed by the user.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <AnnouncementDismissible />
+</div>
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { BiX } from "react-icons/bi";
+
+export default function AnnouncementDismissible() {
+    const [isVisible, setIsVisible] = useState(true);
+
+    return (
+        <AnimatePresence>
+            {isVisible && (
+                <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="relative items-center gap-x-6 overflow-hidden bg-white dark:bg-neutral-950 px-6 py-2.5 sm:px-3.5 border-b border-neutral-200 dark:border-neutral-800"
+                >
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                         <p className="text-sm leading-6 text-neutral-900 dark:text-white">
+                            <strong className="font-semibold">GeneriCon 2024</strong>
+                            <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx={1} cy={1} r={1} /></svg>
+                             Join us in Denver from June 7 – 9 to see what’s coming next.
+                        </p>
+                        <a
+                            href="#"
+                            className="flex-none rounded-full bg-neutral-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
+                        >
+                            Register now <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                   
+                    <div className="absolute right-0 top-0 sm:right-2 sm:top-2 flex flex-1 justify-end p-2">
+                        <button
+                            type="button"
+                            onClick={() => setIsVisible(false)}
+                            className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
+                        >
+                            <span className="sr-only">Dismiss</span>
+                            <BiX className="h-5 w-5 text-neutral-900 dark:text-white" aria-hidden="true" />
+                        </button>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+}
+```
+
+## With Gradient
+Subtle gradient background for a modern look.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <AnnouncementGradient />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+
+export default function AnnouncementGradient() {
+    return (
+        <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-neutral-50 dark:bg-neutral-900 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 border-b border-neutral-200 dark:border-neutral-800">
+             <div
+                className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+                aria-hidden="true"
+            >
+                <div
+                    className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+                    style={{
+                        clipPath:
+                            'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+                    }}
+                />
+            </div>
+             <div
+                className="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+                aria-hidden="true"
+            >
+                <div
+                    className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+                    style={{
+                        clipPath:
+                            'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+                    }}
+                />
+            </div>
+
+             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <p className="text-sm leading-6 text-neutral-900 dark:text-white">
+                    <strong className="font-semibold">Big news!</strong> We're excited to announce our Series A funding round.
+                </p>
+                <a
+                    href="#"
+                    className="flex-none rounded-full bg-neutral-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
+                >
+                    Read the blog post <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+             <div className="flex flex-1 justify-end">
+            </div>
+        </div>
+    );
+}
+```

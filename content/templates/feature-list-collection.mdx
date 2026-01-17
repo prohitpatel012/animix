@@ -1,0 +1,660 @@
+---
+title: Feature Lists
+description: Organized lists to showcase steps, features, or benefits.
+category: Marketing
+---
+
+import { FeatureListSimple, FeatureListAlternating, FeatureListRows, FeatureListIcons, FeatureListNumbered, FeatureListAccordion, FeatureListStats, FeatureListCards, FeatureListTimeline, FeatureListMinimal } from '@/components/ui-component/feature-list';
+
+# Feature Lists
+
+Use these list-based layouts to present information in a clear, sequential, or organized manner.
+
+## Simple List
+Basic checkmark list.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListSimple />
+</div>
+
+```tsx
+"use client";
+
+import { BiCheck } from "react-icons/bi";
+
+const features = [
+    "Share rich posts with images, videos, and links.",
+    "Real-time notifications for interactions.",
+    "Advanced search filters to find exactly what you need.",
+    "Customizable profile themes and layouts.",
+    "Private messaging with end-to-end encryption.",
+    "Create and manage multiple communities.",
+];
+
+export default function FeatureListSimple() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:mx-0">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                        All the basics, perfected.
+                    </h2>
+                    <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        We focused on getting the fundamentals right. No bloat, just the features you use every day, polished to perfection.
+                    </p>
+                </div>
+                <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                    <ul role="list" className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-neutral-900 dark:text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+                         {/* This specific list is designed to flow vertically in columns or flexibly */}
+                        <div className="col-span-1 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-12 w-full">
+                             {features.map((feature) => (
+                                <li key={feature} className="flex gap-x-3">
+                                    <BiCheck className="h-7 w-5 flex-none text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+                                    {feature}
+                                </li>
+                            ))}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Alternating Imagery
+Zig-zag layout with large images.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListAlternating />
+</div>
+
+```tsx
+"use client";
+
+const features = [
+    {
+        title: "Push to deploy",
+        description: "Completely automated CI/CD pipeline integrated directly into your workflow.",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072&ixlib=rb-4.0.3"
+    },
+    {
+        title: "SSL Certificates",
+        description: "Automatically provisioned and renewed SSL certificates for all your domains.",
+        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3"
+    },
+    {
+        title: "Database Backups",
+        description: "Point-in-time recovery for your database, stored securely off-site.",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3"
+    }
+];
+
+export default function FeatureListAlternating() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-24">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Platform Capabilities</h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">Designed for scale and reliability.</p>
+                </div>
+                <div className="space-y-24">
+                    {features.map((feature, index) => (
+                        <div key={feature.title} className={`flex flex-col gap-16 lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center`}>
+                            <div className="w-full lg:w-1/2">
+                                <div className="aspect-[16/9] w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 shadow-lg ring-1 ring-neutral-900/10 dark:ring-white/10">
+                                    <img 
+                                        src={feature.image} 
+                                        alt={feature.title} 
+                                        className="h-full w-full object-cover object-center transition-transform hover:scale-105 duration-500"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full lg:w-1/2">
+                                <h3 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-3xl">{feature.title}</h3>
+                                <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                                    {feature.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Rows with Actions
+Full-width interactive rows.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListRows />
+</div>
+
+```tsx
+"use client";
+
+import { BiRightArrowAlt } from "react-icons/bi";
+
+const features = [
+    {
+        title: "Integration",
+        description: "Connect with your favorite tools."
+    },
+    {
+        title: "Analytics",
+        description: "Track your performance in real-time."
+    },
+    {
+        title: "Automation",
+        description: "Set up workflows to save time."
+    },
+    {
+        title: "Security",
+        description: "Enterprise-grade protection for your data."
+    },
+    {
+        title: "Support",
+        description: "24/7 assistance from our experts."
+    }
+];
+
+export default function FeatureListRows() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                 <div className="mx-auto max-w-2xl text-center mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Core Features</h2>
+                </div>
+                <div className="mx-auto max-w-4xl divide-y divide-neutral-900/10 dark:divide-white/10 border-t border-b border-neutral-900/10 dark:border-white/10">
+                    {features.map((feature) => (
+                        <div key={feature.title} className="group flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 px-4 -mx-4 rounded-lg transition-colors cursor-pointer">
+                            <div>
+                                <h3 className="text-lg font-semibold leading-8 text-neutral-900 dark:text-white">{feature.title}</h3>
+                                <p className="text-base leading-7 text-neutral-600 dark:text-neutral-400">{feature.description}</p>
+                            </div>
+                            <div className="flex-none self-start sm:self-center">
+                                <BiRightArrowAlt className="h-6 w-6 text-neutral-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Icon List
+Detailed list with icons.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListIcons />
+</div>
+
+```tsx
+"use client";
+
+import { BiBriefcase, BiCode, BiData, BiLayer, BiSupport, BiWorld } from "react-icons/bi";
+
+const features = [
+    {
+        name: "Enterprise Management",
+        description: "Tools for managing large organizations with ease.",
+        icon: BiBriefcase,
+    },
+    {
+        name: "Developer API",
+        description: "Powerful API for custom integrations and extensions.",
+        icon: BiCode,
+    },
+    {
+        name: "Data Analytics",
+        description: "Deep insights into your usage and performance metrics.",
+        icon: BiData,
+    },
+    {
+        name: "Global CDN",
+        description: "Fast content delivery anywhere in the world.",
+        icon: BiWorld,
+    },
+    {
+        name: "UI Components",
+        description: "Pre-built components to speed up development.",
+        icon: BiLayer,
+    },
+    {
+        name: "Priority Support",
+        description: "Dedicated account manager and response SLAs.",
+        icon: BiSupport,
+    }
+];
+
+export default function FeatureListIcons() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <div className="lg:col-span-1">
+                        <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Everything you need</h2>
+                        <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                             A complete suite of tools designed to help you build, launch, and scale your applications faster than ever before.
+                        </p>
+                    </div>
+                    <dl className="col-span-2 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2">
+                        {features.map((feature) => (
+                            <div key={feature.name}>
+                                <dt className="text-base font-semibold leading-7 text-neutral-900 dark:text-white">
+                                    <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                                        <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                                    </div>
+                                    {feature.name}
+                                </dt>
+                                <dd className="mt-1 text-base leading-7 text-neutral-600 dark:text-neutral-400">
+                                    {feature.description}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Numbered Steps
+Process or instructions.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListNumbered />
+</div>
+
+```tsx
+"use client";
+
+const steps = [
+    {
+        name: "Create account",
+        description: "Sign up and verify your identity in less than 2 minutes.",
+        status: "current"
+    },
+    {
+        name: "Link bank",
+        description: "Securely connect your bank account using Plaid integration.",
+        status: "upcoming"
+    },
+    {
+        name: "Start saving",
+        description: "Set your goals and let our AI optimize your savings automatically.",
+        status: "upcoming"
+    }
+];
+
+export default function FeatureListNumbered() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+             <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                 <div className="mx-auto max-w-2xl text-center mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">How it works</h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">Get started in three simple steps.</p>
+                </div>
+                 <div className="mx-auto max-w-2xl">
+                    <ol className="overflow-hidden">
+                        {steps.map((step, stepIdx) => (
+                            <li key={step.name} className={`relative pb-10 ${stepIdx === steps.length - 1 ? '' : ''}`}>
+                                {stepIdx !== steps.length - 1 ? (
+                                    <div className="absolute left-4 top-4 -ml-px h-full w-0.5 bg-neutral-200 dark:bg-neutral-800" aria-hidden="true" />
+                                ) : null}
+                                <div className="group relative flex items-start">
+                                    <span className="flex h-9 items-center">
+                                        <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-600 bg-white dark:bg-neutral-950">
+                                            <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
+                                        </span>
+                                    </span>
+                                    <span className="ml-4 flex min-w-0 flex-col">
+                                        <span className="text-xl font-bold text-neutral-900 dark:text-white">{step.name}</span>
+                                        <span className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">{step.description}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                 </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Interactive Accordion
+Rich functionality showcase.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListAccordion />
+</div>
+
+```tsx
+"use client";
+
+import { motion } from "motion/react";
+import { useState } from "react";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+
+const features = [
+    {
+        title: "Real-time Collaboration",
+        content: "Work with your team in real-time. See cursors, comments, and edits as they happen. No more merge conflicts on design files."
+    },
+    {
+        title: "Version History",
+        content: "Every change is saved automatically. Go back in time to any version of your project with a single click."
+    },
+    {
+        title: "Advanced Prototyping",
+        content: "Create high-fidelity prototypes that look and feel like the real thing. add interactions, animations, and transitions."
+    },
+    {
+        title: "Developer Handoff",
+        content: "Inspect designs and grab assets, CSS, and values. Everything developers need to build exactly what you designed."
+    }
+];
+
+export default function FeatureListAccordion() {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">Designed for speed</h2>
+                        <p className="text-lg text-neutral-400 mb-12">
+                            The fastest way to go from idea to reality. Built for teams who want to ship refined products.
+                        </p>
+                        <div className="space-y-4">
+                            {features.map((feature, index) => (
+                                <div key={index} className="border-b border-neutral-800 pb-4 last:border-0">
+                                    <button
+                                        onClick={() => setOpenIndex(index === openIndex ? null : index)}
+                                        className="flex w-full items-center justify-between py-2 text-left text-lg font-semibold text-white focus:outline-none"
+                                    >
+                                        <span>{feature.title}</span>
+                                        {index === openIndex ? <BiChevronUp className="h-5 w-5 text-indigo-400" /> : <BiChevronDown className="h-5 w-5 text-neutral-500" />}
+                                    </button>
+                                     <motion.div
+                                        initial={false}
+                                        animate={{ height: index === openIndex ? 'auto' : 0, opacity: index === openIndex ? 1 : 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <p className="pt-2 text-base text-neutral-400">{feature.content}</p>
+                                    </motion.div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="relative">
+                         {/* Placeholder for dynamic image based on selection, or just a static attractive graphic */}
+                        <div className="aspect-square rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 absolute inset-0 blur-3xl"></div>
+                        <div className="relative rounded-2xl bg-neutral-800 border border-neutral-700 p-8 h-[400px] flex items-center justify-center">
+                            <span className="text-neutral-500">Feature Preview UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Stats Overview
+Features backed by numbers.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListStats />
+</div>
+
+```tsx
+"use client";
+
+const stats = [
+    { label: 'Founded', value: '2021' },
+    { label: 'Employees', value: '100+' },
+    { label: 'Countries', value: '12' },
+    { label: 'Raised', value: '$25M' },
+]
+
+export default function FeatureListStats() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                    <div className="lg:pr-8">
+                        <div className="lg:max-w-xl">
+                            <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Our track record</h2>
+                            <p className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                                Trusted by thousands of developers worldwide
+                            </p>
+                            <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                            </p>
+                            <dl className="mt-10 grid grid-cols-2 gap-8 border-t border-neutral-900/10 dark:border-white/10 pt-10 sm:grid-cols-4">
+                                {stats.map((stat) => (
+                                    <div key={stat.label}>
+                                        <dt className="text-sm font-semibold leading-6 text-neutral-600 dark:text-neutral-400">{stat.label}</dt>
+                                        <dd className="mt-2 text-3xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-white">{stat.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </div>
+                    <div className="bg-neutral-100 dark:bg-neutral-900 rounded-2xl flex items-center justify-center min-h-[300px]">
+                        {/* Abstract Visual */}
+                        <div className="relative w-64 h-64">
+                             <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                             <div className="absolute -bottom-8 left-20 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Cards List
+Pricing or package comparison cards.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListCards />
+</div>
+
+```tsx
+"use client";
+
+import { BiCheck } from "react-icons/bi";
+
+const plans = [
+    {
+        name: "Starter",
+        price: "$0",
+        features: ["1 User", "5 Projects", "Community Support"],
+        action: "Start for free"
+    },
+    {
+        name: "Pro",
+        price: "$29",
+        features: ["5 Users", "Unlimited Projects", "Priority Support", "Analytics"],
+        action: "Get started",
+        featured: true
+    },
+    {
+        name: "Enterprise",
+        price: "Custom",
+        features: ["Unlimited Users", "SSO", "Dedicated Agent", "SLA"],
+        action: "Contact sales"
+    }
+];
+
+export default function FeatureListCards() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                     <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Pricing Plans</h2>
+                </div>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                    {plans.map((plan) => (
+                        <div 
+                            key={plan.name} 
+                            className={`flex flex-col justify-between rounded-3xl bg-white dark:bg-neutral-900 p-8 shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10 ${plan.featured ? 'scale-105 border-2 border-indigo-600 z-10' : ''}`}
+                        >
+                            <div>
+                                <h3 className="text-lg font-semibold leading-8 text-neutral-900 dark:text-white">{plan.name}</h3>
+                                <p className="mt-4 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white">{plan.price}</p>
+                                <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                                    {plan.features.map((feature) => (
+                                        <li key={feature} className="flex gap-x-3">
+                                            <BiCheck className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <a
+                                href="#"
+                                className={`mt-8 block rounded-full px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600' : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-300'}`}
+                            >
+                                {plan.action}
+                            </a>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Timeline Actions
+Chronological steps.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListTimeline />
+</div>
+
+```tsx
+"use client";
+
+import { BiTimeFive, BiCalendarEvent, BiBell } from "react-icons/bi";
+
+const timeline = [
+    {
+        name: 'Applications Open',
+        description: 'Submit your application through our online portal.',
+        date: 'Aug 1, 2024',
+        icon: BiCalendarEvent,
+    },
+    {
+        name: 'Interview Process',
+        description: 'Selected candidates will be invited for video interviews.',
+        date: 'Sep 15, 2024',
+        icon: BiTimeFive,
+    },
+    {
+        name: 'Final Selection',
+        description: 'Offer letters are sent out to successful applicants.',
+        date: 'Oct 1, 2024',
+        icon: BiBell,
+    },
+]
+
+export default function FeatureListTimeline() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                     <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Roadmap</h2>
+                </div>
+                <div className="mx-auto max-w-2xl lg:max-w-4xl">
+                    <div className="space-y-8">
+                        {timeline.map((item, index) => (
+                            <div key={item.name} className="relative flex gap-x-6">
+                                <div className={`absolute left-0 top-0 flex w-6 justify-center ${index === timeline.length - 1 ? 'h-6' : '-bottom-8'}`}>
+                                    <div className="w-px bg-neutral-200 dark:bg-neutral-800" />
+                                </div>
+                                <div className="relative flex h-6 w-6 flex-none items-center justify-center bg-white dark:bg-neutral-950">
+                                    <item.icon className="h-5 w-5 text-indigo-600" aria-hidden="true" />
+                                </div>
+                                <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-neutral-200 dark:ring-neutral-800">
+                                    <div className="flex justify-between gap-x-4">
+                                        <div className="py-0.5 text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+                                            <span className="font-medium text-neutral-900 dark:text-white">{item.name}</span>
+                                        </div>
+                                        <time dateTime={item.date} className="flex-none py-0.5 text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+                                            {item.date}
+                                        </time>
+                                    </div>
+                                    <p className="text-sm leading-6 text-neutral-500 dark:text-neutral-400">{item.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
+
+## Minimal Text
+Typography focused.
+
+<div className="my-8 border rounded-lg overflow-hidden">
+  <FeatureListMinimal />
+</div>
+
+```tsx
+"use client";
+
+import { BiCodeAlt } from "react-icons/bi";
+
+export default function FeatureListMinimal() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <div className="flex justify-center mb-6">
+                        <div className="rounded-full bg-indigo-50 dark:bg-indigo-900/20 p-3 ring-1 ring-inset ring-indigo-500/10">
+                            <BiCodeAlt className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                        </div>
+                    </div>
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                        Simplicity is the ultimate sophistication.
+                    </h2>
+                    <div className="mt-10 flex flex-col gap-4 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        <p>
+                            Focus on your content. The layout gets out of the way. 
+                            Clean typography, generous whitespace, and perfect alignment.
+                        </p>
+                         <p>
+                            Designed for modern brands that value clarity.
+                        </p>
+                    </div>
+                     <div className="mt-10 flex items-center justify-center gap-x-6">
+                        <a
+                            href="#"
+                            className="text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400 hover:underline"
+                        >
+                            Learn more <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+```
