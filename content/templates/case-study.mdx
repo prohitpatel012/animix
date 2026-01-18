@@ -18,10 +18,34 @@ Impactful opening for a case study page.
 </div>
 
 ```tsx
-import { CaseStudyHero } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyHero />;
+export default function CaseStudyHero() {
+    return (
+        <div className="relative bg-neutral-900 isolat overflow-hidden py-24 sm:py-32">
+            <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2000"
+                alt=""
+                className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25"
+            />
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:mx-0">
+                    <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Acme Corp increased sales by 500%</h2>
+                    <p className="mt-6 text-lg leading-8 text-neutral-300">
+                        "The platform gave us the scalability and performance we needed to handle our Black Friday traffic without a single hiccup."
+                    </p>
+                    <div className="mt-10 flex items-center gap-x-6">
+                        <a href="#" className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
+                            Read full story
+                        </a>
+                        <a href="#" className="text-sm font-semibold leading-6 text-white">
+                            View all case studies <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +57,92 @@ Visual overview of multiple stories.
 </div>
 
 ```tsx
-import { CaseStudyGrid } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyGrid />;
+const posts = [
+    {
+        id: 1,
+        title: 'Boost your conversion rate',
+        href: '#',
+        description:
+            'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+        date: 'Mar 16, 2023',
+        category: { title: 'Marketing', href: '#' },
+        author: {
+            name: 'Michael Foster',
+            role: 'Co-Founder / CTO',
+            imageUrl:
+                'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        },
+        imageUrl: 'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80',
+    },
+    {
+        id: 2,
+        title: 'How to use search engine optimization to drive sales',
+        href: '#',
+        description:
+            'Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.',
+        date: 'Mar 10, 2023',
+        category: { title: 'Sales', href: '#' },
+        author: {
+            name: 'Lindsay Walton',
+            role: 'Front-end Developer',
+            imageUrl:
+                'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        },
+        imageUrl: 'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?auto=format&fit=crop&w=3603&q=80',
+    },
+]
+
+export default function CaseStudyGrid() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Client Stories</h2>
+                    <p className="mt-2 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        See how leading companies transform their business with us.
+                    </p>
+                </div>
+                <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                    {posts.map((post) => (
+                        <article key={post.id} className="flex flex-col items-start justify-between">
+                            <div className="relative w-full">
+                                <img
+                                    src={post.imageUrl}
+                                    alt=""
+                                    className="aspect-[16/9] w-full rounded-2xl bg-neutral-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                                />
+                                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-neutral-900/10" />
+                            </div>
+                            <div className="max-w-xl">
+                                <div className="mt-8 flex items-center gap-x-4 text-xs">
+                                    <time dateTime={post.date} className="text-neutral-500">
+                                        {post.date}
+                                    </time>
+                                    <a
+                                        href={post.category.href}
+                                        className="relative z-10 rounded-full bg-neutral-50 dark:bg-neutral-900 px-3 py-1.5 font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100"
+                                    >
+                                        {post.category.title}
+                                    </a>
+                                </div>
+                                <div className="group relative">
+                                    <h3 className="mt-3 text-lg font-semibold leading-6 text-neutral-900 dark:text-white group-hover:text-neutral-600">
+                                        <a href={post.href}>
+                                            <span className="absolute inset-0" />
+                                            {post.title}
+                                        </a>
+                                    </h3>
+                                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{post.description}</p>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +154,38 @@ Clean list for archival or index pages.
 </div>
 
 ```tsx
-import { CaseStudyList } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyList />;
+const cases = [
+    { title: "Improving page load speeds by 40%", category: "Performance", href: "#" },
+    { title: "Redesigning the user dashboard for clarity", category: "UX Design", href: "#" },
+    { title: "Migrating legacy database to the cloud", category: "Infrastructure", href: "#" },
+    { title: "Scaling for Black Friday traffic spikes", category: "Scalability", href: "#" },
+]
+
+export default function CaseStudyList() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-4">
+                    Latest Case Studies
+                </h2>
+                <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+                    {cases.map((cs) => (
+                        <div key={cs.title} className="py-8 flex flex-col sm:flex-row sm:items-center justify-between group cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 -mx-4 px-4 rounded-lg transition-colors">
+                            <div>
+                                <div className="text-sm font-semibold text-indigo-600 mb-1">{cs.category}</div>
+                                <h3 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-indigo-600 transition-colors">{cs.title}</h3>
+                            </div>
+                            <div className="mt-4 sm:mt-0 flex items-center gap-2 text-neutral-500 font-medium group-hover:text-indigo-600">
+                                Read Story <span aria-hidden="true">&rarr;</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -63,10 +197,36 @@ Spotlight on a single, major success story.
 </div>
 
 ```tsx
-import { CaseStudyFeatured } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyFeatured />;
+export default function CaseStudyFeatured() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative isolate overflow-hidden bg-neutral-800 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+                    <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Featured Story: <br /> How Slack scaled usage</h2>
+                        <p className="mt-6 text-lg leading-8 text-neutral-300">
+                            Discover the architecture decisions that enabled Slack to handle millions of concurrent users globally.
+                        </p>
+                        <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                            <a href="#" className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm hover:bg-neutral-100">Read Case Study</a>
+                            <a href="#" className="text-sm font-semibold leading-6 text-white">View more <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                    <div className="relative mt-16 h-80 lg:mt-8">
+                        <img
+                            className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+                            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=2600"
+                            alt="App screenshot"
+                            width={1824}
+                            height={1080}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +238,35 @@ Centering the customer's voice.
 </div>
 
 ```tsx
-import { CaseStudyQuote } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyQuote />;
+export default function CaseStudyQuote() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <p className="text-base font-semibold leading-7 text-indigo-600 mb-6">Case Study: FinTech Revolution</p>
+                    <figure>
+                        <blockquote className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl leading-tight">
+                            “We reduced our infrastructure costs by 60% while simultaneously improving latency by 200ms after switching to this platform.”
+                        </blockquote>
+                        <figcaption className="mt-10">
+                            <img
+                                className="mx-auto h-12 w-12 rounded-full object-cover"
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                alt=""
+                            />
+                            <div className="mt-4 flex items-center justify-center space-x-3 text-base">
+                                <div className="font-semibold text-neutral-900 dark:text-white">Elena Fisher</div>
+                                <div className="text-neutral-500">/</div>
+                                <div className="text-neutral-500">CTO, BankFlow</div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +278,36 @@ Case study summary driven by results.
 </div>
 
 ```tsx
-import { CaseStudyStats } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyStats />;
+export default function CaseStudyStats() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <div className="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-2">Automotive</div>
+                    <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Revving up online sales</h2>
+                    <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
+                        How a leading car dealership modernized their digital presence and achieved record-breaking sales numbers in just 3 months.
+                    </p>
+                    <a href="#" className="text-indigo-600 font-semibold hover:underline">Read the full story</a>
+                </div>
+                <div className="grid grid-cols-2 gap-8">
+                    {[
+                        { val: "300%", label: "Lead Increase" },
+                        { val: "45%", label: "Lower CAC" },
+                        { val: "2.5x", label: "Better ROAS" },
+                        { val: "10k+", label: "Cars Sold" },
+                    ].map((stat, i) => (
+                        <div key={i} className="bg-white dark:bg-neutral-950 p-6 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-800">
+                            <div className="text-4xl font-bold text-neutral-900 dark:text-white mb-2">{stat.val}</div>
+                            <div className="text-sm text-neutral-500 font-medium">{stat.label}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +319,35 @@ Horizontal scroll for recent work.
 </div>
 
 ```tsx
-import { CaseStudyCarousel } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyCarousel />;
+const cases = [
+    { title: "Project A", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" },
+    { title: "Project B", img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=800" },
+    { title: "Project C", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800" },
+]
+
+export default function CaseStudyCarousel() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32 overflow-hidden">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-16">Recent Work</h2>
+                <div className="flex gap-8 overflow-x-auto pb-8 snap-x">
+                    {cases.map((cs) => (
+                        <div key={cs.title} className="min-w-[85vw] md:min-w-[400px] snap-center">
+                            <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-4 relative group cursor-pointer">
+                                <img src={cs.img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="" />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <span className="text-white border border-white px-4 py-2 rounded-full backdrop-blur-sm">View Project</span>
+                                </div>
+                            </div>
+                            <h3 className="font-bold text-lg text-neutral-900 dark:text-white">{cs.title}</h3>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +359,28 @@ Focus on the narrative content.
 </div>
 
 ```tsx
-import { CaseStudyMinimal } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyMinimal />;
+export default function CaseStudyMinimal() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-3xl px-6">
+                <div className="text-sm font-semibold text-neutral-500 mb-2">CASE STUDY</div>
+                <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-8">
+                    Scaling Stripe's API Infrastructure
+                </h1>
+                <div className="prose prose-neutral dark:prose-invert text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+                    <p className="mb-6">
+                        Scaling a financial infrastructure platform requires zero margin for error. In this deep dive, we explore how...
+                    </p>
+                    <p className="mb-6">
+                        We implemented a multi-region active-active database configuration that reduced latency by 45ms for European customers.
+                    </p>
+                    <a href="#" className="text-indigo-600 dark:text-indigo-400 font-semibold underline">Continue reading</a>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +392,28 @@ Bold footer or section for case study links.
 </div>
 
 ```tsx
-import { CaseStudyDark } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudyDark />;
+import { BiRightArrowAlt } from "react-icons/bi";
+
+export default function CaseStudyDark() {
+    return (
+        <div className="bg-black py-24 sm:py-32 border-y border-neutral-800">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col md:flex-row justify-between items-end gap-8">
+                <div className="max-w-xl">
+                    <h2 className="text-5xl font-bold text-white tracking-tighter mb-6">Made for the future.</h2>
+                    <p className="text-neutral-400 text-xl">
+                        See how next-gen startups are using our components to build products 10x faster than the competition.
+                    </p>
+                </div>
+                <div>
+                    <button className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg flex items-center gap-2 hover:bg-neutral-200 transition-colors">
+                        Explore Stories <BiRightArrowAlt className="text-2xl" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +425,41 @@ Content layout with metadata sidebar.
 </div>
 
 ```tsx
-import { CaseStudySidebar } from '@/components/ui-component/case-study';
+"use client";
 
-export default function Example() {
-  return <CaseStudySidebar />;
+export default function CaseStudySidebar() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-16">
+                <div className="lg:col-span-2">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2000" className="rounded-2xl mb-8" alt="Team meeting" />
+                    <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Transforming HR Tech</h2>
+                    <p className="text-neutral-600 dark:text-neutral-400 leading-7">
+                        When WorkLife needed to modernize their employee portal, they turned to our component library. The result was a 50% reduction in development time and a 20% increase in employee engagement scores.
+                    </p>
+                </div>
+                <div className="lg:col-span-1">
+                    <div className="bg-neutral-50 dark:bg-neutral-900 p-8 rounded-2xl sticky top-8">
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-6">At a Glance</h3>
+                        <dl className="space-y-4">
+                            <div>
+                                <dt className="text-sm text-neutral-500">Client</dt>
+                                <dd className="font-semibold text-neutral-900 dark:text-white">WorkLife Inc.</dd>
+                            </div>
+                            <div>
+                                <dt className="text-sm text-neutral-500">Industry</dt>
+                                <dd className="font-semibold text-neutral-900 dark:text-white">HR Tech</dd>
+                            </div>
+                            <div>
+                                <dt className="text-sm text-neutral-500">Services</dt>
+                                <dd className="font-semibold text-neutral-900 dark:text-white">UI Design, React Dev</dd>
+                            </div>
+                        </dl>
+                        <button className="w-full mt-8 bg-black dark:bg-white text-white dark:text-black py-3 rounded-lg font-bold">Download PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```

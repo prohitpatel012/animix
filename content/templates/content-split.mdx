@@ -18,10 +18,36 @@ Image Left, Text Right.
 </div>
 
 ```tsx
-import { SplitStandard } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitStandard />;
+import { BiCheck } from "react-icons/bi";
+
+export default function SplitStandard() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-neutral-100 dark:bg-neutral-900">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover" alt="Collaboration" />
+                </div>
+                <div>
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-6">
+                        Collaborate without constraints
+                    </h2>
+                    <p className="text-lg leading-8 text-neutral-600 dark:text-neutral-400 mb-8">
+                        Bring your team together in a shared workspace that feels as natural as sitting in the same room. Real-time updates, comment threads, and more.
+                    </p>
+                    <ul className="space-y-4">
+                        {['Real-time sync', 'Unlimited history', 'Secure permissions'].map((item) => (
+                            <li key={item} className="flex gap-3">
+                                <BiCheck className="flex-none text-indigo-600 w-6 h-6" />
+                                <span className="text-neutral-700 dark:text-neutral-300 font-medium">{item}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +59,32 @@ Text Left, Image Right.
 </div>
 
 ```tsx
-import { SplitReversed } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitReversed />;
+export default function SplitReversed() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="order-2 lg:order-1">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-6">
+                        Seamless integration with your tools
+                    </h2>
+                    <p className="text-lg leading-8 text-neutral-600 dark:text-neutral-400 mb-8">
+                        Connect with over 500+ apps instantly. From Slack to Salesforce, we have built-in connectors that just work.
+                    </p>
+                    <a href="#" className="text-indigo-600 font-bold hover:text-indigo-500 hover:underline">Browse Integration Library &rarr;</a>
+                </div>
+                <div className="order-1 lg:order-2 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 p-8 flex items-center justify-center">
+                    <div className="grid grid-cols-3 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                        {/* Placeholders for logos */}
+                        {[...Array(9)].map((_, i) => (
+                            <div key={i} className="w-16 h-16 bg-neutral-200 dark:bg-neutral-700 rounded-full animate-pulse"></div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +96,45 @@ Angled background separator.
 </div>
 
 ```tsx
-import { SplitDiagonal } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitDiagonal />;
+export default function SplitDiagonal() {
+    return (
+        <div className="relative bg-white dark:bg-neutral-950 overflow-hidden">
+            <div className="mx-auto max-w-7xl">
+                <div className="relative z-10 bg-white dark:bg-neutral-950 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
+                    <svg
+                        className="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-white dark:text-neutral-950 lg:block"
+                        fill="currentColor"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                    >
+                        <polygon points="50,0 100,0 50,100 0,100" />
+                    </svg>
+
+                    <main className="mx-auto mt-10 max-w-7xl px-6 lg:px-8 pt-10 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-28">
+                        <div className="sm:text-center lg:text-left">
+                            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl md:text-6xl">
+                                <span className="block xl:inline">Data to enrich your</span>{' '}
+                                <span className="block text-indigo-600 xl:inline">online business</span>
+                            </h1>
+                            <p className="mt-3 text-base text-neutral-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
+                                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+                            </p>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <img
+                    className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full"
+                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+                    alt=""
+                />
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -63,10 +146,39 @@ Content card floating over a large background image.
 </div>
 
 ```tsx
-import { SplitOverlapping } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitOverlapping />;
+export default function SplitOverlapping() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative">
+                    <div className="lg:absolute lg:inset-0 lg:left-1/2">
+                        <img
+                            className="h-64 w-full bg-neutral-50 object-cover sm:h-80 lg:h-full rounded-2xl shadow-xl"
+                            src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2670&q=80"
+                            alt=""
+                        />
+                    </div>
+                    <div className="relative pt-12 pb-12 lg:pt-32 lg:pb-32 lg:max-w-[50%] lg:pr-16">
+                        <div className="bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-2xl lg:shadow-none lg:bg-transparent">
+                            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                                Always in the loop
+                            </h2>
+                            <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                                Never miss a beat with our automated notification system. Custom alerts, daily digests, and more keep you informed without the noise.
+                            </p>
+                            <div className="mt-8">
+                                <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-500">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +190,45 @@ Split section specialized for showing technical content or code.
 </div>
 
 ```tsx
-import { SplitCardSide } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitCardSide />;
+import { BiCodeAlt } from "react-icons/bi";
+
+export default function SplitCardSide() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="bg-neutral-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                    <div className="p-8 lg:p-16 lg:w-1/2 flex flex-col justify-center">
+                        <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center mb-6 text-white text-2xl">
+                            <BiCodeAlt />
+                        </div>
+                        <h2 className="text-3xl font-bold text-white mb-6">Built for Developers</h2>
+                        <p className="text-neutral-400 text-lg mb-8">
+                            Our API fits right into your workflow. Strong types, comprehensive SDKs, and a CLI that makes you feel like a wizard.
+                        </p>
+                        <div className="flex gap-4">
+                            <button className="bg-white text-black px-5 py-2.5 rounded-md font-bold hover:bg-neutral-200">Documentation</button>
+                            <button className="text-white border border-white/20 px-5 py-2.5 rounded-md font-bold hover:bg-white/10">API Reference</button>
+                        </div>
+                    </div>
+                    <div className="lg:w-1/2 bg-neutral-950 border-l border-white/5 relative">
+                        {/* Pseudo Code Block */}
+                        <div className="p-8 font-mono text-sm text-neutral-400 overflow-x-auto">
+                            <div className="text-green-400">import</div> <div className="text-white">Client</div> <div className="text-green-400">from</div> <div className="text-yellow-300">'@api/sdk'</div>;
+                            <br /><br />
+                            <div className="text-purple-400">const</div> client = <div className="text-purple-400">new</div> <div className="text-white">Client</div>({'{'} key: <div className="text-yellow-300">'sk_test_...'</div> {'}'});
+                            <br /><br />
+                            <div className="text-purple-400">await</div> client.users.<div className="text-blue-400">create</div>({'{'}
+                            <br />&nbsp;&nbsp;email: <div className="text-yellow-300">'jane@example.com'</div>,
+                            <br />&nbsp;&nbsp;role: <div className="text-yellow-300">'admin'</div>
+                            <br />{'}'});
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +240,26 @@ Split screen layout taking up the full viewport height.
 </div>
 
 ```tsx
-import { SplitFullHeight } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitFullHeight />;
+export default function SplitFullHeight() {
+    return (
+        <div className="min-h-screen flex flex-col lg:flex-row">
+            <div className="lg:w-1/2 bg-white dark:bg-neutral-950 p-12 lg:p-24 flex flex-col justify-center">
+                <div className="max-w-xl mx-auto lg:mx-0">
+                    <span className="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4 block">Our Philosophy</span>
+                    <h1 className="text-5xl font-bold text-neutral-900 dark:text-white mb-8">Design without compromise.</h1>
+                    <p className="text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed mb-12">
+                        We believe that the best products are built with passion and precision. Every pixel matters, every interaction counts.
+                    </p>
+                    <a href="#" className="inline-block border-b-2 border-black dark:border-white pb-1 text-lg font-bold">Read our manifesto</a>
+                </div>
+            </div>
+            <div className="lg:w-1/2 bg-neutral-100 relative h-96 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2000" className="absolute inset-0 w-full h-full object-cover" alt="Office" />
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +271,29 @@ Text placed directly on top of the image with a gradient.
 </div>
 
 ```tsx
-import { SplitTextOverlay } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitTextOverlay />;
+export default function SplitTextOverlay() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/9] lg:aspect-[21/9]">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2600" className="w-full h-full object-cover" alt="Meeting" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent flex items-center">
+                        <div className="p-12 max-w-2xl">
+                            <h2 className="text-4xl font-bold text-white mb-6">Powering the world's best teams</h2>
+                            <p className="text-lg text-neutral-300 mb-8">
+                                Join over 10,000+ companies that use our platform to drive growth and innovation.
+                            </p>
+                            <button className="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-neutral-100 transition-colors">
+                                View Case Studies
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +305,33 @@ Multiple alternating sections.
 </div>
 
 ```tsx
-import { SplitZigZag } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitZigZag />;
+const features = [
+    { title: "Design", desc: "Create stunning visuals.", img: "https://images.unsplash.com/photo-1558655146-d09347e0c7a8?auto=format&fit=crop&w=800&q=80" },
+    { title: "Develop", desc: "Build with modern tools.", img: "https://images.unsplash.com/photo-1461988320302-91b5b4c61e69?auto=format&fit=crop&w=800&q=80" },
+]
+
+export default function SplitZigZag() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-24">
+                {features.map((item, i) => (
+                    <div key={i} className={`flex flex-col lg:flex-row gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                        <div className="flex-1">
+                            <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-neutral-100">
+                                <img src={item.img} className="w-full h-full object-cover" alt={item.title} />
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">{item.title}</h2>
+                            <p className="text-lg text-neutral-600 dark:text-neutral-400">{item.desc} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +343,44 @@ Feature list with icons alongside the visual.
 </div>
 
 ```tsx
-import { SplitWithIcons } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitWithIcons />;
+import { BiVideo, BiBarChartAlt2, BiLayer } from "react-icons/bi";
+
+export default function SplitWithIcons() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div className="flex flex-col justify-center">
+                    <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Everything you need</h2>
+                    <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-10">
+                        We provide a comprehensive suite of tools to help you manage your business efficiently.
+                    </p>
+                    <div className="grid gap-8">
+                        {[
+                            { icon: BiVideo, title: "Video conferencing", desc: "HD video calls with screen sharing." },
+                            { icon: BiBarChartAlt2, title: "Analytics", desc: "Track performance in real-time." },
+                            { icon: BiLayer, title: "Layered security", desc: "Enterprise-grade protection." }
+                        ].map((feat, i) => (
+                            <div key={i} className="flex gap-4">
+                                <div className="flex-none w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center text-indigo-600">
+                                    <feat.icon className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-neutral-900 dark:text-white">{feat.title}</h3>
+                                    <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">{feat.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="relative">
+                    <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-neutral-100 dark:bg-neutral-800 rounded-3xl -z-10 translate-x-8 -translate-y-8"></div>
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1000&q=80" className="rounded-2xl shadow-2xl w-full" alt="Features" />
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +392,36 @@ Video player integration in the split layout.
 </div>
 
 ```tsx
-import { SplitMedia } from '@/components/ui-component/content-split';
+"use client";
 
-export default function Example() {
-  return <SplitMedia />;
+import { BiPlayCircle } from "react-icons/bi";
+
+export default function SplitMedia() {
+    return (
+        <div className="bg-black py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="order-2 lg:order-1 relative aspect-video bg-neutral-900 rounded-2xl overflow-hidden group cursor-pointer border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?auto=format&fit=crop&w=1000&q=80" className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity" alt="Thumb" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <BiPlayCircle className="w-20 h-20 text-white opacity-90 group-hover:scale-110 transition-transform" />
+                    </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
+                        <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+                        New Feature
+                    </div>
+                    <h2 className="text-4xl font-bold text-white mb-6">Interactive streaming at scale</h2>
+                    <p className="text-xl text-neutral-400 leading-relaxed">
+                        Deliver ultra-low latency video to millions of concurrent viewers. Our global edge network ensures buffering is a thing of the past.
+                    </p>
+                    <div className="mt-8 flex gap-4">
+                        <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-indigo-500">Start Free Trial</button>
+                        <button className="text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```

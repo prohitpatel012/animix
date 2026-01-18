@@ -18,10 +18,32 @@ Basic responsive grid layout.
 </div>
 
 ```tsx
-import { GallerySimple } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GallerySimple />;
+const images = [
+    "https://images.unsplash.com/photo-1552083858-5847604561ed?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1549488344-c705fa9c20a4?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1551043044-80b88f39561b?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1544941909-5c1cfcb73d40?auto=format&fit=crop&w=600&q=80",
+];
+
+export default function GallerySimple() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white mb-8">Our Workspace</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {images.map((src, i) => (
+                        <div key={i} className="aspect-[4/3] overflow-hidden rounded-lg bg-neutral-100">
+                            <img src={src} className="h-full w-full object-cover transition-transform hover:scale-105" alt="Gallery item" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +55,55 @@ Pinterest-style staggered layout.
 </div>
 
 ```tsx
-import { GalleryMasonry } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryMasonry />;
+// Simple manual masonry effect with columns
+const columns = [
+    [
+        "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=600&q=80",
+    ],
+    [
+        "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+    ],
+    [
+        "https://images.unsplash.com/photo-1544941909-5c1cfcb73d40?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1481487484168-9b930d552089?auto=format&fit=crop&w=600&q=80",
+    ],
+]
+
+export default function GalleryMasonry() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-2xl font-bold mb-8 text-neutral-900 dark:text-white">Travel Diaries</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid gap-4">
+                        {columns[0].map((src, i) => (
+                            <div key={i}><img className="h-auto max-w-full rounded-lg" src={src} alt="" /></div>
+                        ))}
+                    </div>
+                    <div className="grid gap-4">
+                        {columns[1].map((src, i) => (
+                            <div key={i}><img className="h-auto max-w-full rounded-lg" src={src} alt="" /></div>
+                        ))}
+                    </div>
+                    <div className="grid gap-4">
+                        {columns[0].map((src, i) => (
+                            <div key={i}><img className="h-auto max-w-full rounded-lg" src={src} alt="" /></div>
+                        ))}
+                    </div>
+                    <div className="grid gap-4">
+                        {columns[1].map((src, i) => (
+                            <div key={i}><img className="h-auto max-w-full rounded-lg" src={src} alt="" /></div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +115,50 @@ Horizontal slideshow with navigation controls.
 </div>
 
 ```tsx
-import { GalleryCarousel } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryCarousel />;
+import { useState } from "react";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+
+const images = [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
+]
+
+export default function GalleryCarousel() {
+    const [current, setCurrent] = useState(0);
+
+    const next = () => setCurrent((prev) => (prev + 1) % images.length);
+    const prev = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl group">
+                    <img src={images[current]} className="w-full h-full object-cover transition-transform duration-500" alt="Slide" />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex flex-col justify-end p-8">
+                        <h3 className="text-white text-3xl font-bold">Nature's Majesty {current + 1}</h3>
+                        <p className="text-white/80">Captured in 8K resolution.</p>
+                    </div>
+
+                    <button onClick={prev} className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md p-3 rounded-full text-white transition-colors opacity-0 group-hover:opacity-100">
+                        <BiChevronLeft size={30} />
+                    </button>
+                    <button onClick={next} className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-md p-3 rounded-full text-white transition-colors opacity-0 group-hover:opacity-100">
+                        <BiChevronRight size={30} />
+                    </button>
+
+                    <div className="absolute bottom-4 right-4 flex gap-2">
+                        {images.map((_, i) => (
+                            <div key={i} className={`w-2 h-2 rounded-full cursor-pointer transition-colors ${current === i ? 'bg-white' : 'bg-white/40'}`} onClick={() => setCurrent(i)}></div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -63,10 +170,52 @@ Click images to expand them in a modal overlay.
 </div>
 
 ```tsx
-import { GalleryLightbox } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryLightbox />;
+import { useState } from "react";
+import { BiExpand, BiX } from "react-icons/bi";
+
+const images = [
+    "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80",
+]
+
+export default function GalleryLightbox() {
+    const [selected, setSelected] = useState<string | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {images.map((src, i) => (
+                        <div
+                            key={i}
+                            className="group relative aspect-square overflow-hidden rounded-xl bg-neutral-100 cursor-pointer"
+                            onClick={() => setSelected(src)}
+                        >
+                            <img src={src} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" alt="" />
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <BiExpand className="text-white text-3xl" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {selected && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+                    onClick={() => setSelected(null)}
+                >
+                    <button className="absolute top-4 right-4 text-white hover:text-neutral-300">
+                        <BiX size={40} />
+                    </button>
+                    <img src={selected} className="max-w-full max-h-[90vh] rounded-lg shadow-2xl" alt="Full view" />
+                </div>
+            )}
+        </div>
+    )
 }
 ```
 
@@ -78,10 +227,32 @@ Layout highlighting specific images in larger cells.
 </div>
 
 ```tsx
-import { GalleryFeatured } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryFeatured />;
+export default function GalleryFeatured() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-12 grid-rows-2 gap-4 h-[600px]">
+                    <div className="col-span-12 md:col-span-8 row-span-2 rounded-xl overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1518005052304-a32d171912dd?auto=format&fit=crop&w=1200&q=80" className="w-full h-full object-cover" alt="Main" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="text-white">
+                                <h2 className="text-2xl font-bold">Ethereal Mountains</h2>
+                                <p>Shot in Icelandic highlands</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="hidden md:block col-span-4 row-span-1 rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Thumb 1" />
+                    </div>
+                    <div className="hidden md:block col-span-4 row-span-1 rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1469474932222-8d6878760780?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Thumb 2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +264,36 @@ Swipeable list of images, perfect for mobile.
 </div>
 
 ```tsx
-import { GalleryHorizontal } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryHorizontal />;
+const items = [
+    { title: "Ocean", img: "https://images.unsplash.com/photo-1468581264429-2548ef9eb732?auto=format&fit=crop&w=600&q=80" },
+    { title: "Forest", img: "https://images.unsplash.com/photo-1448375240586-dfd8d395ea6c?auto=format&fit=crop&w=600&q=80" },
+    { title: "Desert", img: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=600&q=80" },
+    { title: "Urban", img: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=600&q=80" },
+    { title: "Peak", img: "https://images.unsplash.com/photo-1464822759024-48dd654a1545?auto=format&fit=crop&w=600&q=80" },
+]
+
+export default function GalleryHorizontal() {
+    return (
+        <div className="bg-neutral-900 py-12">
+            <div className="w-full overflow-x-auto pb-6 pl-6 scrollbar-hide">
+                <div className="flex gap-4 w-max">
+                    {items.map((item) => (
+                        <div key={item.title} className="relative w-72 h-96 rounded-2xl overflow-hidden shrink-0 group cursor-pointer">
+                            <img src={item.img} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110" alt={item.title} />
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                            <div className="absolute bottom-6 left-6">
+                                <h3 className="text-white text-xl font-bold uppercase tracking-widest translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    {item.title}
+                                </h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +305,29 @@ Accordion-like expansion effect on mouseover.
 </div>
 
 ```tsx
-import { GalleryHover } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryHover />;
+export default function GalleryHover() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="flex h-96 w-full gap-2">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="relative flex-1 hover:flex-[3] transition-all duration-500 ease-in-out bg-neutral-200 rounded-2xl overflow-hidden group">
+                            <img
+                                src={`https://images.unsplash.com/photo-${1550000000000 + i * 1000000}?auto=format&fit=crop&w=800&q=80`}
+                                className="absolute inset-0 w-full h-full object-cover"
+                                alt=""
+                            />
+                            <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity delay-200">
+                                <span className="text-white font-bold whitespace-nowrap">Project 0{i}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +339,57 @@ Categorize items with filter tabs.
 </div>
 
 ```tsx
-import { GalleryFilters } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryFilters />;
+import { useState } from "react";
+
+const allImages = [
+    { id: 1, tag: "nature", src: "https://images.unsplash.com/photo-1501854140884-074bf86ed91c?auto=format&fit=crop&w=600&q=80" },
+    { id: 2, tag: "tech", src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" },
+    { id: 3, tag: "arch", src: "https://images.unsplash.com/photo-1486325212027-8081648a82eb?auto=format&fit=crop&w=600&q=80" },
+    { id: 4, tag: "nature", src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80" },
+    { id: 5, tag: "tech", src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" },
+    { id: 6, tag: "arch", src: "https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&w=600&q=80" },
+]
+
+export default function GalleryFilters() {
+    const [filter, setFilter] = useState("all");
+
+    const filtered = filter === "all" ? allImages : allImages.filter(img => img.tag === filter);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="flex justify-center gap-4 mb-10">
+                    {['all', 'nature', 'tech', 'arch'].map((f) => (
+                        <button
+                            key={f}
+                            onClick={() => setFilter(f)}
+                            className={`px-4 py-2 rounded-full text-sm font-semibold capitalize transition-colors ${filter === f ? 'bg-indigo-600 text-white' : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200'}`}
+                        >
+                            {f === 'arch' ? 'Architecture' : f}
+                        </button>
+                    ))}
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    {filtered.map((img) => (
+                        <div key={img.id} className="aspect-square bg-neutral-200 rounded-lg overflow-hidden animate-fade-in">
+                            <img src={img.src} className="w-full h-full object-cover" alt={img.tag} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <style jsx>{`
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.95); }
+                to { opacity: 1; transform: scale(1); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.3s ease-out;
+            }
+         `}</style>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +401,29 @@ Playful, scattered photo style.
 </div>
 
 ```tsx
-import { GalleryPolaroid } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GalleryPolaroid />;
+export default function GalleryPolaroid() {
+    return (
+        <div className="bg-neutral-100 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[
+                        { caption: "Summer '23", rotate: "-rotate-2" },
+                        { caption: "Roadtrip", rotate: "rotate-3" },
+                        { caption: "Besties", rotate: "-rotate-1" },
+                    ].map((item, i) => (
+                        <div key={i} className={`bg-white p-4 pb-16 shadow-lg transform ${item.rotate} hover:rotate-0 hover:z-10 hover:scale-105 transition-all duration-300 ease-out cursor-pointer`}>
+                            <div className="aspect-square bg-neutral-100 mb-4 overflow-hidden">
+                                <img src={`https://images.unsplash.com/photo-${1520000000000 + i * 500000}?auto=format&fit=crop&w=600&q=80`} className="w-full h-full object-cover" alt="" />
+                            </div>
+                            <p className="font-handwriting text-2xl text-center text-neutral-800">{item.caption}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +435,31 @@ Grid mimicking Instagram or social media layouts with hover stats.
 </div>
 
 ```tsx
-import { GallerySocial } from '@/components/ui-component/gallery';
+"use client";
 
-export default function Example() {
-  return <GallerySocial />;
+import { BiHeart, BiMessageRounded, BiBookmark } from "react-icons/bi";
+
+export default function GallerySocial() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                        <div key={i} className="aspect-square relative group bg-neutral-100 overflow-hidden cursor-pointer">
+                            <img
+                                src={`https://images.unsplash.com/photo-${1510000000000 + i * 2000000}?auto=format&fit=crop&w=600&q=80`}
+                                className="w-full h-full object-cover"
+                                alt="Social feed"
+                            />
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white font-bold">
+                                <div className="flex items-center gap-2"><BiHeart className="w-6 h-6 fill-current" /> {120 + i * 14}</div>
+                                <div className="flex items-center gap-2"><BiMessageRounded className="w-6 h-6 fill-current" /> {20 + i}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```

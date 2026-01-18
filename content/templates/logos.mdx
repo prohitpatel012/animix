@@ -18,10 +18,38 @@ Classic, clean layout for 5-6 logos.
 </div>
 
 ```tsx
-import { LogosSimple } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosSimple />;
+const logos = [
+    { name: 'Transistor', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'Reform', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+    { name: 'Tuple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg' },
+    { name: 'SavvyCal', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg' },
+    { name: 'Statamic', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg' },
+];
+
+export default function LogosSimple() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-center text-lg font-semibold leading-8 text-neutral-900 dark:text-white mb-10">
+                    Trusted by the world’s most innovative teams
+                </h2>
+                <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    {logos.map((logo) => (
+                        <img
+                            key={logo.name}
+                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:invert"
+                            src={logo.src}
+                            alt={logo.name}
+                            width={158}
+                            height={48}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -33,10 +61,66 @@ Smooth scrolling marquee animation. Great for showing a large volume of partners
 </div>
 
 ```tsx
-import { LogosTicker } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosTicker />;
+// Simple manual ticker implementation using CSS animation definition usually in globals, 
+// but here we'll use a wrapper with overflow-hidden and a sliding inner div.
+// Note: For production, ensure 'animate-infinite-scroll' is defined in tailwind config or global css.
+// I will assume standard tailwind setup and use arbitrary values for a quick marquee effect if needed.
+
+const logos = [
+    { name: 'Disney', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'Airbnb', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+    { name: 'Apple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg' },
+    { name: 'Spark', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg' },
+    { name: 'Samsung', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg' },
+    { name: 'Quora', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'SaaS', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+];
+
+export default function LogosTicker() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32 overflow-hidden">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <p className="text-center text-sm font-semibold leading-8 text-neutral-500 mb-8">
+                    TRUSTED BY STRATEGIC PARTNERS
+                </p>
+                <div className="relative flex overflow-x-hidden group">
+                    <div className="animate-marquee whitespace-nowrap flex gap-16 min-w-full items-center">
+                        {[...logos, ...logos, ...logos].map((logo, idx) => (
+                            <img
+                                key={idx}
+                                className="h-8 md:h-12 w-auto object-contain dark:invert"
+                                src={logo.src}
+                                alt={logo.name}
+                            />
+                        ))}
+                    </div>
+                    <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex gap-16 min-w-full items-center ml-16">
+                        {[...logos, ...logos, ...logos].map((logo, idx) => (
+                            <img
+                                key={`duplicate-${idx}`}
+                                className="h-8 md:h-12 w-auto object-contain dark:invert opacity-0" // Hidden duplicate just for spacing logic if needed in pure CSS
+                                src={logo.src}
+                                alt={logo.name}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Helper style for marquee if not in global css */}
+                <style jsx>{`
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-100%); }
+            }
+            .animate-marquee {
+                animation: marquee 25s linear infinite;
+            }
+        `}</style>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -48,10 +132,42 @@ Logos paired with a headline or introductory text.
 </div>
 
 ```tsx
-import { LogosSplit } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosSplit />;
+const logos = [
+    'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg',
+];
+
+export default function LogosSplit() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 lg:gap-x-16 items-center">
+                    <div className="max-w-lg">
+                        <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                            Used by the best teams
+                        </h2>
+                        <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                            We are proud to support thousands of companies on their mission to build better software.
+                        </p>
+                        <div className="mt-8">
+                            <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Read our customer stories &rarr;</a>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 sm:gap-8">
+                        {logos.map((src, i) => (
+                            <div key={i} className="flex justify-center items-center bg-white dark:bg-neutral-950 p-8 rounded-2xl shadow-sm">
+                                <img src={src} alt="Logo" className="max-h-8 dark:invert opacity-70 hover:opacity-100 transition-opacity" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -63,10 +179,38 @@ High contrast logo strip for dark themed sections.
 </div>
 
 ```tsx
-import { LogosDark } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosDark />;
+const logos = [
+    { name: 'Transistor', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-white.svg' },
+    { name: 'Reform', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-white.svg' },
+    { name: 'Tuple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-white.svg' },
+    { name: 'SavvyCal', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-white.svg' },
+    { name: 'Statamic', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-white.svg' },
+];
+
+export default function LogosDark() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:max-w-none">
+                    <h2 className="text-lg font-semibold leading-8 text-white">Trusted by the most innovative teams</h2>
+                    <div className="mx-auto mt-10 grid grid-cols-4 items-start gap-x-8 gap-y-10 sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:grid-cols-5">
+                        {logos.map((logo) => (
+                            <img
+                                key={logo.name}
+                                className="col-span-2 max-h-12 w-full object-contain object-left lg:col-span-1"
+                                src={logo.src}
+                                alt={logo.name}
+                                width={158}
+                                height={48}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -78,10 +222,31 @@ Structured grid with dividers.
 </div>
 
 ```tsx
-import { LogosBordered } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosBordered />;
+const logos = [
+    'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg',
+];
+
+export default function LogosBordered() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-2 lg:grid-cols-3 border-t border-l border-neutral-200 dark:border-neutral-800">
+                    {logos.map((src, idx) => (
+                        <div key={idx} className="flex justify-center items-center p-12 border-r border-b border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors">
+                            <img src={src} alt="Brand config" className="max-h-8 dark:invert opacity-60 hover:opacity-100 transition-opacity" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -93,10 +258,38 @@ Logos tinted to match your brand's primary color.
 </div>
 
 ```tsx
-import { LogosMonochrome } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosMonochrome />;
+const logos = [
+    { name: 'Transistor', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'Reform', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+    { name: 'Tuple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg' },
+    { name: 'SavvyCal', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg' },
+    { name: 'Statamic', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg' },
+];
+
+export default function LogosMonochrome() {
+    return (
+        <div className="bg-indigo-600 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-center text-lg font-semibold leading-8 text-white mb-10 opacity-80">
+                    Powering the next generation of startups
+                </h2>
+                <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    {logos.map((logo) => (
+                        <img
+                            key={logo.name}
+                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 brightness-0 invert opacity-50 hover:opacity-100 transition-opacity"
+                            src={logo.src}
+                            alt={logo.name}
+                            width={158}
+                            height={48}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -108,10 +301,43 @@ Focus attention on the trust statement.
 </div>
 
 ```tsx
-import { LogosHeading } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosHeading />;
+const logos = [
+    { name: 'Transistor', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'Reform', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+    { name: 'Tuple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg' },
+    { name: 'SavvyCal', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg' },
+    { name: 'Statamic', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg' },
+];
+
+export default function LogosHeading() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="border-b border-neutral-200 dark:border-neutral-800 pb-12 mb-12 text-center">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                        Trusted by the world’s best
+                    </h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                        Join 4,000+ companies who have already signed up
+                    </p>
+                </div>
+                <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    {logos.map((logo) => (
+                        <img
+                            key={logo.name}
+                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:invert opacity-80"
+                            src={logo.src}
+                            alt={logo.name}
+                            width={158}
+                            height={48}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -123,10 +349,34 @@ Each logo in its own card.
 </div>
 
 ```tsx
-import { LogosCards } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosCards />;
+const logos = [
+    'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg',
+    'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg',
+];
+
+export default function LogosCards() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-center text-lg font-semibold leading-8 text-neutral-900 dark:text-white mb-10">
+                    Integrates with your favorite tools
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {logos.map((src, idx) => (
+                        <div key={idx} className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-sm border border-neutral-100 dark:border-neutral-800 flex items-center justify-center hover:shadow-md transition-shadow">
+                            <img src={src} alt="Brand" className="max-h-8 w-auto dark:invert" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -138,10 +388,36 @@ Featured partner testimonial alongside logos.
 </div>
 
 ```tsx
-import { LogosQuote } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosQuote />;
+export default function LogosQuote() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-4">
+                            Trusted by industry leaders
+                        </h2>
+                        <blockquote className="text-xl font-medium leading-8 text-neutral-900 dark:text-white">
+                            "This platform has completely transformed how we handle our logistics. It's simply groundbreaking."
+                        </blockquote>
+                        <div className="mt-4 flex items-center gap-4">
+                            <div className="font-semibold text-neutral-900 dark:text-white">Sarah Connor</div>
+                            <div className="text-neutral-500">•</div>
+                            <div className="text-neutral-500">CTO at TechCores</div>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8 opacity-70">
+                        <img src="https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg" className="dark:invert w-full" alt="" />
+                        <img src="https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg" className="dark:invert w-full" alt="" />
+                        <img src="https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg" className="dark:invert w-full" alt="" />
+                        <img src="https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg" className="dark:invert w-full" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -153,9 +429,47 @@ Logos that fade in sequentially.
 </div>
 
 ```tsx
-import { LogosAnimated } from '@/components/ui-component/logos';
+"use client";
 
-export default function Example() {
-  return <LogosAnimated />;
+const logos = [
+    { name: 'Transistor', src: 'https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg' },
+    { name: 'Reform', src: 'https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg' },
+    { name: 'Tuple', src: 'https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg' },
+    { name: 'SavvyCal', src: 'https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg' },
+    { name: 'Statamic', src: 'https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg' },
+];
+
+export default function LogosAnimated() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-center text-lg font-semibold leading-8 text-neutral-900 dark:text-white mb-10">
+                    Our Ecosystem
+                </h2>
+                <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                    {logos.map((logo, index) => (
+                        <img
+                            key={logo.name}
+                            className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 dark:invert animate-fade-in-up"
+                            style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+                            src={logo.src}
+                            alt={logo.name}
+                            width={158}
+                            height={48}
+                        />
+                    ))}
+                </div>
+                <style jsx>{`
+            @keyframes fadeInUp {
+              from { opacity: 0; transform: translateY(20px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in-up {
+              animation: fadeInUp 0.8s ease-out;
+            }
+          `}</style>
+            </div>
+        </div>
+    );
 }
 ```

@@ -18,10 +18,43 @@ Clean text-only expanders.
 </div>
 
 ```tsx
-import { AccordionSimple } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionSimple />;
+import { useState } from "react";
+import { BiPlus, BiMinus } from "react-icons/bi";
+
+const faqs = [
+    { q: "How does the free trial work?", a: "You get 14 days of full access to all features. No credit card required." },
+    { q: "Can I switch plans later?", a: "Absoultely. You can upgrade or downgrade your plan at any time." },
+    { q: "Is my data secure?", a: "We use bank-level encryption and strictly adhere to GDPR regulations." },
+]
+
+export default function AccordionSimple() {
+    const [open, setOpen] = useState<number | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                <h2 className="text-2xl font-bold mb-8 text-neutral-900 dark:text-white">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="border-b border-neutral-200 dark:border-neutral-800 pb-4">
+                            <button
+                                className="flex w-full justify-between items-center text-left font-medium text-neutral-900 dark:text-white"
+                                onClick={() => setOpen(open === i ? null : i)}
+                            >
+                                <span>{faq.q}</span>
+                                {open === i ? <BiMinus className="shrink-0 ml-4" /> : <BiPlus className="shrink-0 ml-4" />}
+                            </button>
+                            <div className={`mt-2 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                {faq.a}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +66,42 @@ Contained items with dividing borders.
 </div>
 
 ```tsx
-import { AccordionBordered } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionBordered />;
+import { useState } from "react";
+import { BiChevronDown } from "react-icons/bi";
+
+const faqs = [
+    { q: "What is your refund policy?", a: "We offer a 30-day money-back guarantee for all new subscriptions." },
+    { q: "Do you offer technical support?", a: "Yes, 24/7 support is included in all paid plans." },
+    { q: "Can I use my own domain?", a: "Custom domains are available on the Pro and Enterprise plans." },
+]
+
+export default function AccordionBordered() {
+    const [open, setOpen] = useState<number | null>(0);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden divide-y divide-neutral-200 dark:divide-neutral-800">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="bg-white dark:bg-neutral-950">
+                            <button
+                                className="flex w-full justify-between items-center p-6 text-left"
+                                onClick={() => setOpen(open === i ? null : i)}
+                            >
+                                <span className="font-semibold text-neutral-900 dark:text-white">{faq.q}</span>
+                                <BiChevronDown className={`w-5 h-5 text-neutral-500 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
+                            </button>
+                            <div className={`px-6 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}>
+                                {faq.a}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +113,42 @@ Each item in its own detached card.
 </div>
 
 ```tsx
-import { AccordionSeparated } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionSeparated />;
+import { useState } from "react";
+import { BiPlus, BiMinus } from "react-icons/bi";
+
+const faqs = [
+    { q: "Installation Guide", a: "Simply run 'npm install package-name' to get started." },
+    { q: "License Key", a: "You can find your license key in your account dashboard under settings." },
+    { q: "Typography", a: "We use Inter as the default font family, but it is fully customizable." },
+]
+
+export default function AccordionSeparated() {
+    const [open, setOpen] = useState<number | null>(null);
+
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8 space-y-4">
+                {faqs.map((faq, i) => (
+                    <div key={i} className="bg-white dark:bg-neutral-950 rounded-xl shadow-sm border border-neutral-100 dark:border-neutral-800">
+                        <button
+                            className="flex w-full justify-between items-center p-5 text-left"
+                            onClick={() => setOpen(open === i ? null : i)}
+                        >
+                            <span className="font-medium text-neutral-900 dark:text-white">{faq.q}</span>
+                            <div className={`p-1 rounded-full ${open === i ? 'bg-indigo-100 text-indigo-600' : 'bg-neutral-100 text-neutral-500'}`}>
+                                {open === i ? <BiMinus /> : <BiPlus />}
+                            </div>
+                        </button>
+                        <div className={`px-5 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pb-5 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}>
+                            {faq.a}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -63,10 +160,44 @@ High contrast dark theme style.
 </div>
 
 ```tsx
-import { AccordionDark } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionDark />;
+import { useState } from "react";
+import { BiChevronsDown } from "react-icons/bi";
+
+const faqs = [
+    { q: "Why dark mode?", a: "It reduces eye strain and saves battery life on OLED screens." },
+    { q: "Is it default?", a: "It respects your system preference automatically." },
+    { q: "Can I toggle it?", a: "Yes, there is a switch in the navigation bar." },
+]
+
+export default function AccordionDark() {
+    const [open, setOpen] = useState<number | null>(0);
+
+    return (
+        <div className="bg-neutral-900 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                <div className="divide-y divide-neutral-800">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="py-6">
+                            <button
+                                className="flex w-full justify-between items-start text-left group"
+                                onClick={() => setOpen(open === i ? null : i)}
+                            >
+                                <span className={`text-lg font-medium transition-colors ${open === i ? 'text-indigo-400' : 'text-white group-hover:text-neutral-200'}`}>
+                                    {faq.q}
+                                </span>
+                                <BiChevronsDown className={`w-6 h-6 text-neutral-500 transition-transform duration-300 ${open === i ? 'rotate-180 text-indigo-400' : ''}`} />
+                            </button>
+                            <div className={`mt-4 text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                {faq.a}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +209,41 @@ Toggle icon positioned on the left side.
 </div>
 
 ```tsx
-import { AccordionIconLeft } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionIconLeft />;
+import { useState } from "react";
+
+const faqs = [
+    { q: "What functionality does the API offer?", a: "Our API allows full programmatic access to read and write data to your account." },
+    { q: "Is there a usage limit?", a: "Yes, depending on your plan tier. See pricing for details." },
+    { q: "Where can I find the documentation?", a: "Developer docs are available at docs.example.com." },
+]
+
+export default function AccordionIconLeft() {
+    const [open, setOpen] = useState<number | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                {faqs.map((faq, i) => (
+                    <div key={i} className="mb-4">
+                        <button
+                            className="flex w-full items-center text-left gap-4 p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                            onClick={() => setOpen(open === i ? null : i)}
+                        >
+                            <div className={`flex items-center justify-center w-6 h-6 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors ${open === i ? 'bg-indigo-600 !text-white' : ''}`}>
+                                {open === i ? '-' : '+'}
+                            </div>
+                            <span className="font-semibold text-neutral-900 dark:text-white">{faq.q}</span>
+                        </button>
+                        <div className={`pl-14 pr-4 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                            {faq.a}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +255,42 @@ Brutalist / Minimalist design with sharp lines.
 </div>
 
 ```tsx
-import { AccordionMinimal } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionMinimal />;
+import { useState } from "react";
+import { BiRightArrow } from "react-icons/bi";
+
+const faqs = [
+    { q: "Product Specifications", a: "Dimensions: 10x10x10. Weight: 2lbs. Material: Aluminum." },
+    { q: "Shipping Info", a: "We ship worldwide via FedEx and DHL. Estimated delivery 3-5 days." },
+    { q: "Warranty", a: "24-month limited manufacturing warranty included." },
+]
+
+export default function AccordionMinimal() {
+    const [open, setOpen] = useState<number | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                <div className="border-t border-black dark:border-white">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="border-b border-black dark:border-white">
+                            <button
+                                className="flex w-full justify-between items-center py-6 text-left group"
+                                onClick={() => setOpen(open === i ? null : i)}
+                            >
+                                <span className="font-bold text-lg uppercase tracking-wider text-black dark:text-white">{faq.q}</span>
+                                <BiRightArrow className={`transition-transform duration-300 ${open === i ? 'rotate-90' : ''}`} />
+                            </button>
+                            <div className={`text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}>
+                                {faq.a}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +302,49 @@ Two column layout with header sidebar.
 </div>
 
 ```tsx
-import { AccordionSideBySide } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionSideBySide />;
+import { useState } from "react";
+
+const faqs = [
+    { q: "Getting Started", a: "Begin by creating an account and verifying your email." },
+    { q: "Account Management", a: "Update your profile settings and security preferences anytime." },
+    { q: "Billing & Invoices", a: "View past invoices and manage your payment methods." },
+]
+
+export default function AccordionSideBySide() {
+    const [open, setOpen] = useState<number | null>(0);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-3 gap-12">
+                <div className="lg:col-span-1">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">Help Center</h2>
+                    <p className="mt-4 text-neutral-600 dark:text-neutral-400">
+                        Can't find what you're looking for? <a href="#" className="text-indigo-600 font-semibold underine">Contact Support</a>
+                    </p>
+                </div>
+                <div className="lg:col-span-2">
+                    <div className="space-y-6">
+                        {faqs.map((faq, i) => (
+                            <div key={i} className="border-b border-neutral-200 dark:border-neutral-800 pb-6">
+                                <button
+                                    className="text-lg font-semibold text-neutral-900 dark:text-white w-full text-left flex justify-between items-center group"
+                                    onClick={() => setOpen(open === i ? null : i)}
+                                >
+                                    {faq.q}
+                                    <span className={`text-indigo-600 text-2xl transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`}>+</span>
+                                </button>
+                                <div className={`mt-2 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pt-2 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                    {faq.a}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +356,40 @@ Scale and color change when item is active.
 </div>
 
 ```tsx
-import { AccordionHighlight } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionHighlight />;
+import { useState } from "react";
+
+const faqs = [
+    { id: '01', q: "Design", a: "We start with comprehensive wireframing and prototyping." },
+    { id: '02', q: "Development", a: "Agile methodologies ensure constant feedback and iteration." },
+    { id: '03', q: "Deployment", a: "CI/CD pipelines automate delivery to production environments." },
+]
+
+export default function AccordionHighlight() {
+    const [open, setOpen] = useState<number | null>(0);
+
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8 space-y-4">
+                {faqs.map((faq, i) => (
+                    <div
+                        key={i}
+                        className={`rounded-xl p-6 transition-all duration-300 cursor-pointer ${open === i ? 'bg-indigo-600 text-white shadow-xl scale-105' : 'bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'}`}
+                        onClick={() => setOpen(i)}
+                    >
+                        <div className="flex items-center gap-4">
+                            <span className={`text-sm font-mono opacity-50 ${open === i ? 'text-white' : 'text-neutral-500'}`}>{faq.id}</span>
+                            <h3 className="font-bold text-lg">{faq.q}</h3>
+                        </div>
+                        <div className={`ml-8 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 mt-2 opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <p className={open === i ? 'text-indigo-100' : 'text-neutral-600'}>{faq.a}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +401,46 @@ Classic arrow rotation animation.
 </div>
 
 ```tsx
-import { AccordionArrowLeft } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionArrowLeft />;
+import { useState } from "react";
+
+const faqs = [
+    { q: "Integration", a: "Integrates with Slack, Discord, and Teams out of the box." },
+    { q: "Security", a: "SOC2 Type II certified and GDPR compliant." },
+    { q: "Performance", a: "99.99% uptime SLA guaranteed for enterprise customers." },
+]
+
+export default function AccordionArrowLeft() {
+    const [open, setOpen] = useState<number | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                <div className="space-y-2">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="border rounded-lg border-neutral-200 dark:border-neutral-800">
+                            <button
+                                className="flex w-full items-center p-4 text-left gap-3"
+                                onClick={() => setOpen(open === i ? null : i)}
+                            >
+                                <svg
+                                    className={`w-4 h-4 text-neutral-500 transform transition-transform duration-200 ${open === i ? 'rotate-90' : ''}`}
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                                <span className="font-semibold text-neutral-900 dark:text-white">{faq.q}</span>
+                            </button>
+                            <div className={`pl-11 pr-4 text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${open === i ? 'max-h-40 pb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                {faq.a}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +452,61 @@ Multiple sections of accordions.
 </div>
 
 ```tsx
-import { AccordionGrouped } from '@/components/ui-component/accordion';
+"use client";
 
-export default function Example() {
-  return <AccordionGrouped />;
+import { useState } from "react";
+import { BiPlus } from "react-icons/bi";
+
+const categories = [
+    {
+        name: "General",
+        items: [
+            { q: "What is this tool?", a: "A comprehensive UI library." },
+            { q: "Is it free?", a: "The core components are MIT licensed." }
+        ]
+    },
+    {
+        name: "Technical",
+        items: [
+            { q: "Which framework?", a: "Built for React and Next.js." },
+            { q: "Does it use functionality?", a: "Yes, it relies on client-side state for interactions." }
+        ]
+    }
+]
+
+export default function AccordionGrouped() {
+    const [open, setOpen] = useState<string | null>(null);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+                {categories.map((cat, catIdx) => (
+                    <div key={cat.name} className="mb-8">
+                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-4 pb-2 border-b border-neutral-100 dark:border-neutral-800">{cat.name}</h3>
+                        <div className="space-y-3">
+                            {cat.items.map((item, itemIdx) => {
+                                const key = `${catIdx}-${itemIdx}`;
+                                const isOpen = open === key;
+                                return (
+                                    <div key={item.q} className="bg-neutral-50 dark:bg-neutral-900 rounded-lg">
+                                        <button
+                                            className="flex w-full justify-between items-center p-4 text-left"
+                                            onClick={() => setOpen(isOpen ? null : key)}
+                                        >
+                                            <span className="font-medium text-neutral-700 dark:text-neutral-200">{item.q}</span>
+                                            <BiPlus className={`transition-transform duration-300 text-neutral-500 ${isOpen ? 'rotate-45' : ''}`} />
+                                        </button>
+                                        <div className={`px-4 text-sm text-neutral-600 dark:text-neutral-400 overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 pb-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                            {item.a}
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 ```
