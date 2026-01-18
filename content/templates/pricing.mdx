@@ -18,10 +18,151 @@ The standard SaaS pricing model with a frequency switch.
 </div>
 
 ```tsx
-import { PricingToggle } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingToggle />;
+import { useState } from 'react'
+
+const frequencies = [
+    { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
+    { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+]
+const tiers = [
+    {
+        name: 'Freelancer',
+        id: 'tier-freelancer',
+        href: '#',
+        price: { monthly: '$15', annually: '$144' },
+        description: 'The essentials to provide your best work for clients.',
+        features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+        mostPopular: false,
+    },
+    {
+        name: 'Startup',
+        id: 'tier-startup',
+        href: '#',
+        price: { monthly: '$30', annually: '$288' },
+        description: 'A plan that scales with your rapidly growing business.',
+        features: [
+            '25 products',
+            'Up to 10,000 subscribers',
+            'Advanced analytics',
+            '24-hour support response time',
+            'Marketing automations',
+        ],
+        mostPopular: true,
+    },
+    {
+        name: 'Enterprise',
+        id: 'tier-enterprise',
+        href: '#',
+        price: { monthly: '$60', annually: '$576' },
+        description: 'Dedicated support and infrastructure for your company.',
+        features: [
+            'Unlimited products',
+            'Unlimited subscribers',
+            'Advanced analytics',
+            '1-hour, dedicated support response time',
+            'Marketing automations',
+            'Custom reporting tools',
+        ],
+        mostPopular: false,
+    },
+]
+
+function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ')
+}
+
+export default function PricingToggle() {
+    const [frequency, setFrequency] = useState(frequencies[0])
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-4xl text-center">
+                    <h2 className="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
+                    <p className="mt-2 text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+                        Pricing plans for teams of all sizes
+                    </p>
+                </div>
+                <div className="mt-16 flex justify-center">
+                    <div className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-neutral-200 dark:ring-neutral-800">
+                        {frequencies.map((option) => (
+                            <button
+                                key={option.value}
+                                onClick={() => setFrequency(option)}
+                                className={classNames(
+                                    option.value === frequency.value
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300',
+                                    'cursor-pointer rounded-full px-2.5 py-1'
+                                )}
+                            >
+                                {option.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    {tiers.map((tier) => (
+                        <div
+                            key={tier.id}
+                            className={classNames(
+                                tier.mostPopular ? 'ring-2 ring-indigo-600' : 'ring-1 ring-neutral-200 dark:ring-neutral-800',
+                                'rounded-3xl p-8 xl:p-10'
+                            )}
+                        >
+                            <div className="flex items-center justify-between gap-x-4">
+                                <h3
+                                    id={tier.id}
+                                    className={classNames(
+                                        tier.mostPopular ? 'text-indigo-600' : 'text-neutral-900 dark:text-white',
+                                        'text-lg font-semibold leading-8'
+                                    )}
+                                >
+                                    {tier.name}
+                                </h3>
+                                {tier.mostPopular ? (
+                                    <p className="rounded-full bg-indigo-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-indigo-600">
+                                        Most popular
+                                    </p>
+                                ) : null}
+                            </div>
+                            <p className="mt-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{tier.description}</p>
+                            <div className="mt-6 flex items-baseline gap-x-1">
+                                <span className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                                    {tier.price[frequency.value as keyof typeof tier.price]}
+                                </span>
+                                <span className="text-sm font-semibold leading-6 text-neutral-600 dark:text-neutral-400">{frequency.priceSuffix}</span>
+                            </div>
+                            <a
+                                href={tier.href}
+                                aria-describedby={tier.id}
+                                className={classNames(
+                                    tier.mostPopular
+                                        ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500'
+                                        : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 dark:ring-indigo-900 dark:hover:ring-indigo-700',
+                                    'mt-6 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                                )}
+                            >
+                                Buy plan
+                            </a>
+                            <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                                {tier.features.map((feature) => (
+                                    <li key={feature} className="flex gap-x-3">
+                                        <svg className="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                                        </svg>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +174,65 @@ Interactive pricing based on seat count.
 </div>
 
 ```tsx
-import { PricingSlider } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingSlider />;
+import { useState } from "react";
+import { BiCheck } from "react-icons/bi";
+
+export default function PricingSlider() {
+    const [users, setUsers] = useState(10);
+    const basePrice = 5; // $5 per user
+
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl sm:text-center mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Scale with your team</h2>
+                    <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        Pay only for what you use. Simple per-seat pricing.
+                    </p>
+                </div>
+
+                <div className="mx-auto max-w-2xl bg-white dark:bg-neutral-950 rounded-3xl shadow-lg ring-1 ring-neutral-900/10 dark:ring-white/10 p-8 sm:p-12">
+                    <div className="mb-10 text-center">
+                        <h3 className="text-5xl font-bold text-neutral-900 dark:text-white">${users * basePrice}</h3>
+                        <p className="text-base font-semibold text-neutral-500 mt-2">per month</p>
+                    </div>
+
+                    <div className="mb-10">
+                        <div className="flex justify-between text-sm font-medium mb-4">
+                            <span>Users: <strong className="text-indigo-600 text-lg">{users}</strong></span>
+                            <span>Unlimited Storage</span>
+                        </div>
+                        <input
+                            type="range"
+                            min="1"
+                            max="100"
+                            value={users}
+                            onChange={(e) => setUsers(parseInt(e.target.value))}
+                            className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                        <div className="flex justify-between text-xs text-neutral-400 mt-2">
+                            <span>1 User</span>
+                            <span>100 Users</span>
+                        </div>
+                    </div>
+
+                    <ul className="grid sm:grid-cols-2 gap-4 text-sm text-neutral-600 dark:text-neutral-400 mb-8">
+                        {['All Premium Features', '24/7 Support', 'SSO Integration', 'Audit Logs'].map(f => (
+                            <li key={f} className="flex gap-2 items-center">
+                                <BiCheck className="text-indigo-600 text-xl" /> {f}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <button className="w-full rounded-full bg-indigo-600 px-3.5 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Start 14-day free trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -48,10 +244,66 @@ Classic 3-column layout highlighting a popular plan.
 </div>
 
 ```tsx
-import { PricingThreeTier } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingThreeTier />;
+import { BiCheck } from "react-icons/bi";
+
+export default function PricingThreeTier() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl sm:text-center">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Pricing that grows with you</h2>
+                    <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        Check out our affordable plans to get started.
+                    </p>
+                </div>
+                <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-none lg:grid-cols-3">
+                    {[
+                        { name: 'Hobby', price: '$29', desc: 'For individuals and small projects.' },
+                        { name: 'Pro', price: '$79', desc: 'For growing teams and startups.', featured: true },
+                        { name: 'Enterprise', price: '$199', desc: 'For large scale deployments.' },
+                    ].map((tier, tierIdx) => (
+                        <div
+                            key={tierIdx}
+                            className={`
+                    flex flex-col justify-between rounded-3xl p-8 ring-1 ring-neutral-200 dark:ring-neutral-800 xl:p-10
+                    ${tier.featured ? 'bg-neutral-900 text-white shadow-xl scale-105 z-10 dark:bg-neutral-800' : 'bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white'}
+                `}
+                        >
+                            <div>
+                                <div className="flex items-center justify-between gap-x-4">
+                                    <h3 className={`text-lg font-semibold leading-8 ${tier.featured ? 'text-white' : 'text-neutral-900 dark:text-white'}`}>{tier.name}</h3>
+                                </div>
+                                <p className={`mt-4 text-sm leading-6 ${tier.featured ? 'text-neutral-300' : 'text-neutral-600 dark:text-neutral-400'}`}>{tier.desc}</p>
+                                <p className="mt-6 flex items-baseline gap-x-1">
+                                    <span className={`text-4xl font-bold tracking-tight ${tier.featured ? 'text-white' : 'text-neutral-900 dark:text-white'}`}>{tier.price}</span>
+                                    <span className={`text-sm font-semibold leading-6 ${tier.featured ? 'text-neutral-300' : 'text-neutral-600 dark:text-neutral-400'}`}>/month</span>
+                                </p>
+                                <ul role="list" className={`mt-8 space-y-3 text-sm leading-6 ${tier.featured ? 'text-neutral-300' : 'text-neutral-600 dark:text-neutral-400'}`}>
+                                    {[1, 2, 3, 4].map((f) => (
+                                        <li key={f} className="flex gap-x-3">
+                                            <BiCheck className={`h-6 w-5 flex-none ${tier.featured ? 'text-white' : 'text-indigo-600'}`} aria-hidden="true" />
+                                            Feature number {f}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <a
+                                href="#"
+                                className={`mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${tier.featured
+                                        ? 'bg-white text-neutral-900 hover:bg-neutral-100 focus-visible:outline-white'
+                                        : 'bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600'
+                                    }`}
+                            >
+                                Buy plan
+                            </a>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 ```
 
@@ -63,10 +315,43 @@ Transparent cost breakdown.
 </div>
 
 ```tsx
-import { PricingMinimal } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingMinimal />;
+const costs = [
+    { name: 'Server Cost', value: '$450.00' },
+    { name: 'Bandwidth', value: '$85.00' },
+    { name: 'Database', value: '$120.00' },
+    { name: 'Maintenance', value: '$50.00' },
+]
+
+export default function PricingMinimal() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:max-w-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Simple, transparent pricing</h2>
+                    <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+                        No hidden fees. You get exactly what you pay for. All plans include a 30-day money-back guarantee.
+                    </p>
+                    <div className="mt-16 rounded-3xl bg-neutral-50 dark:bg-neutral-900 ring-1 ring-neutral-900/10 dark:ring-white/10 sm:p-10 p-8">
+                        <h3 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Estimated Monthly Cost</h3>
+                        <dl className="mt-6 grid grid-cols-1 gap-6 border-t border-neutral-200 dark:border-neutral-800 py-6 sm:grid-cols-2">
+                            {costs.map((cost) => (
+                                <div key={cost.name} className="flex flex-col gap-1">
+                                    <dt className="text-sm font-medium text-neutral-500">{cost.name}</dt>
+                                    <dd className="text-2xl font-bold text-neutral-900 dark:text-white">{cost.value}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                        <div className="mt-6 border-t border-neutral-200 dark:border-neutral-800 pt-6 flex justify-between items-center">
+                            <span className="text-base font-semibold text-neutral-900 dark:text-white">Total</span>
+                            <span className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white">$705.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +363,63 @@ High impact pricing for premium products.
 </div>
 
 ```tsx
-import { PricingDark } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingDark />;
+import { BiCheck } from "react-icons/bi";
+
+export default function PricingDark() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-base font-semibold leading-7 text-indigo-400">Pricing</h2>
+                    <p className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                        Ready to get started?
+                    </p>
+                </div>
+                <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-white/10 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+                    <div className="p-8 sm:p-10 lg:flex-auto">
+                        <h3 className="text-2xl font-bold tracking-tight text-white">Lifetime Access</h3>
+                        <p className="mt-6 text-base leading-7 text-neutral-300">
+                            Get full access to all future updates, features, and new components. One time payment, yours forever.
+                        </p>
+                        <div className="mt-10 flex items-center gap-x-4">
+                            <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-400">What’s included</h4>
+                            <div className="h-px flex-auto bg-neutral-800" />
+                        </div>
+                        <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-neutral-300 sm:grid-cols-2 sm:gap-6">
+                            {['Private forum access', 'Member resources', 'Entry to annual conference', 'Official member t-shirt'].map((feature) => (
+                                <li key={feature} className="flex gap-x-3">
+                                    <BiCheck className="h-6 w-5 flex-none text-indigo-400" aria-hidden="true" />
+                                    {feature}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+                        <div className="rounded-2xl bg-neutral-800/50 py-10 text-center ring-1 ring-inset ring-white/10 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                            <div className="mx-auto max-w-xs px-8">
+                                <p className="text-base font-semibold text-neutral-300">Pay once, own it forever</p>
+                                <p className="mt-6 flex items-baseline justify-center gap-x-2">
+                                    <span className="text-5xl font-bold tracking-tight text-white">$349</span>
+                                    <span className="text-sm font-semibold leading-6 tracking-wide text-neutral-300">USD</span>
+                                </p>
+                                <a
+                                    href="#"
+                                    className="mt-10 block w-full rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                                >
+                                    Get access
+                                </a>
+                                <p className="mt-6 text-xs leading-5 text-neutral-400">
+                                    Invoices and receipts available for easy company reimbursement
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +431,59 @@ Detailed comparison table for feature-rich products.
 </div>
 
 ```tsx
-import { PricingTable } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingTable />;
+import { BiCheck, BiMinus } from "react-icons/bi";
+
+const features = [
+    { name: 'Integrations', basic: true, essential: true, premium: true },
+    { name: 'Analytics', basic: true, essential: true, premium: true },
+    { name: 'Support', basic: 'Email', essential: 'Email & Chat', premium: '24/7 Phone' },
+    { name: 'SLA', basic: false, essential: true, premium: true },
+    { name: 'Custom Reports', basic: false, essential: false, premium: true },
+]
+
+export default function PricingTable() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl text-center mb-16">Feature Comparison</h2>
+
+                <div className="relative overflow-x-auto rounded-xl ring-1 ring-neutral-200 dark:ring-neutral-800">
+                    <table className="w-full text-left text-sm text-neutral-600 dark:text-neutral-400">
+                        <thead className="bg-neutral-50 dark:bg-neutral-900 text-xs uppercase text-neutral-900 dark:text-white">
+                            <tr>
+                                <th scope="col" className="px-6 py-4">Feature</th>
+                                <th scope="col" className="px-6 py-4">Basic</th>
+                                <th scope="col" className="px-6 py-4">Essential</th>
+                                <th scope="col" className="px-6 py-4">Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
+                            {features.map((feature) => (
+                                <tr key={feature.name} className="bg-white dark:bg-neutral-950">
+                                    <th scope="row" className="px-6 py-4 font-medium text-neutral-900 dark:text-white whitespace-nowrap">
+                                        {feature.name}
+                                    </th>
+                                    {[feature.basic, feature.essential, feature.premium].map((val, i) => (
+                                        <td key={i} className="px-6 py-4">
+                                            {val === true ? (
+                                                <BiCheck className="w-5 h-5 text-green-600 mx-auto lg:mx-0" />
+                                            ) : val === false ? (
+                                                <BiMinus className="w-5 h-5 text-neutral-300 mx-auto lg:mx-0" />
+                                            ) : (
+                                                <span className="text-xs font-semibold px-2 py-1 rounded bg-neutral-100 dark:bg-neutral-800">{String(val)}</span>
+                                            )}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +495,51 @@ Enterprise focus vs Standard plan side-by-side.
 </div>
 
 ```tsx
-import { PricingSplit } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingSplit />;
+import { BiCheck } from "react-icons/bi";
+
+export default function PricingSplit() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div>
+                        <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+                            Ready for Enterprise scale?
+                        </h2>
+                        <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                            Get the robust security, compliance and control you need.
+                        </p>
+
+                        <ul className="mt-8 space-y-4">
+                            {['SSO & SAML', 'Audit Logs', 'Dedicated Account Manager', 'Custom SLAs'].map(f => (
+                                <li key={f} className="flex gap-3 items-center text-neutral-700 dark:text-neutral-300">
+                                    <div className="bg-indigo-100 p-1 rounded-full text-indigo-600"><BiCheck /></div>
+                                    {f}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div className="mt-10">
+                            <a href="#" className="text-base font-semibold text-indigo-600 hover:text-indigo-500">Contact Sales &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl p-8 lg:p-12 shadow-sm ring-1 ring-neutral-900/10 dark:ring-white/10">
+                        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">Pro Plan</h3>
+                        <p className="text-neutral-500 mt-2">For growing teams.</p>
+                        <div className="mt-6 flex items-baseline gap-1">
+                            <span className="text-5xl font-bold text-neutral-900 dark:text-white">$49</span>
+                            <span className="text-neutral-500">/user/mo</span>
+                        </div>
+                        <button className="w-full mt-8 bg-indigo-600 text-white rounded-lg py-3 font-semibold shadow hover:bg-indigo-500 transition-colors">Start Free Trial</button>
+                        <p className="text-xs text-center text-neutral-500 mt-4">No credit card required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +551,37 @@ Pay-as-you-go visualizer.
 </div>
 
 ```tsx
-import { PricingUsage } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingUsage />;
+export default function PricingUsage() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center mb-16">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">Pay as you go</h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                        No commitments. Only pay for the resources you consume.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {[
+                        { name: "Serverless Functions", unit: "$0.60", per: "per million executions" },
+                        { name: "Edge Middleware", unit: "$0.40", per: "per million invocations" },
+                        { name: "Bandwidth", unit: "$0.10", per: "per GB downloaded" },
+                    ].map((item) => (
+                        <div key={item.name} className="bg-neutral-50 dark:bg-neutral-900 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 text-center">
+                            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">{item.name}</h3>
+                            <div className="mt-4 flex items-baseline justify-center gap-1">
+                                <span className="text-4xl font-bold text-indigo-600">{item.unit}</span>
+                            </div>
+                            <p className="text-neutral-500 mt-1">{item.per}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +593,41 @@ Pricing section incorporating common questions to reduce friction.
 </div>
 
 ```tsx
-import { PricingFAQ } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingFAQ />;
+import { BiPlus } from "react-icons/bi";
+
+export default function PricingFAQ() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-4xl divide-y divide-neutral-900/10 dark:divide-white/10">
+                    <h2 className="text-2xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-white">Frequently asked questions</h2>
+                    <dl className="mt-10 space-y-6 divide-y divide-neutral-900/10 dark:divide-white/10">
+                        {[
+                            { q: "What's the best plan for me?", a: "Depends on your team size. Start small and upgrade as you grow." },
+                            { q: "Can I cancel anytime?", a: "Yes, you can cancel your subscription at any time without penalties." },
+                            { q: "Do you offer discounts for non-profits?", a: "We sure do! Contact our sales team with proof of your non-profit status." },
+                        ].map((faq) => (
+                            <div key={faq.q} className="pt-6">
+                                <dt>
+                                    <button className="flex w-full items-start justify-between text-left text-neutral-900 dark:text-white">
+                                        <span className="text-base font-semibold leading-7">{faq.q}</span>
+                                        <span className="ml-6 flex h-7 items-center">
+                                            <BiPlus className="h-6 w-6" aria-hidden="true" />
+                                        </span>
+                                    </button>
+                                </dt>
+                                <dd className="mt-2 pr-12">
+                                    <p className="text-base leading-7 text-neutral-600 dark:text-neutral-400">{faq.a}</p>
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +639,41 @@ Promotional pricing offering a discount.
 </div>
 
 ```tsx
-import { PricingHighlight } from '@/components/ui-component/pricing-calculator';
+"use client";
 
-export default function Example() {
-  return <PricingHighlight />;
+import { BiCheck } from "react-icons/bi";
+
+export default function PricingHighlight() {
+    return (
+        <div className="bg-indigo-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+                <div className="mx-auto max-w-2xl text-center text-white mb-16">
+                    <h2 className="text-3xl font-bold sm:text-4xl">Summer Sale</h2>
+                    <p className="mt-4 text-indigo-200">Get 50% off our Pro plan for the first year.</p>
+                </div>
+
+                <div className="mx-auto max-w-lg bg-white rounded-3xl p-10 shadow-2xl relative">
+                    <div className="absolute top-0 right-0 -mr-4 -mt-4 bg-yellow-400 text-yellow-900 font-bold px-4 py-2 rounded-lg transform rotate-6 shadow-md">
+                        SAVE 50%
+                    </div>
+                    <h3 className="text-2xl font-bold text-neutral-900">Pro Bundle</h3>
+                    <div className="mt-4 flex items-baseline gap-2">
+                        <span className="text-5xl font-bold text-neutral-900">$29</span>
+                        <span className="text-lg text-neutral-500 line-through">$59</span>
+                        <span className="text-neutral-500">/mo</span>
+                    </div>
+                    <p className="mt-6 text-neutral-600">Everything you need to launch and scale your project features.</p>
+                    <ul className="mt-6 space-y-3">
+                        {['Unlimited projects', 'Analytics dashboard', 'Priority support'].map(f => (
+                            <li key={f} className="flex gap-3 text-neutral-700">
+                                <BiCheck className="text-green-600 text-xl" /> {f}
+                            </li>
+                        ))}
+                    </ul>
+                    <button className="w-full mt-8 bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700">Claim Offer</button>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```

@@ -19,6 +19,7 @@ const TEMPLATE_IMAGES: Record<string, string> = {
     'hero-collection': 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
     'sidebar-collection': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     'announcement-collection': 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=800&q=80',
+    'authentication': 'https://images.unsplash.com/photo-1614064641938-3bcee529cfae?auto=format&fit=crop&w=800&q=80',
 };
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80';

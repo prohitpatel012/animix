@@ -18,10 +18,31 @@ Clean, large numbers.
 </div>
 
 ```tsx
-import { StatsSimple } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsSimple />;
+const stats = [
+    { id: 1, name: 'Transactions every 24 hours', value: '44 million' },
+    { id: 2, name: 'Assets under holding', value: '$119 trillion' },
+    { id: 3, name: 'New users annually', value: '46,000' },
+]
+
+export default function StatsSimple() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+                    {stats.map((stat) => (
+                        <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
+                            <dt className="text-base leading-7 text-neutral-600 dark:text-neutral-400">{stat.name}</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+                                {stat.value}
+                            </dd>
+                        </div>
+                    ))}
+                </dl>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +54,38 @@ Stats on a dark background for contrast.
 </div>
 
 ```tsx
-import { StatsDark } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsDark />;
+const stats = [
+    { id: 1, name: 'Active Users', value: '8.9K' },
+    { id: 2, name: 'Success Rate', value: '99.9%' },
+    { id: 3, name: 'Response Time', value: '< 20ms' },
+    { id: 4, name: 'Global Servers', value: '150+' },
+]
+
+export default function StatsDark() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl lg:max-w-none">
+                    <div className="text-center">
+                        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Trusted by developers worldwide</h2>
+                        <p className="mt-4 text-lg leading-8 text-neutral-300">
+                            Our platform handles millions of requests every day with zero downtime.
+                        </p>
+                    </div>
+                    <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+                        {stats.map((stat) => (
+                            <div key={stat.id} className="flex flex-col bg-white/5 p-8">
+                                <dt className="text-sm font-semibold leading-6 text-neutral-300">{stat.name}</dt>
+                                <dd className="order-first text-3xl font-semibold tracking-tight text-white">{stat.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +97,35 @@ Detailed stats in a grid of cards.
 </div>
 
 ```tsx
-import { StatsCards } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsCards />;
+import { BiTrendingUp, BiUser, BiGlobe } from "react-icons/bi";
+
+const stats = [
+    { name: 'Revenue Growth', value: '+24%', icon: BiTrendingUp, desc: 'Year over year growth since 2023' },
+    { name: 'Active Regions', value: '12', icon: BiGlobe, desc: 'Countries with local offices' },
+    { name: 'Team Size', value: '500+', icon: BiUser, desc: 'Dedicated professionals worldwide' },
+]
+
+export default function StatsCards() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {stats.map((stat) => (
+                        <div key={stat.name} className="bg-white dark:bg-neutral-950 px-6 py-10 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-800 transition-all hover:shadow-md">
+                            <div className="bg-indigo-100 dark:bg-indigo-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-6 text-indigo-600 dark:text-indigo-400">
+                                <stat.icon className="w-6 h-6" />
+                            </div>
+                            <dt className="text-sm font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">{stat.name}</dt>
+                            <dd className="mt-2 text-4xl font-bold text-neutral-900 dark:text-white">{stat.value}</dd>
+                            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400">{stat.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -63,10 +137,43 @@ Contextual stats alongside visuals.
 </div>
 
 ```tsx
-import { StatsSplit } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsSplit />;
+const stats = [
+    { label: 'Founded', value: '2021' },
+    { label: 'Employees', value: '500+' },
+    { label: 'Beta Users', value: '5200+' },
+    { label: 'Raised', value: '$25M' },
+]
+
+export default function StatsSplit() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10 items-center">
+                <div>
+                    <img
+                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2850&q=80"
+                        alt="Team working"
+                        className="rounded-2xl shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10"
+                    />
+                </div>
+                <div>
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">On a mission to empower creators</h2>
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                        We're building the financial infrastructure for the internet. From payments to payroll, we handle it all.
+                    </p>
+                    <dl className="mt-10 grid grid-cols-2 gap-8 border-t border-neutral-200 dark:border-neutral-800 pt-10">
+                        {stats.map((stat) => (
+                            <div key={stat.label}>
+                                <dt className="text-sm font-semibold leading-6 text-neutral-600 dark:text-neutral-400">{stat.label}</dt>
+                                <dd className="mt-2 text-3xl font-bold leading-10 tracking-tight text-neutral-900 dark:text-white">{stat.value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +185,36 @@ Compact, data-dense layout.
 </div>
 
 ```tsx
-import { StatsGrid } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsGrid />;
+import { BiServer, BiShield, BiGlobe, BiChip } from "react-icons/bi";
+
+export default function StatsGrid() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 className="text-3xl font-bold text-center text-neutral-900 dark:text-white mb-16">Platform Metrics</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                        { label: 'Uptime', val: '99.99%', icon: BiServer },
+                        { label: 'Threats Blocked', val: '1.2M', icon: BiShield },
+                        { label: 'Requests/sec', val: '50k+', icon: BiChip },
+                        { label: 'Countries', val: '120+', icon: BiGlobe },
+                    ].map((stat, i) => (
+                        <div key={i} className="bg-white dark:bg-neutral-950 p-6 rounded-xl shadow-sm flex items-center gap-4">
+                            <div className="p-3 bg-indigo-50 dark:bg-neutral-800 rounded-lg text-indigo-600">
+                                <stat.icon className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stat.val}</p>
+                                <p className="text-xs text-neutral-500 uppercase font-semibold tracking-wider">{stat.label}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +226,35 @@ Showing progression over time.
 </div>
 
 ```tsx
-import { StatsTimeline } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsTimeline />;
+const history = [
+    { year: '2021', val: '$1M', label: 'Seed Round' },
+    { year: '2022', val: '10k', label: 'Users Reached' },
+    { year: '2023', val: '$12M', label: 'Series A' },
+    { year: '2024', val: '1M+', label: 'Active Users' },
+]
+
+export default function StatsTimeline() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-16">Our Journey</h2>
+                <div className="relative">
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-neutral-100 dark:bg-neutral-800 -z-10 hidden md:block" />
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        {history.map((item, i) => (
+                            <div key={i} className="bg-white dark:bg-neutral-950 p-6 relative">
+                                <span className="text-sm font-bold text-indigo-600 mb-2 block">{item.year}</span>
+                                <div className="text-4xl font-black text-neutral-900 dark:text-white mb-2">{item.val}</div>
+                                <div className="text-neutral-500">{item.label}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +266,37 @@ Head-to-head metrics against competitors.
 </div>
 
 ```tsx
-import { StatsComparison } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsComparison />;
+export default function StatsComparison() {
+    return (
+        <div className="bg-neutral-900 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-white">Why developers switch to us</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div className="bg-neutral-800/50 p-8 rounded-2xl border border-neutral-700 opacity-50 blur-[1px] hover:blur-0 transition-all">
+                        <h3 className="text-xl font-semibold text-neutral-400 mb-6">Competitor X</h3>
+                        <dl className="space-y-4 text-neutral-500">
+                            <div className="flex justify-between"><span>Deployment</span><span>5 mins</span></div>
+                            <div className="flex justify-between"><span>Latency</span><span>120ms</span></div>
+                            <div className="flex justify-between"><span>Support</span><span>Email Only</span></div>
+                        </dl>
+                    </div>
+                    <div className="bg-gradient-to-br from-indigo-900 to-indigo-800 p-8 rounded-2xl shadow-2xl ring-1 ring-indigo-500 relative transform md:scale-105">
+                        <span className="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">WINNER</span>
+                        <h3 className="text-xl font-bold text-white mb-6">Our Platform</h3>
+                        <dl className="space-y-4 text-indigo-100 font-medium">
+                            <div className="flex justify-between border-b border-indigo-500/30 pb-2"><span>Deployment</span><span className="text-white font-bold">Instantly</span></div>
+                            <div className="flex justify-between border-b border-indigo-500/30 pb-2"><span>Latency</span><span className="text-white font-bold">&lt; 20ms</span></div>
+                            <div className="flex justify-between border-b border-indigo-500/30 pb-2"><span>Support</span><span className="text-white font-bold">24/7 Live</span></div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +308,22 @@ Focus on one massive, impressive number.
 </div>
 
 ```tsx
-import { StatsAnimated } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsAnimated />;
+export default function StatsAnimated() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <p className="text-indigo-600 font-bold tracking-widest uppercase mb-4">Live Impact</p>
+                <h2 className="text-5xl md:text-7xl font-black text-neutral-900 dark:text-white tracking-tighter mb-8">
+                    1,204,500+
+                </h2>
+                <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                    Lines of code secured by our engine in the last 24 hours alone.
+                </p>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +335,30 @@ Stats overlaying a technical background.
 </div>
 
 ```tsx
-import { StatsBackground } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsBackground />;
+export default function StatsBackground() {
+    return (
+        <div className="relative isolat overflow-hidden bg-neutral-900 py-24 sm:py-32">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2600" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20 filter grayscale" alt="" />
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-12">global_metrics.json</h2>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    {[
+                        { k: "nodes", v: "5,000" },
+                        { k: "throughput", v: "2TB/s" },
+                        { k: "coverage", v: "100%" },
+                        { k: "latency", v: "15ms" },
+                    ].map((stat) => (
+                        <div key={stat.k} className="border border-white/10 bg-black/40 backdrop-blur-sm p-6 rounded-lg">
+                            <div className="text-neutral-400 font-mono text-sm mb-2">{stat.k}</div>
+                            <div className="text-white font-mono text-3xl font-bold text-green-400">{stat.v}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +370,34 @@ Stats emphasized in a side-by-side layout.
 </div>
 
 ```tsx
-import { StatsVertical } from '@/components/ui-component/stats';
+"use client";
 
-export default function Example() {
-  return <StatsVertical />;
+const metrics = [
+    { label: "Customer Satisfaction", value: "98%" },
+    { label: "Client Retention", value: "95%" },
+    { label: "Support Tickets Resolved", value: "12k" },
+]
+
+export default function StatsVertical() {
+    return (
+        <div className="bg-indigo-600 py-24 sm:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 className="text-3xl font-bold text-white sm:text-4xl mb-6">Results that speak louder than words</h2>
+                    <p className="text-indigo-100 text-lg">
+                        We don't just promise results, we deliver them reliably week after week for thousands of customers.
+                    </p>
+                </div>
+                <div className="flex flex-col gap-6">
+                    {metrics.map((m) => (
+                        <div key={m.label} className="bg-white/10 backdrop-blur-md rounded-xl p-6 flex justify-between items-center border border-white/10">
+                            <span className="text-indigo-100 font-medium">{m.label}</span>
+                            <span className="text-4xl font-bold text-white">{m.value}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )
 }
 ```

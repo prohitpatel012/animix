@@ -33,6 +33,8 @@ import * as Testimonials from '@/components/ui-component/testimonials'
 import * as About from '@/components/ui-component/about'
 import * as Contact from '@/components/ui-component/contact'
 
+import * as AuthenticationComponents from '@/components/ui-component/authentication'
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const template = getTemplate(slug)
@@ -107,6 +109,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           ...BreadcrumbComponents,
           ...FooterComponents,
           ...ColorComponents,
+          ...AuthenticationComponents,
           ...Contact
         }} />
       </div>

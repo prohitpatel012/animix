@@ -18,10 +18,24 @@ Standard 16:9 responsive video wrapper.
 </div>
 
 ```tsx
-import { VideoSimple } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoSimple />;
+export default function VideoSimple() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl shadow-xl ring-1 ring-neutral-900/10 dark:ring-white/10">
+                    <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=Co_X7D7Vd8X3xX3x"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -33,10 +47,31 @@ Immersive hero section with looped video background.
 </div>
 
 ```tsx
-import { VideoBackground } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoBackground />;
+import { BiPlay } from "react-icons/bi";
+
+export default function VideoBackground() {
+    return (
+        <div className="relative isolate overflow-hidden bg-neutral-900 py-24 sm:py-32">
+            <div className="absolute inset-0 -z-10 h-full w-full object-cover">
+                <video autoPlay loop muted playsInline className="h-full w-full object-cover opacity-30">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Immersive Experiences</h2>
+                <p className="mt-6 text-lg leading-8 text-neutral-300">
+                    Background videos add depth and atmosphere to your hero sections.
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                    <div className="flex items-center gap-2 text-white border border-white/30 bg-white/10 px-4 py-2 rounded-full cursor-pointer hover:bg-white/20 transition-colors">
+                        <BiPlay className="w-5 h-5" /> Watch full reel
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -48,10 +83,48 @@ Clean thumbnail that opens a video overlay.
 </div>
 
 ```tsx
-import { VideoModal } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoModal />;
+import { useState } from "react";
+import { BiPlayCircle, BiX } from "react-icons/bi";
+
+export default function VideoModal() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-neutral-900 group cursor-pointer" onClick={() => setIsOpen(true)}>
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover opacity-60 transition-opacity group-hover:opacity-40" alt="" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <BiPlayCircle className="w-20 h-20 text-white opacity-80 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div className="absolute bottom-6 left-6 text-white font-bold text-xl">
+                        Watch our journey
+                    </div>
+                </div>
+            </div>
+
+            {isOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4">
+                    <div className="relative w-full max-w-5xl aspect-video bg-black rounded-lg shadow-2xl">
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="absolute -top-12 right-0 text-white hover:text-neutral-300"
+                        >
+                            <BiX className="w-10 h-10" />
+                        </button>
+                        <iframe
+                            className="w-full h-full rounded-lg"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            )}
+        </div>
+    )
 }
 ```
 
@@ -63,10 +136,40 @@ Video element floating alongside feature text.
 </div>
 
 ```tsx
-import { VideoFloating } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoFloating />;
+export default function VideoFloating() {
+    return (
+        <div className="bg-neutral-50 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-6">
+                        See it in action
+                    </h2>
+                    <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
+                        Our platform is intuitive and powerful. Watch this quick demo to learn the basics in under 2 minutes.
+                    </p>
+                    <ul className="space-y-3 text-neutral-600 dark:text-neutral-400 list-disc ml-5">
+                        <li>3D rendering engine</li>
+                        <li>Real-time collaboration</li>
+                        <li>Cloud storage included</li>
+                    </ul>
+                </div>
+                <div className="relative">
+                    <div className="absolute -inset-4 bg-indigo-500 rounded-2xl blur-lg opacity-30"></div>
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-neutral-900/10 border border-white/20">
+                        <div className="aspect-[4/3] bg-neutral-800 flex items-center justify-center">
+                            {/* Placeholder for floating video */}
+                            <div className="text-white flex flex-col items-center">
+                                <span className="text-6xl mb-2">▶</span>
+                                <span className="font-medium">Play Demo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -78,10 +181,47 @@ Course style player with chapter list side-by-side.
 </div>
 
 ```tsx
-import { VideoPlaylist } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoPlaylist />;
+const playlist = [
+    { title: "Getting Started", duration: "02:30", active: true },
+    { title: "Advanced Features", duration: "05:15", active: false },
+    { title: "Team Management", duration: "03:45", active: false },
+    { title: "API Integration", duration: "08:20", active: false },
+]
+
+export default function VideoPlaylist() {
+    return (
+        <div className="bg-white dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-2">
+                        <div className="aspect-video bg-neutral-900 w-full rounded-xl shadow-lg overflow-hidden flex items-center justify-center text-white">
+                            Main Player Area
+                        </div>
+                        <div className="mt-4">
+                            <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Getting Started</h3>
+                            <p className="text-neutral-600 dark:text-neutral-400 mt-2">Brief introduction to the core concepts.</p>
+                        </div>
+                    </div>
+                    <div className="bg-neutral-50 dark:bg-neutral-800 rounded-xl p-6 h-fit">
+                        <h4 className="font-bold text-neutral-900 dark:text-white mb-4">Course Content</h4>
+                        <div className="space-y-2">
+                            {playlist.map((item, idx) => (
+                                <div key={idx} className={`flex justify-between items-center p-3 rounded-lg cursor-pointer ${item.active ? 'bg-indigo-600 text-white' : 'hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-300'}`}>
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-sm opacity-70">{idx + 1}</span>
+                                        <span className="font-medium text-sm">{item.title}</span>
+                                    </div>
+                                    <span className="text-xs opacity-70">{item.duration}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -93,10 +233,45 @@ export default function Example() {
 </div>
 
 ```tsx
-import { VideoSplit } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoSplit />;
+import { BiCheck } from "react-icons/bi";
+
+export default function VideoSplit() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+                <div className="order-2 lg:order-1 relative aspect-square lg:aspect-video rounded-xl overflow-hidden shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover" alt="Video thumbnail" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group hover:bg-black/30 transition-colors cursor-pointer">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center pl-1 shadow-lg text-indigo-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                                <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                    <h2 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-6">
+                        Watch how we build
+                    </h2>
+                    <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
+                        Transparency is key. We recorded our entire process from start to finish so you can see exactly how much care goes into every pixel.
+                    </p>
+                    <div className="space-y-4">
+                        {['Planning & Research', 'Design System', 'Development', 'QA Testing'].map((item) => (
+                            <div key={item} className="flex items-center gap-3">
+                                <div className="flex-none rounded-full bg-indigo-100 p-1 text-indigo-600">
+                                    <BiCheck className="h-5 w-5" />
+                                </div>
+                                <span className="text-neutral-700 dark:text-neutral-300 font-medium">{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -108,10 +283,36 @@ Large cinematic video player centered in a hero area.
 </div>
 
 ```tsx
-import { VideoHero } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoHero />;
+export default function VideoHero() {
+    return (
+        <div className="relative bg-neutral-900 pb-16 pt-32 sm:pb-24 sm:pt-48 lg:pb-32 xl:pb-36">
+            <div className="absolute inset-0">
+                <img className="h-full w-full object-cover" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=2812&q=80" alt="" />
+                <div className="absolute inset-0 bg-neutral-900/80 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/40" />
+            </div>
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
+                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Visual Storytelling</h1>
+                <p className="mt-6 text-lg leading-8 text-neutral-300 max-w-2xl mx-auto">
+                    Capture your audience's attention instantly with a high-impact video introduction.
+                </p>
+                <div className="mt-10">
+                    <div className="relative rounded-xl overflow-hidden aspect-video max-w-4xl mx-auto shadow-2xl ring-1 ring-white/20 group">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-all cursor-pointer">
+                            <div className="h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center transition-transform group-hover:scale-110">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10 text-white">
+                                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2600" className="w-full h-full object-cover" alt="Video placeholder" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -123,10 +324,26 @@ Circular video for personal introductions or testimonials.
 </div>
 
 ```tsx
-import { VideoRounded } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoRounded />;
+export default function VideoRounded() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col items-center">
+                <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-indigo-500 ring-offset-4 ring-offset-white dark:ring-offset-neutral-950">
+                    <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div className="mt-8 text-center max-w-lg">
+                    <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Meet Your Instructor</h3>
+                    <p className="mt-4 text-neutral-600 dark:text-neutral-400">
+                        "I've been teaching design for over 10 years. In this video course, I condense everything I've learned into 5 hours of high-impact content."
+                    </p>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -138,10 +355,37 @@ Video presented inside a stylized laptop or screen.
 </div>
 
 ```tsx
-import { VideoDevice } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoDevice />;
+export default function VideoDevice() {
+    return (
+        <div className="bg-neutral-100 dark:bg-neutral-900 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="flex justify-center">
+                    {/* Simple Macbook CSS Frame */}
+                    <div className="relative mx-auto bg-neutral-900 rounded-xl shadow-[0_0_0_12px_#333] border-[12px] border-[#333] w-[800px] max-w-full">
+                        <div className="rounded-lg overflow-hidden bg-white aspect-video relative">
+                            {/* Video Content */}
+                            <div className="absolute inset-0 flex items-center justify-center bg-indigo-600 text-white font-bold">
+                                App Demo Video Placeholder
+                            </div>
+                        </div>
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -mt-[12px] w-32 h-4 bg-[#333] rounded-b-xl flex justify-center items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-neutral-700 rounded-full"></div>
+                            <div className="w-1.5 h-1.5 bg-blue-900 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full max-w-[850px] mx-auto h-4 bg-[#333] rounded-b-xl shadow-xl mt-[12px] relative">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-2 bg-[#444] rounded-b-lg"></div>
+                </div>
+
+                <p className="text-center mt-12 text-sm font-medium text-neutral-500 uppercase tracking-widest">
+                    Optimized for desktop workflow
+                </p>
+            </div>
+        </div>
+    )
 }
 ```
 
@@ -153,9 +397,45 @@ Player with timeline markers for key moments.
 </div>
 
 ```tsx
-import { VideoChapters } from '@/components/ui-component/video';
+"use client";
 
-export default function Example() {
-  return <VideoChapters />;
+import { useState } from "react";
+
+const chapters = [
+    { time: "00:00", label: "Intro", active: true },
+    { time: "01:15", label: "Installation", active: false },
+    { time: "03:45", label: "Configuration", active: false },
+    { time: "06:20", label: "Deploying", active: false },
+]
+
+export default function VideoChapters() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 py-12">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row">
+                    <div className="flex-1 bg-black aspect-video md:aspect-auto min-h-[300px] flex items-center justify-center text-white relative">
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-neutral-700">
+                            <div className="h-full bg-red-600 w-1/3"></div>
+                        </div>
+                        <span className="text-2xl font-bold opacity-50">Video Player</span>
+                    </div>
+                    <div className="w-full md:w-80 bg-neutral-50 dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-800 p-6">
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-6">Chapters</h3>
+                        <div className="relative border-l-2 border-neutral-200 dark:border-neutral-700 ml-3 space-y-8">
+                            {chapters.map((chapter, i) => (
+                                <div key={i} className="relative pl-6">
+                                    <div className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 ${chapter.active ? 'bg-indigo-600 border-indigo-600' : 'bg-white border-neutral-300 dark:bg-neutral-800 dark:border-neutral-600'}`}></div>
+                                    <div className={`text-sm font-mono mb-1 ${chapter.active ? 'text-indigo-600' : 'text-neutral-500'}`}>{chapter.time}</div>
+                                    <div className={`font-medium cursor-pointer hover:text-indigo-600 ${chapter.active ? 'text-neutral-900 dark:text-white' : 'text-neutral-600 dark:text-neutral-400'}`}>
+                                        {chapter.label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 ```
