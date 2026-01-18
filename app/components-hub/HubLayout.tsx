@@ -48,7 +48,6 @@ export default function HubLayout({ category, components }: Props) {
 
                         <MainComponentArea
                             components={components}
-                            onSelect={() => { }}
                         />
                     </div>
                 </main>

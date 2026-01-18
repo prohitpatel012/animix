@@ -1,13 +1,13 @@
+'use client';
+
 import ComponentCard from "./ComponentCard";
 
 
 
 export default function MainComponentArea({
     components,
-    onSelect,
 }: {
     components: any[];
-    onSelect: (id: string) => void;
 }) {
     return (
         <div className="space-y-4">
@@ -18,7 +18,7 @@ export default function MainComponentArea({
                     preview={comp.preview}
                     code={comp.code}
                     docs={comp.docs}
-                    onClick={() => onSelect(comp.id)}
+                    onClick={() => { }}
                 />
             ))}
         </div>
