@@ -45,6 +45,13 @@ export function Sidebar({ categories }: { categories: string[] }) {
             ]
         },
         {
+            name: "Dashboard",
+            subItems: [
+                "SaaS Dashboard",
+                "Dashboard Sections"
+            ]
+        },
+        {
             name: "User Profile",
             subItems: [
                 "User Dashboard",

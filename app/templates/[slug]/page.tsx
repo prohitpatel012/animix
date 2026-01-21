@@ -34,6 +34,7 @@ import * as About from '@/components/ui-component/about'
 import * as Contact from '@/components/ui-component/contact'
 
 import * as AuthenticationComponents from '@/components/ui-component/authentication'
+import * as DashboardSections from '@/components/ui-component/dashboard-sections'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -110,6 +111,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           ...FooterComponents,
           ...ColorComponents,
           ...AuthenticationComponents,
+          ...DashboardSections,
           ...Contact
         }} />
       </div>

@@ -6,6 +6,7 @@ import TemplateGallery from '@/components/templates/TemplateGallery'
 import { authenticationCategories } from '@/ShowOnUi/authenticationComponents'
 import { navigationCategories } from '@/ShowOnUi/navigationComponents'
 import { tabsComponents } from '@/ShowOnUi/tabsComponents'
+import { userProfileCategories } from '@/ShowOnUi/userProfileComponents'
 
 import SubcategoryGrid from '@/components/SubcategoryGrid'
 import MainComponentArea from '@/components/MainComponentArea'
@@ -104,6 +105,34 @@ export default async function TemplatesPage({
         description: data.description,
         count: data.components.length
       }));
+
+
+    }
+
+  } else if (category === 'User Profile') {
+    isComponentCollection = true;
+    collectionTitle = 'User Profile & Settings';
+    collectionDescription = 'Comprehensive components for user profiles, dashboards, and account management.';
+
+    const profileData = userProfileCategories['User Profile'];
+
+    if (profileData) {
+      if (subcategory) {
+        // Since User Profile components are a flat list, we treat each component as a subcategory
+        const matchedComponent = profileData.components.find(c => c.name === subcategory);
+        if (matchedComponent) {
+          componentList = [matchedComponent];
+          isSubcategoryView = true;
+          collectionTitle = matchedComponent.name;
+        }
+      } else {
+        subcategoriesList = profileData.components.map(comp => ({
+          slug: comp.name,
+          title: comp.name,
+          description: '',
+          count: 1
+        }));
+      }
     }
 
   } else if (category === 'Tabs') {

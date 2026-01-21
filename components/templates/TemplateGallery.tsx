@@ -20,6 +20,7 @@ const TEMPLATE_IMAGES: Record<string, string> = {
     'sidebar-collection': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     'announcement-collection': 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=800&q=80',
     'authentication': 'https://images.unsplash.com/photo-1614064641938-3bcee529cfae?auto=format&fit=crop&w=800&q=80',
+    'dashboard-sections': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
 };
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80';
@@ -100,7 +101,7 @@ export default function TemplateGallery({ templates }: { templates: Template[] }
                                         alt={template.title}
                                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                         <span className="text-white text-sm font-medium flex items-center gap-1">
                                             View details <BiRightArrowAlt />
                                         </span>
@@ -108,7 +109,7 @@ export default function TemplateGallery({ templates }: { templates: Template[] }
                                 </div>
 
                                 {/* Content Area */}
-                                <div className="flex flex-col flex-grow p-6">
+                                <div className="flex flex-col grow p-6">
                                     <div className="flex justify-between items-start mb-4">
                                         <span className="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-900/30 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300 tracking-wide uppercase">
                                             {template.category}
@@ -119,7 +120,7 @@ export default function TemplateGallery({ templates }: { templates: Template[] }
                                         {template.title}
                                     </h3>
 
-                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-4 flex-grow">
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-3 mb-4 grow">
                                         {template.description}
                                     </p>
 
