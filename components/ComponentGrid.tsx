@@ -17,7 +17,7 @@ export default function ComponentGrid({
                     name={comp.name}
                     code={comp.code}
                     preview={comp.preview}
-                    onClick={() => onSelect(comp.id)}
+
 
                 />
             ))}

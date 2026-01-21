@@ -32,8 +32,8 @@ function Header() {
         <>
             <motion.header
                 className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
-                        ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800'
-                        : 'bg-white dark:bg-black border-b border-transparent'
+                    ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800'
+                    : 'bg-white dark:bg-black border-b border-transparent'
                     }`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -60,8 +60,8 @@ function Header() {
                                     href={option.href}
                                     onClick={() => setActiveOption(option.name)}
                                     className={`text-sm font-medium transition-colors hover:text-black dark:hover:text-white ${activeOption === option.name
-                                            ? 'text-black dark:text-white'
-                                            : 'text-neutral-500'
+                                        ? 'text-black dark:text-white'
+                                        : 'text-neutral-500'
                                         }`}
                                 >
                                     {option.name}

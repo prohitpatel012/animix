@@ -1,5 +1,3 @@
-'use client';
-
 import ComponentCard from "./ComponentCard";
 
 
@@ -18,7 +16,7 @@ export default function MainComponentArea({
                     preview={comp.preview}
                     code={comp.code}
                     docs={comp.docs}
-                    onClick={() => { }}
+
                 />
             ))}
         </div>

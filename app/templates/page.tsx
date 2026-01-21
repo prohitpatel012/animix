@@ -1,8 +1,12 @@
+
+
+
 import { getAllTemplates } from '@/lib/templates'
 import TemplateGallery from '@/components/templates/TemplateGallery'
 import { authenticationCategories } from '@/ShowOnUi/authenticationComponents'
 import { navigationCategories } from '@/ShowOnUi/navigationComponents'
 import { tabsComponents } from '@/ShowOnUi/tabsComponents'
+
 import SubcategoryGrid from '@/components/SubcategoryGrid'
 import MainComponentArea from '@/components/MainComponentArea'
 import { getComponentDoc } from '@/lib/component-docs'
@@ -101,6 +105,7 @@ export default async function TemplatesPage({
         count: data.components.length
       }));
     }
+
   } else if (category === 'Tabs') {
     isComponentCollection = true;
     isSubcategoryView = true;

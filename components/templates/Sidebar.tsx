@@ -44,6 +44,30 @@ export function Sidebar({ categories }: { categories: string[] }) {
                 "Nav Menus"
             ]
         },
+        {
+            name: "User Profile",
+            subItems: [
+                "User Dashboard",
+                "Profile",
+                "Edit Profile",
+                "Avatar Upload",
+                "Account Settings",
+                "Security Settings",
+                "Notification Settings",
+                "Privacy Settings",
+                "Connected Accounts",
+                "Session Management",
+                "Activity Log",
+                "Delete Account",
+                "Deactivate Account",
+                "Subscription",
+                "Billing",
+                "Invoices",
+                "Payment Methods",
+                "Usage / Quota",
+                "Upgrade Plan"
+            ]
+        },
         { name: "Tabs" }
     ];
 

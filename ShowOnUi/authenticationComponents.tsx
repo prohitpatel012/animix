@@ -4,6 +4,15 @@ import LoginSimple from "@/components/ui-component/authentication/LoginSimple";
 import LoginModern from "@/components/ui-component/authentication/LoginModern";
 import LoginSplit from "@/components/ui-component/authentication/LoginSplit";
 import LoginSocial from "@/components/ui-component/authentication/LoginSocial";
+import {
+    LoginSimpleCode,
+    LoginModernCode,
+    LoginSplitCode,
+    LoginSocialCode,
+    SignupSimpleCode,
+    SignupSplitCode,
+    SignupImageCode
+} from './authenticationCode';
 
 import SignupSimple from "@/components/ui-component/authentication/SignupSimple";
 import SignupSplit from "@/components/ui-component/authentication/SignupSplit";
@@ -30,16 +39,16 @@ import TwoFactorCard from "@/components/ui-component/authentication/TwoFactorCar
 const PLACEHOLDER_CODE = "// Code coming soon";
 
 export const loginComponents = [
-    { id: 'login-simple', name: 'Login Simple', preview: <LoginSimple />, code: PLACEHOLDER_CODE },
-    { id: 'login-modern', name: 'Login Modern', preview: <LoginModern />, code: PLACEHOLDER_CODE },
-    { id: 'login-split', name: 'Login Split', preview: <LoginSplit />, code: PLACEHOLDER_CODE },
-    { id: 'login-social', name: 'Login Social', preview: <LoginSocial />, code: PLACEHOLDER_CODE },
+    { id: 'login-simple', name: 'Login Simple', preview: <LoginSimple />, code: LoginSimpleCode },
+    { id: 'login-modern', name: 'Login Modern', preview: <LoginModern />, code: LoginModernCode },
+    { id: 'login-split', name: 'Login Split', preview: <LoginSplit />, code: LoginSplitCode },
+    { id: 'login-social', name: 'Login Social', preview: <LoginSocial />, code: LoginSocialCode },
 ];
 
 export const signupComponents = [
-    { id: 'signup-simple', name: 'Signup Simple', preview: <SignupSimple />, code: PLACEHOLDER_CODE },
-    { id: 'signup-split', name: 'Signup Split', preview: <SignupSplit />, code: PLACEHOLDER_CODE },
-    { id: 'signup-image', name: 'Signup Image', preview: <SignupImage />, code: PLACEHOLDER_CODE },
+    { id: 'signup-simple', name: 'Signup Simple', preview: <SignupSimple />, code: SignupSimpleCode },
+    { id: 'signup-split', name: 'Signup Split', preview: <SignupSplit />, code: SignupSplitCode },
+    { id: 'signup-image', name: 'Signup Image', preview: <SignupImage />, code: SignupImageCode },
 ];
 
 export const logoutComponents = [
