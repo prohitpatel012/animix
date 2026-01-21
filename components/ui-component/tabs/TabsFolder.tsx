@@ -22,7 +22,7 @@ export default function TabsFolder() {
                             className={`
                              px-6 py-2 rounded-t-lg text-sm font-semibold transition-transform
                              ${current === i
-                                    ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white border-t border-l border-r border-neutral-200 dark:border-neutral-700 translate-y-[1px] z-10'
+                                    ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white border-t border-l border-r border-neutral-200 dark:border-neutral-700 translate-y-px z-10'
                                     : 'bg-neutral-200 dark:bg-neutral-900 text-neutral-500 hover:bg-neutral-300 dark:hover:bg-neutral-700'
                                 }
                          `}

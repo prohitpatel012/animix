@@ -1,0 +1,808 @@
+export const sidebarSimpleCode = `"use client";
+
+import { useState } from "react";
+import { BiHome, BiUser, BiCog, BiLogOut, BiMenu, BiX } from "react-icons/bi";
+import { motion, AnimatePresence } from "motion/react";
+
+export default function SidebarSimple() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+            {/* Mobile Toggle */}
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white border border-neutral-200 rounded-md shadow-sm dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Desktop Sidebar (Static) */}
+            <aside className="hidden md:block w-64 bg-neutral-50 border-r border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 shrink-0">
+                <SidebarContent />
+            </aside>
+
+            {/* Mobile Sidebar (Drawer) */}
+            <AnimatePresence>
+                {isMobileOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="absolute inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
+                        />
+                        {/* Drawer */}
+                        <motion.aside
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                            className="absolute inset-y-0 left-0 z-40 w-64 bg-neutral-50 border-r border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 md:hidden"
+                        >
+                            <SidebarContent onClose={() => setIsMobileOpen(false)} />
+                        </motion.aside>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Main Content Area */}
+            <main className="flex-1 flex items-center justify-center bg-white dark:bg-neutral-950 relative z-0">
+                <div className="text-center p-8">
+                    <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Hello World</h1>
+                    <p className="text-neutral-500 mt-2">Resize window to test mobile sidebar.</p>
+                </div>
+            </main>
+        </div>
+    );
+}
+
+function SidebarContent({ onClose }: { onClose?: () => void }) {
+    return (
+        <div className="flex flex-col h-full">
+            <div className="flex h-16 items-center justify-between px-6 border-b border-neutral-200 dark:border-neutral-800">
+                <span className="text-lg font-bold text-neutral-900 dark:text-white">Dashboard</span>
+                {onClose && (
+                    <button onClick={onClose} className="md:hidden text-neutral-500">
+                        <BiX className="text-xl" />
+                    </button>
+                )}
+            </div>
+
+            <nav className="p-4 space-y-1 flex-1">
+                <a href="#" className="flex items-center gap-3 rounded-lg bg-white px-4 py-3 text-sm font-medium text-blue-600 shadow-sm dark:bg-neutral-800 dark:text-blue-400">
+                    <BiHome className="text-lg" />
+                    Home
+                </a>
+                <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white">
+                    <BiUser className="text-lg" />
+                    Users
+                </a>
+                <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white">
+                    <BiCog className="text-lg" />
+                    Settings
+                </a>
+            </nav>
+
+            <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+                <a href="#" className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/10">
+                    <BiLogOut className="text-lg" />
+                    Logout
+                </a>
+            </div>
+        </div>
+    );
+}
+`;
+
+export const sidebarDarkCode = `"use client";
+
+import { useState } from "react";
+import { BiHome, BiPieChartAlt2, BiFolder, BiMessageSquareDetail, BiHelpCircle, BiMenu, BiX } from "react-icons/bi";
+import { motion, AnimatePresence } from "motion/react";
+
+export default function SidebarDark() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full rounded-xl overflow-hidden bg-neutral-900 text-white relative">
+            {/* Mobile Toggle */}
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-neutral-800 rounded-md text-white border border-neutral-700">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Desktop Sidebar (Static) */}
+            <aside className="hidden md:flex w-64 bg-neutral-900 flex-col border-r border-neutral-800 shrink-0">
+                <SidebarContent />
+            </aside>
+
+            {/* Mobile Sidebar (Drawer) */}
+            <AnimatePresence>
+                {isMobileOpen && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="absolute inset-0 bg-black/50 z-30 md:hidden"
+                        />
+                        <motion.aside
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                            className="absolute inset-y-0 left-0 z-40 w-64 bg-neutral-900 flex flex-col border-r border-neutral-800 md:hidden"
+                        >
+                            <SidebarContent onClose={() => setIsMobileOpen(false)} />
+                        </motion.aside>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Main Content */}
+            <main className="flex-1 bg-neutral-800 m-2 rounded-xl flex items-center justify-center border border-neutral-700 relative z-0">
+                <div className="text-center">
+                    <h1 className="text-xl font-bold">Hello World</h1>
+                </div>
+            </main>
+        </div>
+    );
+}
+
+function SidebarContent({ onClose }: { onClose?: () => void }) {
+    return (
+        <>
+            <div className="h-20 flex items-center justify-between px-8">
+                <div className="flex items-center">
+                    <div className="h-8 w-8 rounded bg-indigo-500 mr-3"></div>
+                    <span className="text-lg font-bold tracking-tight">BRAND</span>
+                </div>
+                {onClose && (
+                    <button onClick={onClose} className="md:hidden text-neutral-400">
+                        <BiX className="text-xl" />
+                    </button>
+                )}
+            </div>
+
+            <nav className="flex-1 px-4 space-y-2">
+                <div className="px-4 py-2 text-xs font-semibold text-neutral-500 uppercase tracking-wider">Menu</div>
+                <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-white bg-neutral-800 rounded-lg">
+                    <BiHome className="text-lg text-indigo-400" />
+                    Overview
+                </a>
+                <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors">
+                    <BiPieChartAlt2 className="text-lg" />
+                    Analytics
+                </a>
+                <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors">
+                    <BiFolder className="text-lg" />
+                    Projects
+                </a>
+                <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors">
+                    <BiMessageSquareDetail className="text-lg" />
+                    Messages
+                    <span className="ml-auto bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+                </a>
+            </nav>
+
+            <div className="p-4 border-t border-neutral-800">
+                <a href="#" className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors">
+                    <BiHelpCircle className="text-lg" />
+                    Support
+                </a>
+            </div>
+        </>
+    );
+}
+`;
+
+export const sidebarMinimalCode = `"use client";
+
+import { useState } from "react";
+import { BiLayer, BiGridAlt, BiUser, BiCog, BiMenu, BiX } from "react-icons/bi";
+import { motion, AnimatePresence } from "motion/react";
+
+export default function SidebarMinimal() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+            {/* Mobile Toggle */}
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Desktop Sidebar (Static Rail) */}
+            <aside className="hidden md:flex w-20 border-r border-neutral-200 bg-white flex-col items-center py-6 dark:border-neutral-800 dark:bg-neutral-950 shrink-0">
+                <SidebarContent />
+            </aside>
+
+            {/* Mobile Sidebar (Drawer) */}
+            <AnimatePresence>
+                {isMobileOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMobileOpen(false)}
+                            className="absolute inset-0 bg-black/20 z-30 md:hidden"
+                        />
+                        {/* Drawer */}
+                        <motion.aside
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                            className="absolute inset-y-0 left-0 z-40 w-20 border-r border-neutral-200 bg-white flex flex-col items-center py-6 dark:border-neutral-800 dark:bg-neutral-950 md:hidden"
+                        >
+                            <SidebarContent onClose={() => setIsMobileOpen(false)} />
+                        </motion.aside>
+                    </>
+                )}
+            </AnimatePresence>
+
+            {/* Main Content */}
+            <main className="flex-1 p-8 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center relative z-0">
+                <span className="text-3xl font-light text-neutral-300 dark:text-neutral-700">Hello World</span>
+            </main>
+        </div>
+    );
+}
+
+function SidebarContent({ onClose }: { onClose?: () => void }) {
+    return (
+        <>
+            <div className="mb-8">
+                <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">B</div>
+            </div>
+
+            <nav className="flex-1 space-y-4 w-full px-2">
+                <button className="w-full aspect-square flex items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+                    <BiGridAlt className="text-2xl" />
+                </button>
+                <button className="w-full aspect-square flex items-center justify-center rounded-xl text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white transition-colors">
+                    <BiLayer className="text-2xl" />
+                </button>
+                <button className="w-full aspect-square flex items-center justify-center rounded-xl text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white transition-colors">
+                    <BiUser className="text-2xl" />
+                </button>
+            </nav>
+
+            {onClose && (
+                <button
+                    className="mt-auto w-10 h-10 flex items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors md:hidden"
+                    onClick={onClose}
+                >
+                    <BiX className="text-2xl" />
+                </button>
+            )}
+
+            <button className="hidden md:flex mt-4 w-10 h-10 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white transition-colors">
+                <BiCog className="text-2xl" />
+            </button>
+        </>
+    );
+}
+`;
+
+export const sidebarWithSearchCode = `"use client";
+
+import { useState } from "react";
+import { BiSearch, BiHomeAlt, BiBarChartSquare, BiFolder, BiBookmark, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarWithSearch() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            <aside className={\`
+        absolute inset-y-0 left-0 z-40 w-72 border-r border-neutral-200 bg-white flex flex-col dark:border-neutral-800 dark:bg-neutral-950 transition-transform duration-300
+        md:translate-x-0 md:static
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      \`}>
+                <div className="flex items-center justify-between p-4 md:hidden">
+                    <span className="font-bold">Menu</span>
+                    <button onClick={() => setIsMobileOpen(false)}><BiX className="text-xl" /></button>
+                </div>
+
+                <div className="p-4 pt-0 md:pt-4">
+                    <div className="relative">
+                        <BiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="w-full bg-neutral-100 text-sm rounded-lg pl-10 pr-4 py-2.5 outline-none focus:ring-2 focus:ring-blue-100 dark:bg-neutral-900 dark:focus:ring-blue-900 dark:text-white"
+                        />
+                    </div>
+                </div>
+
+                <nav className="flex-1 px-2 space-y-1 overflow-y-auto">
+                    <div className="px-3 pt-4 pb-2 text-xs font-semibold text-neutral-400">Platform</div>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-neutral-900 bg-neutral-100 rounded-md dark:bg-neutral-800 dark:text-white">
+                        <BiHomeAlt className="text-lg" />
+                        Home
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50 rounded-md dark:text-neutral-400 dark:hover:bg-neutral-900">
+                        <BiBarChartSquare className="text-lg" />
+                        Dashboard
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50 rounded-md dark:text-neutral-400 dark:hover:bg-neutral-900">
+                        <BiFolder className="text-lg" />
+                        Projects
+                    </a>
+
+                    <div className="px-3 pt-6 pb-2 text-xs font-semibold text-neutral-400">Notes</div>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50 rounded-md dark:text-neutral-400 dark:hover:bg-neutral-900">
+                        <BiBookmark className="text-lg text-orange-400" />
+                        Ideas
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-50 rounded-md dark:text-neutral-400 dark:hover:bg-neutral-900">
+                        <BiBookmark className="text-lg text-purple-400" />
+                        Marketing
+                    </a>
+                </nav>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            <main className="flex-1 flex items-center justify-center relative z-0">
+                <div className="p-6 rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 text-neutral-400">
+                    Hello World Content
+                </div>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarDoubleCode = `"use client";
+
+import { useState } from "react";
+import { BiGridAlt, BiMessageRounded, BiCalendar, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarDouble() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Combined Sidebar Container for Mobile */}
+            <div className={\`
+        absolute inset-y-0 left-0 z-40 flex transition-transform duration-300
+        md:translate-x-0 md:static
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      \`}>
+
+                {/* Rail */}
+                <div className="w-16 border-r border-neutral-200 bg-white flex flex-col items-center py-4 gap-4 dark:border-neutral-800 dark:bg-neutral-950 z-50">
+                    <div className="h-10 w-10 rounded-lg bg-black text-white flex items-center justify-center font-bold mb-4">A</div>
+                    <button className="p-2 rounded-lg bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"><BiGridAlt className="text-xl" /></button>
+                    <button className="p-2 rounded-lg text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"><BiMessageRounded className="text-xl" /></button>
+                    <button className="p-2 rounded-lg text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"><BiCalendar className="text-xl" /></button>
+                </div>
+
+                {/* Sub-Sidebar */}
+                <aside className="w-64 border-r border-neutral-200 bg-neutral-50 flex flex-col dark:border-neutral-800 dark:bg-neutral-900 relative">
+                    <button onClick={() => setIsMobileOpen(false)} className="absolute top-4 right-4 md:hidden text-neutral-500">
+                        <BiX className="text-xl" />
+                    </button>
+                    <div className="h-16 flex items-center px-6 border-b border-neutral-200 dark:border-neutral-800">
+                        <h2 className="font-semibold text-lg text-neutral-900 dark:text-white">Dashboard</h2>
+                    </div>
+                    <div className="p-4 space-y-1">
+                        <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-neutral-900 bg-white shadow-sm dark:bg-neutral-800 dark:text-white">Overview</a>
+                        <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Notifications</a>
+                        <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Analytics</a>
+                        <a href="#" className="block px-3 py-2 rounded-md text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Reports</a>
+                    </div>
+                </aside>
+            </div>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            <main className="flex-1 flex items-center justify-center bg-white dark:bg-neutral-950 relative z-0">
+                <h1 className="text-neutral-300 font-bold text-4xl select-none">HELLO WORLD</h1>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarSlackStyleCode = `"use client";
+
+import { useState } from "react";
+import { BiHash, BiPlus, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarSlackStyle() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            {/* Mobile Trigger in Header Area */}
+            <div className="absolute top-0 left-0 right-0 h-14 z-30 flex items-center px-4 md:hidden border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+                <button onClick={() => setIsMobileOpen(true)} className="mr-4 text-neutral-600 dark:text-neutral-400">
+                    <BiMenu className="text-xl" />
+                </button>
+                <span className="font-bold text-neutral-900 dark:text-white"># design-team</span>
+            </div>
+
+            {/* Sidebar */}
+            <aside className={\`
+        absolute inset-y-0 left-0 z-40 w-64 bg-purple-900 text-purple-100 flex flex-col transition-transform duration-300
+        md:translate-x-0 md:static
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      \`}>
+                <div className="h-14 flex items-center px-4 border-b border-purple-800 justify-between">
+                    <span className="font-bold text-white">Acme Corp</span>
+                    <div className="flex gap-2">
+                        <BiPlus className="bg-white text-purple-900 rounded-full p-0.5 text-lg" />
+                        <BiX className="text-white text-xl md:hidden cursor-pointer" onClick={() => setIsMobileOpen(false)} />
+                    </div>
+                </div>
+
+                <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-6">
+                    <div>
+                        <div className="flex items-center justify-between px-2 mb-1 group cursor-pointer">
+                            <span className="text-sm font-medium opacity-80 group-hover:opacity-100">Channels</span>
+                            <BiPlus className="opacity-0 group-hover:opacity-100" />
+                        </div>
+                        <div className="space-y-1">
+                            <a href="#" className="flex items-center gap-2 px-2 py-1 rounded hover:bg-purple-800 text-sm opacity-90 hover:opacity-100">
+                                <BiHash className="opacity-70" /> general
+                            </a>
+                            <a href="#" className="flex items-center gap-2 px-2 py-1 rounded bg-purple-800 text-white text-sm font-medium">
+                                <BiHash /> design-team
+                            </a>
+                            <a href="#" className="flex items-center gap-2 px-2 py-1 rounded hover:bg-purple-800 text-sm opacity-90 hover:opacity-100">
+                                <BiHash className="opacity-70" /> marketing
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between px-2 mb-1">
+                            <span className="text-sm font-medium opacity-80">Direct Messages</span>
+                        </div>
+                        <div className="space-y-1">
+                            <a href="#" className="flex items-center gap-2 px-2 py-1 rounded hover:bg-purple-800 text-sm opacity-90">
+                                <span className="w-2 h-2 rounded-full bg-green-400"></span> Alice
+                            </a>
+                            <a href="#" className="flex items-center gap-2 px-2 py-1 rounded hover:bg-purple-800 text-sm opacity-90">
+                                <span className="w-2 h-2 rounded-full border border-white opacity-50"></span> Bob
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col bg-white dark:bg-neutral-950 pt-14 md:pt-0">
+                <div className="h-14 border-b border-neutral-200 dark:border-neutral-800 md:flex items-center px-6 hidden">
+                    <span className="font-bold text-neutral-900 dark:text-white flex items-center gap-1"><BiHash className="text-neutral-400" /> design-team</span>
+                </div>
+                <div className="flex-1 flex items-center justify-center p-8">
+                    <div className="text-center text-neutral-400">
+                        <h3 className="text-lg font-medium text-neutral-900 dark:text-white">Welcome to #design-team!</h3>
+                        <p>This is the start of the design-team channel.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarFloatingCode = `"use client";
+
+import { useState } from "react";
+import { BiGridAlt, BiListUl, BiArchive, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarFloating() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full bg-neutral-100 dark:bg-neutral-900 p-6 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-8 left-8 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm dark:bg-neutral-950">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Floating Sidebar */}
+            <aside className={\`
+        absolute inset-y-6 left-6 z-40 w-64 bg-white dark:bg-neutral-950 rounded-2xl shadow-xl flex flex-col p-4 border border-neutral-100 dark:border-neutral-800 transition-transform duration-300
+        md:relative md:inset-auto md:mr-6 md:translate-x-0
+        \${isMobileOpen ? 'translate-x-0' : '-translate-x-[150%]'}
+      \`}>
+                <div className="md:hidden absolute top-4 right-4">
+                    <button onClick={() => setIsMobileOpen(false)}><BiX className="text-xl" /></button>
+                </div>
+
+                <div className="flex items-center gap-3 px-2 mb-8 mt-2 md:mt-0">
+                    <div className="w-8 h-8 rounded-full bg-linear-to-br from-pink-500 to-orange-400"></div>
+                    <span className="font-bold text-neutral-900 dark:text-white tracking-tight">Float UI</span>
+                </div>
+
+                <nav className="space-y-2">
+                    <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white bg-neutral-900 shadow-md transform scale-[1.02]">
+                        <BiGridAlt />
+                        Dashboard
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white transition-all">
+                        <BiListUl />
+                        Tasks
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white transition-all">
+                        <BiArchive />
+                        Archives
+                    </a>
+                </nav>
+
+                <div className="mt-auto bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4 text-center">
+                    <p className="text-xs text-neutral-500 mb-2"><strong>Pro Plan</strong> needed for more spaces.</p>
+                    <button className="text-xs font-bold text-blue-600 dark:text-blue-400">Upgrade Now</button>
+                </div>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden rounded-xl" onClick={() => setIsMobileOpen(false)} />}
+
+            {/* Main Content */}
+            <main className="flex-1 bg-white dark:bg-neutral-950 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-800 flex items-center justify-center relative z-0">
+                <h1 className="text-xl font-bold text-neutral-300">Hello World</h1>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarNestedCode = `"use client";
+
+import { useState } from "react";
+import { BiChevronDown, BiFolder, BiFile, BiImage, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarNested() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            <aside className={\`
+        absolute inset-y-0 left-0 z-40 w-64 border-r border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 flex flex-col transition-transform duration-300
+        md:translate-x-0 md:static
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      \`}>
+                <div className="h-12 flex items-center justify-between px-4 border-b border-neutral-200 dark:border-neutral-800">
+                    <span className="text-sm font-semibold text-neutral-500 uppercase">File Explorer</span>
+                    <BiX className="cursor-pointer md:hidden text-lg" onClick={() => setIsMobileOpen(false)} />
+                </div>
+
+                <nav className="flex-1 p-2 space-y-1 overflow-y-auto text-sm">
+                    {/* Open Folder */}
+                    <div>
+                        <button className="w-full flex items-center gap-1 px-2 py-1.5 text-neutral-700 hover:bg-neutral-100 rounded dark:text-neutral-300 dark:hover:bg-neutral-800">
+                            <BiChevronDown className="text-neutral-400" />
+                            <BiFolder className="text-blue-500" />
+                            <span className="font-medium">Documents</span>
+                        </button>
+                        <div className="pl-7 space-y-1">
+                            <button className="w-full flex items-center gap-2 px-2 py-1.5 text-neutral-600 hover:bg-neutral-100 rounded bg-neutral-200/50 dark:text-neutral-400 dark:bg-neutral-800/50">
+                                <BiFile className="text-neutral-400" />
+                                presentation.pdf
+                            </button>
+                            <button className="w-full flex items-center gap-2 px-2 py-1.5 text-neutral-600 hover:bg-neutral-100 rounded dark:text-neutral-400 dark:hover:bg-neutral-800">
+                                <BiFile className="text-neutral-400" />
+                                budget-2024.xlsx
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Closed Folder */}
+                    <div>
+                        <button className="w-full flex items-center gap-1 px-2 py-1.5 text-neutral-700 hover:bg-neutral-100 rounded dark:text-neutral-300 dark:hover:bg-neutral-800">
+                            <BiChevronDown className="-rotate-90 text-neutral-400" />
+                            <BiFolder className="text-yellow-500" />
+                            <span className="font-medium">Images</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button className="w-full flex items-center gap-1 px-2 py-1.5 text-neutral-700 hover:bg-neutral-100 rounded dark:text-neutral-300 dark:hover:bg-neutral-800">
+                            <BiChevronDown className="-rotate-90 text-neutral-400" />
+                            <BiFolder className="text-purple-500" />
+                            <span className="font-medium">Downloads</span>
+                        </button>
+                    </div>
+                </nav>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            <main className="flex-1 flex flex-col items-center justify-center bg-white dark:bg-neutral-950 text-neutral-400 relative z-0">
+                <BiFile className="text-6xl mb-4 text-neutral-200 dark:text-neutral-800" />
+                <p>Select a file to view</p>
+                <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mt-2">Hello World</h1>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarWithAvatarCode = `"use client";
+
+import { useState } from "react";
+import { BiHome, BiUser, BiCog, BiCheckCircle, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarWithAvatar() {
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            <aside className={\`
+        absolute inset-y-0 left-0 z-40 w-64 border-r border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 flex flex-col transition-transform duration-300
+        md:translate-x-0 md:static
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      \`}>
+                <div className="p-6 flex justify-between items-center">
+                    <h2 className="text-xl font-bold">App Name</h2>
+                    <BiX className="md:hidden text-2xl cursor-pointer" onClick={() => setIsMobileOpen(false)} />
+                </div>
+
+                <nav className="flex-1 px-4 space-y-1">
+                    <a href="#" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-neutral-900 bg-neutral-100 rounded-xl dark:bg-neutral-800 dark:text-white">
+                        <BiHome /> Home
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 rounded-xl dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white">
+                        <BiUser /> Profile
+                    </a>
+                    <a href="#" className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 rounded-xl dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white">
+                        <BiCog /> Settings
+                    </a>
+                </nav>
+
+                <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+                    <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer transition-colors">
+                        <div className="relative">
+                            <img
+                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80"
+                                alt="User"
+                                className="w-10 h-10 rounded-full object-cover"
+                            />
+                            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white dark:border-neutral-900 rounded-full"></div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">Jane Doe</p>
+                            <p className="text-xs text-neutral-500 truncate">View Profile</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            <main className="flex-1 flex flex-col items-center justify-center relative z-0">
+                <div className="text-center space-y-4">
+                    <div className="inline-flex items-center gap-2 text-green-600 bg-green-50 px-3 py-1 rounded-full text-xs font-medium dark:bg-green-900/30 dark:text-green-400">
+                        <BiCheckCircle /> Logged In
+                    </div>
+                    <h1 className="text-3xl font-bold">Hello World</h1>
+                </div>
+            </main>
+        </div>
+    );
+}
+`;
+
+export const sidebarCollapsibleCode = `"use client";
+
+import { useState } from "react";
+import { BiMenuAltLeft, BiHome, BiPieChart, BiUser, BiBell, BiMenu, BiX } from "react-icons/bi";
+
+export default function SidebarCollapsible() {
+    const [isCollapsed, setIsCollapsed] = useState(false); // For desktop toggle
+    const [isMobileOpen, setIsMobileOpen] = useState(false); // For mobile drawer
+
+    return (
+        <div className="flex h-[400px] w-full border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 rounded-xl overflow-hidden relative">
+
+            <div className="absolute top-4 left-4 md:hidden z-30">
+                <button onClick={() => setIsMobileOpen(true)} className="p-2 bg-white rounded-md shadow-sm border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
+                    <BiMenu className="text-xl" />
+                </button>
+            </div>
+
+            {/* Sidebar */}
+            <aside className={\`
+        absolute inset-y-0 left-0 z-40 bg-white flex flex-col items-center py-4 dark:border-neutral-800 dark:bg-neutral-950 transition-all duration-300 border-r border-neutral-200
+        md:static md:translate-x-0
+        \${isMobileOpen ? 'translate-x-0 shadow-2xl w-64' : '-translate-x-full'}
+        \${isCollapsed ? 'md:w-20' : 'md:w-64'}
+      \`}>
+
+                <div className="w-full flex justify-center mb-8 relative px-2">
+                    <button
+                        className="hidden md:block p-2 rounded-lg hover:bg-neutral-100 text-neutral-600 dark:text-neutral-400 dark:hover:bg-neutral-800"
+                        onClick={() => setIsCollapsed(!isCollapsed)}
+                    >
+                        <BiMenuAltLeft className="text-2xl" />
+                    </button>
+                    <button
+                        className="md:hidden p-2 text-neutral-600 dark:text-neutral-400"
+                        onClick={() => setIsMobileOpen(false)}
+                    >
+                        <BiX className="text-2xl" />
+                    </button>
+                </div>
+
+                <nav className="flex-1 space-y-4 w-full px-2">
+                    <a href="#" className={\`flex items-center gap-4 p-2 rounded-lg text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 \${isCollapsed ? 'justify-center' : 'px-4'}\`}>
+                        <BiHome className="text-xl shrink-0" />
+                        <span className={\`font-medium \${isCollapsed ? 'hidden' : 'block'}\`}>Home</span>
+                    </a>
+                    <a href="#" className={\`flex items-center gap-4 p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 \${isCollapsed ? 'justify-center' : 'px-4'}\`}>
+                        <BiPieChart className="text-xl shrink-0" />
+                        <span className={\`font-medium \${isCollapsed ? 'hidden' : 'block'}\`}>Analytics</span>
+                    </a>
+                    <a href="#" className={\`flex items-center gap-4 p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 \${isCollapsed ? 'justify-center' : 'px-4'}\`}>
+                        <BiUser className="text-xl shrink-0" />
+                        <span className={\`font-medium \${isCollapsed ? 'hidden' : 'block'}\`}>Users</span>
+                    </a>
+                    <a href="#" className={\`flex items-center gap-4 p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800 \${isCollapsed ? 'justify-center' : 'px-4'}\`}>
+                        <BiBell className="text-xl shrink-0" />
+                        <span className={\`font-medium \${isCollapsed ? 'hidden' : 'block'}\`}>Notifications</span>
+                    </a>
+                </nav>
+            </aside>
+
+            {isMobileOpen && <div className="absolute inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsMobileOpen(false)} />}
+
+            <main className="flex-1 flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 relative z-0">
+                <div className="max-w-xs text-center">
+                    <h1 className="text-2xl font-bold mb-2">Hello World</h1>
+                    <p className="text-sm text-neutral-500">
+                        {isCollapsed
+                            ? "Sidebar is collapsed (Desktop)"
+                            : "Sidebar is expanded (Desktop)"}
+                    </p>
+                </div>
+            </main>
+        </div>
+    );
+}
+`;

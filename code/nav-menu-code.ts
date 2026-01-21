@@ -1,0 +1,466 @@
+export const navSimpleCode = `"use client";
+
+import { useState } from "react";
+import { BiMenu, BiX } from "react-icons/bi";
+
+export default function NavSimple() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between h-16">
+                    <div className="flex">
+                        <div className="shrink-0 flex items-center">
+                            <span className="text-xl font-bold bg-indigo-600 text-white p-1 rounded">Logo</span>
+                        </div>
+                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            {['Home', 'Team', 'Projects', 'Calendar'].map((item) => (
+                                <a
+                                    key={item}
+                                    href="#"
+                                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 hover:text-neutral-700 hover:border-neutral-300 dark:hover:text-neutral-200 dark:hover:border-neutral-700"
+                                >
+                                    {item}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                        <button className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">
+                            Sign In
+                        </button>
+                    </div>
+                    <div className="-mr-2 flex items-center sm:hidden">
+                        <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+                            {isOpen ? <BiX size={24} /> : <BiMenu size={24} />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {isOpen && (
+                <div className="sm:hidden border-t border-neutral-200 dark:border-neutral-700">
+                    <div className="pt-2 pb-3 space-y-1">
+                        {['Home', 'Team', 'Projects', 'Calendar'].map((item) => (
+                            <a key={item} href="#" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 hover:border-neutral-300 dark:hover:bg-neutral-800">
+                                {item}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+}
+`;
+
+export const navCenteredCode = `"use client";
+
+import { BiMenu } from "react-icons/bi";
+
+export default function NavCentered() {
+    return (
+        <div className="bg-white dark:bg-neutral-950 shadow-sm">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 items-center justify-between">
+                    <div className="flex-1 flex items-center justify-start sm:hidden">
+                        <BiMenu size={24} className="text-neutral-500" />
+                    </div>
+                    <div className="flex-1 flex justify-center sm:justify-start">
+                        {/* Left Links */}
+                        <nav className="hidden sm:flex space-x-8">
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Women</a>
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Men</a>
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Company</a>
+                        </nav>
+                    </div>
+                    <div className="shrink-0 flex items-center justify-center">
+                        <span className="font-serif text-2xl font-bold tracking-wider text-neutral-900 dark:text-white">BRAND</span>
+                    </div>
+                    <div className="flex-1 flex justify-center sm:justify-end">
+                        {/* Right Links */}
+                        <nav className="hidden sm:flex space-x-8">
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Search</a>
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Help</a>
+                            <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Cart (0)</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navSearchCode = `"use client";
+
+import { BiSearch } from "react-icons/bi";
+
+export default function NavSearch() {
+    return (
+        <div className="bg-neutral-900">
+            <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+                <div className="relative flex h-16 items-center justify-between">
+                    <div className="flex items-center px-2 lg:px-0">
+                        <div className="shrink-0 font-bold text-white text-xl">AppLogo</div>
+                        <div className="hidden lg:ml-6 lg:block">
+                            <div className="flex space-x-4">
+                                <a href="#" className="rounded-md bg-neutral-800 px-3 py-2 text-sm font-medium text-white">Dashboard</a>
+                                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-700 hover:text-white">Team</a>
+                                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-700 hover:text-white">Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
+                        <div className="w-full max-w-lg lg:max-w-xs">
+                            <div className="relative">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <BiSearch className="h-5 w-5 text-neutral-400" />
+                                </div>
+                                <input
+                                    className="block w-full rounded-md border-0 bg-neutral-700 py-1.5 pl-10 pr-3 text-neutral-300 placeholder:text-neutral-400 focus:bg-white focus:text-neutral-900 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="Search..."
+                                    type="search"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navMegaCode = `"use client";
+
+import { useState } from "react";
+import { BiChevronDown } from "react-icons/bi";
+
+export default function NavMega() {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div className="bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 relative z-50">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 items-center justify-between">
+                    <div className="font-bold text-2xl tracking-tighter">MEGACORP</div>
+                    <nav className="hidden md:flex space-x-8">
+                        <a href="#" className="text-sm font-medium text-neutral-900 dark:text-white">Home</a>
+
+                        <div className="relative">
+                            <button
+                                className="flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                                onMouseEnter={() => setOpen(true)}
+                                onClick={() => setOpen(!open)}
+                            >
+                                Products <BiChevronDown />
+                            </button>
+                        </div>
+
+                        <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Pricing</a>
+                        <a href="#" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">Resources</a>
+                    </nav>
+                    <button className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-bold">Get Started</button>
+                </div>
+            </div>
+
+            {/* Mega Menu Dropdown */}
+            <div
+                className={\`absolute left-0 w-full bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 shadow-xl transition-all duration-200 \${open ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'}\`}
+                onMouseLeave={() => setOpen(false)}
+            >
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-4 gap-8">
+                    <div>
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-4">Analytics</h3>
+                        <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+                            <li><a href="#" className="hover:text-indigo-600">Real-time reports</a></li>
+                            <li><a href="#" className="hover:text-indigo-600">Funnel analysis</a></li>
+                            <li><a href="#" className="hover:text-indigo-600">User retention</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-4">Automation</h3>
+                        <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+                            <li><a href="#" className="hover:text-indigo-600">Workflows</a></li>
+                            <li><a href="#" className="hover:text-indigo-600">Integrations</a></li>
+                            <li><a href="#" className="hover:text-indigo-600">Email Marketing</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-4">Security</h3>
+                        <ul className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+                            <li><a href="#" className="hover:text-indigo-600">SSO & 2FA</a></li>
+                            <li><a href="#" className="hover:text-indigo-600">Audit Logs</a></li>
+                        </ul>
+                    </div>
+                    <div className="bg-neutral-100 dark:bg-neutral-800 rounded-xl p-6">
+                        <h3 className="font-bold text-neutral-900 dark:text-white mb-2">New Feature</h3>
+                        <p className="text-xs text-neutral-500 mb-4">Check out our new AI assistant.</p>
+                        <a href="#" className="text-sm font-bold text-indigo-600">Learn more &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navSidebarCode = `"use client";
+
+import { BiHome, BiUser, BiFolder, BiCalendar, BiCog, BiLogOut } from "react-icons/bi";
+
+export default function NavSidebar() {
+    return (
+        <div className="min-h-[500px] flex bg-neutral-100 dark:bg-neutral-900">
+            <div className="w-20 lg:w-64 bg-white dark:bg-neutral-950 border-r border-neutral-200 dark:border-neutral-800 flex flex-col justify-between py-6">
+                <div className="px-4 lg:px-6">
+                    <div className="h-8 w-8 bg-indigo-600 rounded-lg mb-8 flex items-center justify-center text-white font-bold lg:w-auto lg:h-auto lg:bg-transparent lg:text-indigo-600 lg:text-xl lg:px-0">
+                        <span className="lg:hidden">L</span>
+                        <span className="hidden lg:block">LOGO</span>
+                    </div>
+                    <nav className="space-y-2">
+                        {[
+                            { icon: BiHome, label: "Dashboard", active: true },
+                            { icon: BiUser, label: "Team", active: false },
+                            { icon: BiFolder, label: "Projects", active: false },
+                            { icon: BiCalendar, label: "Calendar", active: false },
+                            { icon: BiCog, label: "Settings", active: false },
+                        ].map((item) => (
+                            <a
+                                key={item.label}
+                                href="#"
+                                className={\`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors \${item.active ? 'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400' : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-200'}\`}
+                            >
+                                <item.icon className="w-6 h-6" />
+                                <span className="hidden lg:block text-sm font-medium">{item.label}</span>
+                            </a>
+                        ))}
+                    </nav>
+                </div>
+                <div className="px-4 lg:px-6">
+                    <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-red-500 hover:bg-neutral-50 dark:hover:bg-neutral-900">
+                        <BiLogOut className="w-6 h-6" />
+                        <span className="hidden lg:block text-sm font-medium">Logout</span>
+                    </a>
+                </div>
+            </div>
+            <div className="flex-1 p-8">
+                <h1 className="text-2xl font-bold mb-4">Main Content Area</h1>
+                <div className="rounded-2xl border-2 border-dashed border-neutral-300 dark:border-neutral-700 h-64 w-full flex items-center justify-center text-neutral-400">
+                    Page Content
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navMobileCode = `"use client";
+
+import { useState } from "react";
+import { BiMenu } from "react-icons/bi";
+
+export default function NavMobile() {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div className="bg-white relative h-[300px] overflow-hidden border border-neutral-200">
+            <div className="absolute inset-0 bg-neutral-100 flex items-center justify-center">
+                Mobile View Simulator
+            </div>
+
+            {/* Top Bar */}
+            <div className="absolute top-0 left-0 w-full bg-white px-4 py-3 flex justify-between items-center shadow-sm z-20">
+                <span className="font-bold text-lg">App</span>
+                <button onClick={() => setOpen(true)} className="p-2">
+                    <BiMenu size={24} />
+                </button>
+            </div>
+
+            {/* Drawer Overlay */}
+            {open && (
+                <div className="absolute inset-0 bg-black/50 z-30 transform transition-opacity" onClick={() => setOpen(false)}></div>
+            )}
+
+            {/* Drawer Panel */}
+            <div className={\`absolute top-0 left-0 h-full w-64 bg-white z-40 shadow-xl transform transition-transform duration-300 ease-in-out \${open ? 'translate-x-0' : '-translate-x-full'}\`}>
+                <div className="p-4 border-b">
+                    <span className="font-bold text-xl text-indigo-600">Menu</span>
+                </div>
+                <div className="p-4 space-y-4">
+                    {['Dashboard', 'Messages', 'Profile', 'Settings'].map((item) => (
+                        <a key={item} href="#" className="block text-neutral-600 hover:text-indigo-600 font-medium">{item}</a>
+                    ))}
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                    <button className="w-full bg-indigo-600 text-white py-2 rounded-lg">Upgrade to Pro</button>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navTransparentCode = `"use client";
+
+import { useState, useEffect } from "react";
+
+export default function NavTransparent() {
+    const [scrolled, setScrolled] = useState(false);
+
+    // Simulate scroll effect for demo (or use real scroll listener)
+    useEffect(() => {
+        // Just for demo, toggle every few seconds to show effect
+        const interval = setInterval(() => {
+            setScrolled(s => !s);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="relative h-64 bg-indigo-900 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80" className="absolute inset-0 w-full h-full object-cover opacity-60" alt="" />
+
+            <nav className={\`absolute top-0 w-full z-10 transition-all duration-500 \${scrolled ? 'bg-white text-neutral-900 shadow-md py-2' : 'bg-transparent text-white py-6'}\`}>
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-between items-center">
+                    <div className="font-bold text-xl">SaaSify</div>
+                    <div className="flex space-x-6">
+                        <a href="#" className={\`font-medium hover:opacity-75\`}>Features</a>
+                        <a href="#" className={\`font-medium hover:opacity-75\`}>Pricing</a>
+                        <a href="#" className={\`font-medium hover:opacity-75\`}>Contact</a>
+                    </div>
+                    <button className={\`px-4 py-2 rounded-full font-bold transition-colors \${scrolled ? 'bg-indigo-600 text-white' : 'bg-white text-indigo-900'}\`}>
+                        Get Started
+                    </button>
+                </div>
+            </nav>
+
+            <div className="relative z-0 flex items-center justify-center h-full text-white">
+                <p className="animate-pulse">Scroll effect demo (auto-toggles every 3s)</p>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navDoubleCode = `"use client";
+
+import { BiPhone, BiEnvelope, BiLogoFacebook, BiLogoTwitter, BiLogoInstagram } from "react-icons/bi";
+
+export default function NavDouble() {
+    return (
+        <div className="flex flex-col">
+            {/* Top Bar */}
+            <div className="bg-neutral-900 text-white text-xs py-2">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <div className="flex space-x-4">
+                        <span className="flex items-center gap-1"><BiPhone /> +1 (555) 123-4567</span>
+                        <span className="flex items-center gap-1"><BiEnvelope /> support@example.com</span>
+                    </div>
+                    <div className="flex space-x-3">
+                        <BiLogoFacebook className="cursor-pointer hover:text-indigo-400" />
+                        <BiLogoTwitter className="cursor-pointer hover:text-indigo-400" />
+                        <BiLogoInstagram className="cursor-pointer hover:text-indigo-400" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Main Nav */}
+            <div className="bg-white border-b border-neutral-200">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+                    <div className="font-bold text-2xl text-neutral-900">LUXURY</div>
+                    <nav className="hidden md:flex space-x-8 uppercase text-sm font-semibold tracking-wide">
+                        <a href="#" className="hover:text-indigo-600">Collections</a>
+                        <a href="#" className="hover:text-indigo-600">Atelier</a>
+                        <a href="#" className="hover:text-indigo-600">Heritage</a>
+                    </nav>
+                    <div className="flex items-center gap-4">
+                        <button className="text-sm font-medium hover:text-indigo-600">Login</button>
+                        <button className="bg-neutral-900 text-white px-5 py-2 rounded text-sm font-medium hover:bg-neutral-700">Shop Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navBottomCode = `"use client";
+
+import { BiHome, BiSearch, BiHeart, BiUser } from "react-icons/bi";
+
+export default function NavBottom() {
+    return (
+        <div className="bg-neutral-100 flex items-center justify-center p-12">
+            <div className="relative w-[375px] h-[600px] bg-white border border-neutral-300 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+                <div className="flex-1 p-6 bg-neutral-50 overflow-y-auto">
+                    <div className="h-32 bg-indigo-100 rounded-xl mb-4"></div>
+                    <div className="h-32 bg-indigo-100 rounded-xl mb-4"></div>
+                    <div className="h-32 bg-indigo-100 rounded-xl mb-4"></div>
+                    <div className="h-32 bg-indigo-100 rounded-xl mb-4"></div>
+                </div>
+
+                {/* Bottom Nav Bar */}
+                <div className="h-16 bg-white border-t border-neutral-100 flex items-center justify-around px-2">
+                    <button className="flex flex-col items-center gap-1 text-indigo-600 p-2">
+                        <BiHome size={24} />
+                        <span className="text-[10px] font-medium">Home</span>
+                    </button>
+                    <button className="flex flex-col items-center gap-1 text-neutral-400 hover:text-neutral-600 p-2">
+                        <BiSearch size={24} />
+                        <span className="text-[10px] font-medium">Explore</span>
+                    </button>
+                    <button className="flex flex-col items-center gap-1 text-neutral-400 hover:text-neutral-600 p-2">
+                        <BiHeart size={24} />
+                        <span className="text-[10px] font-medium">Saved</span>
+                    </button>
+                    <button className="flex flex-col items-center gap-1 text-neutral-400 hover:text-neutral-600 p-2">
+                        <BiUser size={24} />
+                        <span className="text-[10px] font-medium">Profile</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
+}
+`;
+
+export const navFloatingCode = `"use client";
+
+export default function NavFloating() {
+    return (
+        <div className="bg-neutral-100 dark:bg-neutral-900 h-64 flex items-end justify-center pb-8">
+            <div className="bg-neutral-900/90 dark:bg-white/90 backdrop-blur text-white dark:text-neutral-900 px-2 py-2 rounded-full shadow-2xl flex items-center gap-1 animate-fade-in-up">
+                {[
+                    { label: "Home", active: true },
+                    { label: "Work", active: false },
+                    { label: "About", active: false },
+                    { label: "Contact", active: false }
+                ].map((item) => (
+                    <a
+                        key={item.label}
+                        href="#"
+                        className={\`px-5 py-2 rounded-full text-sm font-medium transition-all \${item.active ? 'bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white shadow-sm' : 'hover:bg-white/10 dark:hover:bg-black/10'}\`}
+                    >
+                        {item.label}
+                    </a>
+                ))}
+                <button className="ml-2 px-5 py-2 bg-indigo-500 rounded-full text-sm font-bold text-white hover:bg-indigo-400">
+                    Hire Me
+                </button>
+            </div>
+            <style jsx>{\`
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in-up {
+                animation: fadeInUp 0.5s ease-out forwards;
+            }
+        \`}</style>
+        </div>
+    )
+}
+`;

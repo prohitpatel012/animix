@@ -14,7 +14,7 @@ export default function TabsGlass() {
     const [current, setCurrent] = useState(0);
 
     return (
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 py-24">
+        <div className="bg-linear-to-br from-indigo-500 to-purple-600 py-24">
             <div className="mx-auto max-w-2xl px-6 flex justify-center">
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-2 rounded-2xl flex gap-2 shadow-2xl">
                     {tabs.map((t, i) => (

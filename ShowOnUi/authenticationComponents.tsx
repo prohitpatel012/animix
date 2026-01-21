@@ -11,7 +11,19 @@ import {
     LoginSocialCode,
     SignupSimpleCode,
     SignupSplitCode,
-    SignupImageCode
+    SignupImageCode,
+    LogoutCardCode,
+    LogoutSimpleCode,
+    LogoutModernCode,
+    LogoutSplitCode,
+    ForgotPasswordSimpleCode,
+    ForgotPasswordSplitCode,
+    AccountLockedModernCode,
+    AccountLockedSimpleCode,
+    MagicLinkCardCode,
+    MagicLinkSimpleCode,
+    TwoFactorSimpleCode,
+    TwoFactorCardCode
 } from './authenticationCode';
 
 import SignupSimple from "@/components/ui-component/authentication/SignupSimple";
@@ -52,30 +64,30 @@ export const signupComponents = [
 ];
 
 export const logoutComponents = [
-    { id: 'logout-card', name: 'Logout Card', preview: <LogoutCard />, code: PLACEHOLDER_CODE },
-    { id: 'logout-simple', name: 'Logout Simple', preview: <LogoutSimple />, code: PLACEHOLDER_CODE },
-    { id: 'logout-modern', name: 'Logout Modern', preview: <LogoutModern />, code: PLACEHOLDER_CODE },
-    { id: 'logout-split', name: 'Logout Split', preview: <LogoutSplit />, code: PLACEHOLDER_CODE },
+    { id: 'logout-card', name: 'Logout Card', preview: <LogoutCard />, code: LogoutCardCode },
+    { id: 'logout-simple', name: 'Logout Simple', preview: <LogoutSimple />, code: LogoutSimpleCode },
+    { id: 'logout-modern', name: 'Logout Modern', preview: <LogoutModern />, code: LogoutModernCode },
+    { id: 'logout-split', name: 'Logout Split', preview: <LogoutSplit />, code: LogoutSplitCode },
 ];
 
 export const forgotPasswordComponents = [
-    { id: 'forgot-password-simple', name: 'Forgot Password Simple', preview: <ForgotPasswordSimple />, code: PLACEHOLDER_CODE },
-    { id: 'forgot-password-split', name: 'Forgot Password Split', preview: <ForgotPasswordSplit />, code: PLACEHOLDER_CODE },
+    { id: 'forgot-password-simple', name: 'Forgot Password Simple', preview: <ForgotPasswordSimple />, code: ForgotPasswordSimpleCode },
+    { id: 'forgot-password-split', name: 'Forgot Password Split', preview: <ForgotPasswordSplit />, code: ForgotPasswordSplitCode },
 ];
 
 export const accountLockedComponents = [
-    { id: 'account-locked-modern', name: 'Account Locked Modern', preview: <AccountLockedModern />, code: PLACEHOLDER_CODE },
-    { id: 'account-locked-simple', name: 'Account Locked Simple', preview: <AccountLockedSimple />, code: PLACEHOLDER_CODE },
+    { id: 'account-locked-modern', name: 'Account Locked Modern', preview: <AccountLockedModern />, code: AccountLockedModernCode },
+    { id: 'account-locked-simple', name: 'Account Locked Simple', preview: <AccountLockedSimple />, code: AccountLockedSimpleCode },
 ];
 
 export const magicLinkComponents = [
-    { id: 'magic-link-card', name: 'Magic Link Card', preview: <MagicLinkCard />, code: PLACEHOLDER_CODE },
-    { id: 'magic-link-simple', name: 'Magic Link Simple', preview: <MagicLinkSimple />, code: PLACEHOLDER_CODE },
+    { id: 'magic-link-card', name: 'Magic Link Card', preview: <MagicLinkCard />, code: MagicLinkCardCode },
+    { id: 'magic-link-simple', name: 'Magic Link Simple', preview: <MagicLinkSimple />, code: MagicLinkSimpleCode },
 ];
 
 export const twoFactorComponents = [
-    { id: 'two-factor-simple', name: 'Two Factor Simple', preview: <TwoFactorSimple />, code: PLACEHOLDER_CODE },
-    { id: 'two-factor-card', name: 'Two Factor Card', preview: <TwoFactorCard />, code: PLACEHOLDER_CODE },
+    { id: 'two-factor-simple', name: 'Two Factor Simple', preview: <TwoFactorSimple />, code: TwoFactorSimpleCode },
+    { id: 'two-factor-card', name: 'Two Factor Card', preview: <TwoFactorCard />, code: TwoFactorCardCode },
 ];
 
 // Map of subcategory slug to component list
