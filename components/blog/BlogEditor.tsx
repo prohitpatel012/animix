@@ -182,100 +182,128 @@ export default function BlogEditor({ postId }: { postId?: string }) {
     };
 
     return (
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-4">
-                    <Link
-                        href="/blog"
-                        className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors"
-                    >
-                        <BiArrowBack className="text-xl" />
-                    </Link>
-                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{postId ? 'Edit Post' : 'Write New Post'}</h1>
-                </div>
-                <div className="flex items-center gap-3">
-                    <button className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors">
-                        Preview
-                    </button>
-                    <button
-                        onClick={handleSave}
-                        disabled={isSaving}
-                        className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <BiSave />
-                        {isSaving ? 'Publishing...' : 'Publish'}
-                    </button>
+        <div className="min-h-screen bg-white dark:bg-neutral-950 pb-20">
+            {/* Top Navigation Bar */}
+            <div className="sticky top-0 z-40 w-full bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800">
+                <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <Link
+                            href="/blog"
+                            className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 transition-colors"
+                        >
+                            <BiArrowBack className="text-xl" />
+                        </Link>
+                        <span className="text-sm font-medium text-neutral-500">
+                            {postId ? 'Editing Post' : 'New Post'}
+                        </span>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <button className="hidden sm:block px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors">
+                            Preview
+                        </button>
+                        <button
+                            onClick={handleSave}
+                            disabled={isSaving}
+                            className="flex items-center gap-2 px-6 py-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-full font-medium hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                        >
+                            <BiSave />
+                            {isSaving ? 'Publishing...' : 'Publish'}
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Content */}
-                <div className="lg:col-span-2 space-y-6">
-                    {/* Title Input */}
-                    <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">Cover Image</h3>
+            <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
+                {/* Main Editor Area (Wider) */}
+                <div className="lg:col-span-9 space-y-8">
+
+                    {/* Title Input - Huge & Clean */}
+                    <input
+                        type="text"
+                        id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        placeholder="Post Title..."
+                        className="w-full text-4xl sm:text-5xl font-extrabold bg-transparent border-none outline-none placeholder:text-neutral-300 dark:placeholder:text-neutral-700 text-neutral-900 dark:text-white"
+                        style={{ lineHeight: 1.2 }}
+                    />
+
+                    {/* Rich Text Editor */}
+                    <div className="min-h-[500px] prose prose-lg dark:prose-invert max-w-none">
+                        <RichTextEditor content={content} onChange={setContent} />
+                    </div>
+                </div>
+
+                {/* Sidebar Settings (Right Side) */}
+                <div className="lg:col-span-3 space-y-8">
+
+                    {/* Cover Image Card */}
+                    <div className="bg-neutral-50 dark:bg-neutral-900/50 rounded-2xl p-6 border border-neutral-100 dark:border-neutral-800">
+                        <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
+                            <BiImageAdd className="text-lg" /> Cover Image
+                        </h3>
                         {coverImage ? (
-                            <div className="relative rounded-lg overflow-hidden group">
-                                <img src={coverImage} alt="Cover" className="w-full h-40 object-cover" />
+                            <div className="relative rounded-xl overflow-hidden group shadow-sm">
+                                <img src={coverImage} alt="Cover" className="w-full h-48 object-cover" />
                                 <button
                                     onClick={() => setCoverImage(null)}
-                                    className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium"
+                                    className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium backdrop-blur-sm"
                                 >
                                     Remove Image
                                 </button>
                             </div>
                         ) : (
-                            <div className="border-2 border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors cursor-pointer relative">
+                            <div className="border-2 border-dashed border-neutral-300 dark:border-neutral-700 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-white dark:hover:bg-neutral-800 transition-all cursor-pointer relative group">
                                 <input
                                     type="file"
                                     accept="image/*"
                                     onChange={handleImageUpload}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                 />
-                                <BiImageAdd className="text-3xl text-neutral-400 mb-2" />
-                                <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                                    <span className="font-semibold text-blue-600">Click to upload</span> or drag and drop
+                                <div className="p-3 bg-white dark:bg-neutral-800 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform">
+                                    <BiImageAdd className="text-2xl text-neutral-400" />
+                                </div>
+                                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                                    Upload cover
                                 </p>
-                                <p className="text-xs text-neutral-500 mt-1">SVG, PNG, JPG or GIF</p>
                             </div>
                         )}
                     </div>
 
-                    {/* Description */}
-                    <div className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6">
-                        <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">Short Description</h3>
+                    {/* SEO / Description Card */}
+                    <div className="bg-neutral-50 dark:bg-neutral-900/50 rounded-2xl p-6 border border-neutral-100 dark:border-neutral-800">
+                        <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">SEO Description</h3>
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Write a brief summary for SEO and cards..."
+                            placeholder="A short summary for search engines and social previews..."
                             rows={4}
-                            className="w-full px-3 py-2 text-sm rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
+                            className="w-full px-4 py-3 text-sm rounded-xl border-none bg-white dark:bg-neutral-900 shadow-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none placeholder:text-neutral-400"
                         />
-                        <p className="text-xs text-neutral-500 mt-2 text-right">
-                            {description.length}/160 characters
-                        </p>
-                    </div>
-
-                    {/* Meta Info */}
-                    <div className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 space-y-4">
-                        <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">Publishing</h3>
-
-                        <div className="flex items-center justify-between text-sm">
-                            <span className="text-neutral-600 dark:text-neutral-400">Status</span>
-                            <span className="px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-medium">
-                                Draft
+                        <div className="flex justify-end mt-2">
+                            <span className={`text-xs ${description.length > 160 ? 'text-red-500' : 'text-neutral-400'}`}>
+                                {description.length}/160
                             </span>
                         </div>
+                    </div>
 
-                        <div className="flex items-center justify-between text-sm">
-                            <span className="text-neutral-600 dark:text-neutral-400">Visibility</span>
-                            <select className="bg-transparent text-right outline-none text-neutral-900 dark:text-white cursor-pointer">
-                                <option>Public</option>
-                                <option>Private</option>
-                                <option>Members Only</option>
-                            </select>
+                    {/* Publishing Card */}
+                    <div className="bg-neutral-50 dark:bg-neutral-900/50 rounded-2xl p-6 border border-neutral-100 dark:border-neutral-800">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">Settings</h3>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between text-sm p-3 bg-white dark:bg-neutral-900 rounded-xl shadow-sm">
+                                <span className="text-neutral-600 dark:text-neutral-400">Visibility</span>
+                                <select className="bg-transparent text-right outline-none text-neutral-900 dark:text-white font-medium cursor-pointer">
+                                    <option>Public</option>
+                                    <option>Private</option>
+                                    <option>Members</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
