@@ -214,52 +214,6 @@ export default function BlogEditor({ postId }: { postId?: string }) {
                 <div className="lg:col-span-2 space-y-6">
                     {/* Title Input */}
                     <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                            <label htmlFor="title" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                                Post Title
-                            </label>
-                            <button
-                                onClick={() => handleGenerate('content')}
-                                disabled={isGenerating || !title}
-                                className="text-xs flex items-center gap-1 text-purple-600 font-medium hover:text-purple-700 disabled:opacity-50"
-                            >
-                                {isGenerating ? 'Generating...' : '✨ Generate Content with AI'}
-                            </button>
-                        </div>
-                        <input
-                            type="text"
-                            id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Enter a descriptive title..."
-                            className="w-full px-4 py-3 text-lg font-semibold rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all placeholder:font-normal"
-                        />
-                        {title && (
-                            <div className="flex justify-end">
-                                <button
-                                    onClick={() => handleGenerate('title')}
-                                    disabled={isGenerating}
-                                    className="text-xs text-blue-600 hover:text-blue-700 font-medium"
-                                >
-                                    ✨ Improve Title
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Rich Text Editor */}
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                            Content
-                        </label>
-                        <RichTextEditor content={content} onChange={setContent} />
-                    </div>
-                </div>
-
-                {/* Sidebar Settings */}
-                <div className="space-y-6">
-                    {/* Cover Image */}
-                    <div className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 p-6">
                         <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-4">Cover Image</h3>
 
                         {coverImage ? (
