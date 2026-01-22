@@ -4,10 +4,29 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { mdxComponents } from '@/components/mdx/MDXComponents'
 import Link from 'next/link'
 import { BiArrowBack } from 'react-icons/bi'
+import dbConnect from '@/lib/db'
+import Blog from '@/lib/models/Blog'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const post = getPost(slug)
+    let post = getPost(slug)
+
+    if (!post) {
+        try {
+            await dbConnect();
+            const dbPost = await Blog.findById(slug).lean();
+            if (dbPost) {
+                post = {
+                    slug: dbPost._id.toString(),
+                    title: dbPost.title,
+                    description: dbPost.description,
+                    content: '', // Not needed for metadata
+                    date: '',
+                    meta: {}
+                };
+            }
+        } catch (e) { }
+    }
 
     if (!post) {
         return {}
@@ -21,7 +40,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const post = getPost(slug)
+    let post = getPost(slug)
+
+    if (!post) {
+        // Try fetching from DB
+        try {
+            await dbConnect();
+            const dbPost = await Blog.findById(slug).lean();
+            if (dbPost) {
+                post = {
+                    slug: dbPost._id.toString(),
+                    title: dbPost.title,
+                    description: dbPost.description || '',
+                    date: dbPost.createdAt ? new Date(dbPost.createdAt).toISOString() : new Date().toISOString(),
+                    content: dbPost.content,
+                    meta: {
+                        tag: dbPost.status === 'Published' ? 'Community' : dbPost.status,
+                        image: dbPost.coverImage,
+                    }
+                };
+            }
+        } catch (error) {
+            // Likely invalid ID format or connection error, ignore and let 404 happen
+        }
+    }
 
     if (!post) {
         return notFound()
@@ -60,14 +102,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         {post.title}
                     </h1>
 
-                    <p className="mb-6 text-xl text-neutral-600 dark:text-neutral-400">
-                        {post.description}
-                    </p>
+                    {post.description && (
+                        <p className="mb-6 text-xl text-neutral-600 dark:text-neutral-400">
+                            {post.description}
+                        </p>
+                    )}
 
                     {formattedDate && (
-                        <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+                        <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 mb-8">
                             <time dateTime={post.date}>{formattedDate}</time>
-                            {/* You could add reading time here if calculated */}
+                        </div>
+                    )}
+
+                    {post.meta?.image && (
+                        <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-neutral-200 dark:border-neutral-800">
+                            <img
+                                src={post.meta.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
                     )}
                 </div>

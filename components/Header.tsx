@@ -14,11 +14,24 @@ const menuOptions = [
     { name: 'Blog', href: '/blog' }
 ];
 
+import { useAuthStore } from '@/lib/store/authStore';
+
+// ... (imports remain)
+
 function Header() {
     const [activeOption, setActiveOption] = useState('');
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    // Auth state with hydration safe pattern
+    const authUser = useAuthStore((state) => state.user);
+    const logout = useAuthStore((state) => state.logout);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,6 +40,8 @@ function Header() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const user = mounted ? authUser : null;
 
     return (
         <>
@@ -80,6 +95,33 @@ function Header() {
                                 <span className="ml-auto text-xs text-neutral-400">⌘K</span>
                             </button>
 
+                            {/* Auth Actions */}
+                            {user ? (
+                                <div className="hidden md:flex items-center gap-4">
+                                    <div className="flex flex-col items-end">
+                                        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                                            {user.name}
+                                        </span>
+                                        <span className="text-[10px] uppercase font-bold tracking-wider text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded">
+                                            {user.role}
+                                        </span>
+                                    </div>
+                                    <button
+                                        onClick={() => logout()}
+                                        className="text-sm text-red-600 hover:text-red-700 font-medium"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            ) : (
+                                <Link
+                                    href="/login"
+                                    className="hidden md:block text-sm font-medium text-neutral-900 dark:text-white hover:text-blue-600 transition-colors"
+                                >
+                                    Log in
+                                </Link>
+                            )}
+
                             <button
                                 className='md:hidden p-2 text-neutral-600 dark:text-neutral-300'
                                 onClick={() => setIsMobileMenuOpen(true)}
@@ -94,7 +136,7 @@ function Header() {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+                    <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} user={user} logout={logout} />
                 )}
             </AnimatePresence>
 
@@ -105,7 +147,7 @@ function Header() {
 
 export default Header
 
-const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
+const MobileMenu = ({ isOpen, onClose, user, logout }: { isOpen: boolean, onClose: () => void, user: any, logout: any }) => {
     return (
         <motion.div
             initial={{ opacity: 0, x: '100%' }}
@@ -139,11 +181,33 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void 
                 ))}
             </nav>
 
-            <div className="mt-8 pt-8 border-t border-neutral-100 dark:border-neutral-800">
-                <button className='flex items-center gap-2 text-neutral-600 dark:text-neutral-400'>
-                    <IoTerminalSharp />
-                    <span>Component Library</span>
-                </button>
+            <div className="mt-8 pt-8 border-t border-neutral-100 dark:border-neutral-800 flex flex-col gap-4">
+                {user ? (
+                    <>
+                        <div className="flex items-center gap-2">
+                            <div className="text-xl font-medium text-neutral-900 dark:text-white">
+                                {user.name}
+                            </div>
+                            <span className="text-xs uppercase font-bold tracking-wider text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                                {user.role}
+                            </span>
+                        </div>
+                        <button
+                            onClick={() => { logout(); onClose(); }}
+                            className="text-lg font-medium text-red-600 text-left"
+                        >
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <Link
+                        href="/login"
+                        onClick={onClose}
+                        className='text-xl font-semibold text-blue-600 dark:text-blue-400'
+                    >
+                        Sign in
+                    </Link>
+                )}
             </div>
         </motion.div>
     )
