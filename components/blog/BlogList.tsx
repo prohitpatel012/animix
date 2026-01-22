@@ -112,7 +112,7 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
                             <BlogCard post={post} />
                             {/* Admin Actions for DB Posts */}
                             {post.meta?.isDbPost && isAdmin && (
-                                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                <div className="absolute top-4 right-4 flex gap-2 transition-opacity z-10">
                                     <Link
                                         href={`/blog/edit/${post.slug}`}
                                         className="p-2 bg-white dark:bg-neutral-800 rounded-full shadow-md text-blue-600 hover:text-blue-700 border border-neutral-200 dark:border-neutral-700 hover:scale-105 transition-transform"
