@@ -16,7 +16,7 @@ export default function Sidebar() {
     const activeCategory = searchParams.get('category');
     const activeSubcategory = searchParams.get('subcategory');
 
-    const [expandedCategories, setExpandedCategories] = useState<string[]>(['Authentication', 'Navigation']);
+    const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
     const toggleCategory = (category: string) => {
         setExpandedCategories(prev =>

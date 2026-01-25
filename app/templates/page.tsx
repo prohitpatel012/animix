@@ -5,8 +5,11 @@ import { getAllTemplates } from '@/lib/templates'
 import TemplateGallery from '@/components/templates/TemplateGallery'
 import { authenticationCategories } from '@/ShowOnUi/authenticationComponents'
 import { navigationCategories } from '@/ShowOnUi/navigationComponents'
-import { tabsComponents } from '@/ShowOnUi/tabsComponents'
+import { tabsComponents, tabsCategories } from '@/ShowOnUi/tabsComponents'
 import { userProfileCategories } from '@/ShowOnUi/userProfileComponents'
+import { colorsCategories } from '@/ShowOnUi/colorsComponents'
+import { heroCategories } from '@/ShowOnUi/heroComponents'
+import { landingPageCategories } from '@/ShowOnUi/landingPageComponents'
 
 import SubcategoryGrid from '@/components/SubcategoryGrid'
 import MainComponentArea from '@/components/MainComponentArea'
@@ -137,10 +140,76 @@ export default async function TemplatesPage({
 
   } else if (category === 'Tabs') {
     isComponentCollection = true;
-    isSubcategoryView = true;
     collectionTitle = 'Tab Components';
     collectionDescription = 'Switch between different views or content panes.';
-    componentList = tabsComponents;
+
+    if (subcategory && typeof subcategory === 'string' && tabsCategories[subcategory]) {
+      componentList = tabsCategories[subcategory].components;
+      isSubcategoryView = true;
+      collectionTitle = `${tabsCategories[subcategory].title}`;
+      collectionDescription = tabsCategories[subcategory].description;
+    } else {
+      subcategoriesList = Object.entries(tabsCategories).map(([slug, data]) => ({
+        slug,
+        title: data.title,
+        description: data.description,
+        count: data.components.length
+      }));
+    }
+  } else if (category === 'Colors') {
+    isComponentCollection = true;
+    collectionTitle = 'Color Systems';
+    collectionDescription = 'Palettes and combinations for your design system.';
+
+    if (subcategory && typeof subcategory === 'string' && colorsCategories[subcategory]) {
+      componentList = colorsCategories[subcategory].components;
+      isSubcategoryView = true;
+      collectionTitle = `${colorsCategories[subcategory].title}`;
+      collectionDescription = colorsCategories[subcategory].description;
+    } else {
+      subcategoriesList = Object.entries(colorsCategories).map(([slug, data]) => ({
+        slug,
+        title: data.title,
+        description: data.description,
+        count: data.components.length
+      }));
+    }
+  } else if (category === 'Hero Sections') {
+    isComponentCollection = true;
+    collectionTitle = 'Hero Sections';
+    collectionDescription = 'Eye-catching top sections to introduce your page.';
+
+    if (subcategory && typeof subcategory === 'string' && heroCategories[subcategory]) {
+      componentList = heroCategories[subcategory].components;
+      isSubcategoryView = true;
+      collectionTitle = `${heroCategories[subcategory].title}`;
+      collectionDescription = heroCategories[subcategory].description;
+    } else {
+      subcategoriesList = Object.entries(heroCategories).map(([slug, data]) => ({
+        slug,
+        title: data.title,
+        description: data.description,
+        count: data.components.length
+      }));
+    }
+  } else if (category === 'Landing Pages') {
+    isComponentCollection = true;
+    collectionTitle = 'Landing Pages';
+    collectionDescription = 'Full page templates ready for production.';
+
+    if (subcategory && typeof subcategory === 'string' && landingPageCategories[subcategory]) {
+      componentList = landingPageCategories[subcategory].components;
+      isSubcategoryView = true;
+      collectionTitle = `${landingPageCategories[subcategory].title}`;
+      collectionDescription = landingPageCategories[subcategory].description;
+    } else {
+      subcategoriesList = Object.entries(landingPageCategories).map(([slug, data]) => ({
+        slug,
+        title: data.title,
+        description: data.description,
+        count: data.components.length
+      }));
+    }
   }
 
   // If showing components, augment with MDX docs

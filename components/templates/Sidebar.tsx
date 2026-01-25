@@ -11,7 +11,7 @@ export function Sidebar({ categories }: { categories: string[] }) {
     const activeCategory = searchParams.get('category')
     const activeSubcategory = searchParams.get('subcategory')
     const [isOpen, setIsOpen] = useState(false)
-    const [expandedCategories, setExpandedCategories] = useState<string[]>(['Authentication', 'Navigation']);
+    const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
     const toggleCategory = (category: string) => {
         setExpandedCategories(prev =>
@@ -41,7 +41,8 @@ export function Sidebar({ categories }: { categories: string[] }) {
                 "Sidebars",
                 "Breadcrumbs",
                 "Footer",
-                "Nav Menus"
+                "Nav Menus",
+                "Sub Headers"
             ]
         },
         {
@@ -75,7 +76,48 @@ export function Sidebar({ categories }: { categories: string[] }) {
                 "Upgrade Plan"
             ]
         },
-        { name: "Tabs" }
+        {
+            name: "Tabs",
+            subItems: [
+                "Underline",
+                "Pills",
+                "Vertical",
+                "Glass",
+                "Animated",
+                "Folder",
+                "Cards",
+                "Minimal",
+                "Segmented",
+                "Icon Only"
+            ]
+        },
+        {
+            name: "Colors",
+            subItems: [
+                "Massive Palette",
+                "Color Combinations",
+                "Mega Combinations"
+            ]
+        },
+        {
+            name: "Hero Sections",
+            subItems: [
+                "Simple",
+                "Split",
+                "SaaS",
+                "App",
+                "Gradient",
+                "Dark"
+            ]
+        },
+        {
+            name: "Landing Pages",
+            subItems: [
+                "Modern",
+                "SaaS",
+                "Agency"
+            ]
+        }
     ];
 
     return (
@@ -193,22 +235,31 @@ export function Sidebar({ categories }: { categories: string[] }) {
                             <h3 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3 px-3">
                                 Page Templates
                             </h3>
-                            {categories.map((category) => (
-                                <Link
-                                    key={category}
-                                    href={`/templates?category=${encodeURIComponent(category)}`}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`
+                            {categories
+                                .filter(category =>
+                                    category !== 'Application' &&
+                                    category !== 'Application UI' &&
+                                    category !== 'Fundamental' &&
+                                    category !== 'Foundational' &&
+                                    category !== 'Headers' &&
+                                    !componentCollections.some(c => c.name === category)
+                                )
+                                .map((category) => (
+                                    <Link
+                                        key={category}
+                                        href={`/templates?category=${encodeURIComponent(category)}`}
+                                        onClick={() => setIsOpen(false)}
+                                        className={`
                                         block px-3 py-2 rounded-md text-sm font-medium transition-colors mb-1
                                         ${activeCategory === category
-                                            ? 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-white'
-                                            : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
-                                        }
+                                                ? 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-white'
+                                                : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+                                            }
                                     `}
-                                >
-                                    {category}
-                                </Link>
-                            ))}
+                                    >
+                                        {category}
+                                    </Link>
+                                ))}
                         </div>
                     </nav>
                 </div>

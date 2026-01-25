@@ -75,6 +75,15 @@ import {
     navMobileCode, navTransparentCode, navDoubleCode, navBottomCode, navFloatingCode
 } from "@/code/nav-menu-code";
 
+import HeaderWithSubHeader from '@/components/ui-component/headers/HeaderWithSubHeader';
+import SubHeaderSimple from '@/components/ui-component/headers/SubHeaderSimple';
+import { headerWithSubHeaderCode, subHeaderSimpleCode } from '@/code/sub-header-code';
+
+export const subHeaderComponents = [
+    { id: 'sub-header-simple', name: 'Sub Header Simple', preview: <SubHeaderSimple />, code: subHeaderSimpleCode },
+    { id: 'header-with-sub-header', name: 'Header With Sub Header', preview: <HeaderWithSubHeader />, code: headerWithSubHeaderCode },
+];
+
 
 
 // --- Headers ---
@@ -174,5 +183,10 @@ export const navigationCategories: Record<string, { title: string; description: 
         title: 'Navigation Menus',
         description: 'General purpose navigation components.',
         components: navMenuComponents
+    },
+    'Sub Headers': {
+        title: 'Sub Headers',
+        description: 'Top bars, announcement strips, and secondary headers.',
+        components: subHeaderComponents
     }
 };
